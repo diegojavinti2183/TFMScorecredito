@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/WEB-INF/plantilla.xhtml">
+        <ui:define name="top">
+            <h:outputText value="#{bundle.TitleProgram}"></h:outputText>
+        </ui:define>
+        <ui:define name="content" >            
+            <h:form id="form" styleClass="jsfcrud_list_form">
+                <p:panel header="#{bundle.ViewParametrosTitle}">
+                    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" /> 
+                    <p:dataTable id="tablaParametros" value="#{parametrosController.items}" var="item" style="border:solid 1px" filteredValue="#{parametrosController.filterItems}" widgetVar="conceptoTabla" scrollHeight="300" scrollable="true">  
+                        
+                        <f:facet name="header">  
+                            <p:outputPanel> 
+                                <p:commandButton id="ButtonNew" image="ui-icon ui-icon-document" value="Nuevo" action="#{parametrosController.nuevo}" process="@this" update="@form"/>                                
+                            </p:outputPanel>  
+                        </f:facet> 
+                        
+                        <p:column id="parCodigo" filterBy="#{item.parCodigo}" filterMatchMode="contains" headerText="#{bundle.ListParametrosTitle_parCodigo}">  
+                            <h:outputText value="#{item.parCodigo}" />  
+                        </p:column>
+
+                        <p:column id="parNombre" filterBy="#{item.parNombre}" filterMatchMode="contains" headerText="#{bundle.ListParametrosTitle_parNombre}">  
+                            <h:outputText value="#{item.parNombre}" />  
+                        </p:column>
+
+                        <p:column style="width:4%">  
+                            <p:commandButton id="selectButtonView" action="#{parametrosController.prepareView}" update="@form" image="ui-icon ui-icon-search" title="View">  
+                                <f:setPropertyActionListener value="#{item}" target="#{parametrosController.selectedParametros}" />  
+                            </p:commandButton>                            
+                        </p:column> 
+                        <p:column style="width:4%"> 
+                            <p:commandButton id="selectButtonEdit" action="#{parametrosController.prepareEdit}" update="@form" image="ui-icon ui-icon-pencil" title="Edit">
+                                <f:setPropertyActionListener value="#{item}" target="#{parametrosController.selectedParametros}" />  
+                            </p:commandButton>
+                        </p:column> 
+                        <p:column style="width:4%"> 
+                            <p:commandButton id="showDialogButton" image="ui-icon ui-icon-trash" onclick="PF('confirmation').show();" title="Destroy">                             
+                                <f:setPropertyActionListener value="#{item}" target="#{parametrosController.selectedParametros}" />  
+                            </p:commandButton>
+                        </p:column>                         
+                        
+                    </p:dataTable>  
+                </p:panel>
+
+                <p:panel id="panelCampos" header="#{bundle.CreateConceptosrpTitle}" rendered="#{parametrosController.renderedPanel}">
+                    <p:panelGrid columns="3">  
+                    <h:outputLabel value="#{bundle.CreateParametrosLabel_parCodigo}" for="parCodigo" />
+                    <h:inputText id="parCodigo" value="#{parametrosController.current.parCodigo}" title="#{bundle.CreateParametrosTitle_parCodigo}" required="true" />
+                    <p:message for="parCodigo" display="#{bundle.CreateParametrosRequiredMessage_parCodigo}"/>
+                    <h:outputLabel value="#{bundle.CreateParametrosLabel_parNombre}" for="parNombre" />
+                    <h:inputText id="parNombre" value="#{parametrosController.current.parNombre}" title="#{bundle.CreateParametrosTitle_parNombre}" onkeyup="this.value=this.value.toUpperCase();" required="true" />
+                    <p:message for="parNombre" display="#{bundle.CreateParametrosRequiredMessage_parNombre}"/>
+                    <h:outputLabel value="#{bundle.CreateParametrosLabel_parValor}" for="parValor" />
+                    <h:inputText id="parValor" value="#{parametrosController.current.parValor}" title="#{bundle.CreateParametrosTitle_parValor}" required="true" />
+                    <p:message for="parValor" display="#{bundle.CreateParametrosRequiredMessage_parValor}"/>
+                    
+                </p:panelGrid> 
+                    <br />
+                    <p:commandButton action="#{parametrosController.create}" value="#{bundle.CreateConceptosrpSaveLink}" rendered="#{parametrosController.renderedGuardar}" process="@all" update="@form"/>
+                    <p:commandButton action="#{parametrosController.update}" value="#{bundle.EditConceptosrpSaveLink}" rendered="#{parametrosController.renderedEditar}" process="@all" update="@form"/>
+                    <p:commandButton action="#{parametrosController.cancel}" value="#{bundle.CancelConceptosrpSaveLink}" process="@this" update="@form"/>                    
+                </p:panel>
+                <br />               
+                <h:link id="selectButtonReturn" outcome="/menus" value="#{bundle.ButtonReturn}"/>
+                <br />
+                <p:confirmDialog id="confirmDialog" message="#{bundle.ConfirmDialogMessage}" header="#{bundle.ConfirmDialogTitle}" severity="alert" widgetVar="confirmation">
+                    <p:commandButton id="confirm" value="#{bundle.ButtonYes}" update="messages,tablaParametros" oncomplete="PF('confirmation').hide();" actionListener="#{parametrosController.destroy}" />  
+                    <p:commandButton id="decline" value="#{bundle.ButtonNo}" onclick="PF('confirmation').hide();" type="button" /> 
+                </p:confirmDialog>
+                
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+

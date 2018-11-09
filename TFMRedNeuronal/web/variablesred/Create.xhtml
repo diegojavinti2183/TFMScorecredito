@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/WEB-INF/plantilla.xhtml">
+        <ui:define name="top">
+            <h:outputText value="#{bundle.TitleProgram}"></h:outputText>
+        </ui:define>
+        <ui:define name="content" >            
+            <h:form id="form" styleClass="jsfcrud_list_form">
+                <script type="text/javascript" src="../resources/js/funciones.js"/>
+                <p:panel header="#{bundle.ViewVariablesredTitle}">
+                    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" /> 
+                    <p:dataTable id="tablaVariablesred" value="#{variablesredController.items}" var="item" style="border:solid 1px" filteredValue="#{variablesredController.filterItems}" widgetVar="variablesredTabla" scrollHeight="300" scrollable="true">  
+
+                        <f:facet name="header">  
+                            <p:outputPanel> 
+                                <p:commandButton id="ButtonNew" image="ui-icon ui-icon-document" value="Nuevo" action="#{variablesredController.nuevo}" process="@this" update="@form"/>                                
+                            </p:outputPanel>  
+                        </f:facet> 
+
+                        <p:column id="vredCategoria" filterBy="#{item.vredCategoria.credNombre}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_vredCategoria}">  
+                            <h:outputText value="#{item.vredCategoria.credNombre}" />  
+                        </p:column>
+
+                        <p:column id="vredCodigo" filterBy="#{item.vredCodigo}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_vredCodigo}">  
+                            <h:outputText value="#{item.vredCodigo}" />  
+                        </p:column>
+
+                        <p:column id="vredId" filterBy="#{item.vredId}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_vredId}">  
+                            <h:outputText value="#{item.vredId}" />  
+                        </p:column>
+
+                        <p:column id="vredNombre" filterBy="#{item.vredNombre}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_vredNombre}">  
+                            <h:outputText value="#{item.vredNombre}" />  
+                        </p:column>
+
+                        <p:column id="vredTipodato" filterBy="#{item.vredTipodato}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_vredTipodato}">  
+                            <h:outputText value="#{item.vredTipodato}" />  
+                        </p:column>
+
+                        <p:column style="width:4%">  
+                            <p:commandButton id="selectButtonView" action="#{variablesredController.prepareView}" update="@form" image="ui-icon ui-icon-search" title="View">  
+                                <f:setPropertyActionListener value="#{item}" target="#{variablesredController.selectedVariablesred}" />  
+                            </p:commandButton>                            
+                        </p:column> 
+                        <p:column style="width:4%"> 
+                            <p:commandButton id="selectButtonEdit" action="#{variablesredController.prepareEdit}" update="@form" image="ui-icon ui-icon-pencil" title="Edit">
+                                <f:setPropertyActionListener value="#{item}" target="#{variablesredController.selectedVariablesred}" />  
+                            </p:commandButton>
+                        </p:column> 
+                        <p:column style="width:4%"> 
+                            <p:commandButton id="showDialogButton" image="ui-icon ui-icon-trash" onclick="PF('confirmation').show();" title="Destroy">                             
+                                <f:setPropertyActionListener value="#{item}" target="#{variablesredController.selectedVariablesred}" />  
+                            </p:commandButton>
+                        </p:column>                         
+
+                    </p:dataTable>  
+                </p:panel>
+
+                <p:panel id="panelCampos" header="#{bundle.CreateVariablesredTitle}" rendered="#{variablesredController.renderedPanel}">
+                    <h:panelGrid columns="2">  
+                        <h:outputLabel value="#{bundle.CreateVariablesredLabel_vredCategoria}" for="vredCategoria" />
+                        <p:selectOneMenu id="vredCategoria" value="#{variablesredController.current.vredCategoria}" title="#{bundle.CreateVariablesredTitle_vredCategoria}" required="true" requiredMessage="#{bundle.CreateVariablesredRequiredMessage_vredCategoria}">
+                            <f:selectItems value="#{categoriasredController.itemsAvailableSelectOne}"/>
+                        </p:selectOneMenu>
+                        <h:outputLabel value="#{bundle.CreateVariablesredLabel_vredId}" for="vredId" />
+                        <p:inputText id="vredId" value="#{variablesredController.current.vredId}" title="#{bundle.CreateVariablesredTitle_vredId}" required="true" requiredMessage="#{bundle.CreateVariablesredRequiredMessage_vredId}"/>
+                        <h:outputLabel value="#{bundle.CreateVariablesredLabel_vredNombre}" for="vredNombre" />
+                        <p:inputText id="vredNombre" value="#{variablesredController.current.vredNombre}" title="#{bundle.CreateVariablesredTitle_vredNombre}" onkeyup="this.value = this.value.toUpperCase();" required="true" requiredMessage="#{bundle.CreateVariablesredRequiredMessage_vredNombre}"/>
+                        <h:outputLabel value="#{bundle.CreateVariablesredLabel_vredDescripcion}" for="vredDescripcion" />
+                        <p:inputText id="vredDescripcion" value="#{variablesredController.current.vredDescripcion}" title="#{bundle.CreateVariablesredTitle_vredDescripcion}" onkeyup="this.value = this.value.toUpperCase();" required="true" requiredMessage="#{bundle.CreateVariablesredRequiredMessage_vredDescripcion}" size="60"/>
+                        <h:outputLabel value="#{bundle.CreateVariablesredLabel_vredTipodato}" for="vredTipodato" />
+                        <p:selectOneMenu id="vredTipodato" value="#{variablesredController.current.vredTipodato}" required="true" requiredMessage="#{bundle.CreateVariablesredRequiredMessage_vredTipodato}">
+                            <f:selectItem itemLabel="Binario" itemValue="B"/>
+                            <f:selectItem itemLabel="Decimal" itemValue="D"/>                                 
+                        </p:selectOneMenu>
+                        <h:outputLabel value="#{bundle.CreateVariablesredLabel_vredEstado}" for="vredEstado" />
+                        <p:selectBooleanCheckbox id="vredEstado" value="#{variablesredController.current.vredEstado}" required="true" requiredMessage="#{bundle.CreateVariablesredRequiredMessage_vredEstado}"/>
+
+                    </h:panelGrid> 
+                    <br />
+                    <p:commandButton action="#{variablesredController.create}" value="#{bundle.CreateVariablesredSaveLink}" rendered="#{variablesredController.renderedGuardar}" process="@all" update="@form"/>
+                    <p:commandButton action="#{variablesredController.update}" value="#{bundle.EditVariablesredSaveLink}" rendered="#{variablesredController.renderedEditar}" process="@all" update="@form"/>
+                    <p:commandButton action="#{variablesredController.cancel}" value="#{bundle.CancelVariablesredSaveLink}" process="@this" update="@form"/>                    
+                </p:panel>
+                <br />               
+                <h:link id="selectButtonReturn" outcome="/menus" value="#{bundle.ButtonReturn}"/>
+                <br />
+                <p:confirmDialog id="confirmDialog" message="#{bundle.ConfirmDialogMessage}" header="#{bundle.ConfirmDialogTitle}" severity="alert" widgetVar="confirmation">
+                    <p:commandButton id="confirm" value="#{bundle.ButtonYes}" update="messages,tablaVariablesred" oncomplete="PF('confirmation').hide();" actionListener="#{variablesredController.destroy}" />  
+                    <p:commandButton id="decline" value="#{bundle.ButtonNo}" onclick="PF('confirmation').hide();" type="button" /> 
+                </p:confirmDialog>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+

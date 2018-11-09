@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/WEB-INF/plantilla.xhtml">
+        <ui:define name="top">
+            <h:outputText value="#{bundle.TitleProgram}"></h:outputText>
+        </ui:define>
+        <ui:define name="content" >            
+            <h:form id="form" styleClass="jsfcrud_list_form">
+                <script type="text/javascript" src="../resources/js/funciones.js"/>
+                <p:panel id="panelCampos" header="#{bundle.CreateRedneuronalTitle}" >
+                    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" /> 
+                    <h:panelGrid columns="2">                
+                        <h:outputLabel value="#{bundle.EditRedneuronalLabel_redNentrada}" for="redNentrada" />
+                        <p:inputText id="redNentrada" value="#{redneuronalController.current.redNentrada}" title="#{bundle.EditRedneuronalTitle_redNentrada}" required="true" requiredMessage="#{bundle.EditRedneuronalRequiredMessage_redNentrada}"/>
+                        <h:outputLabel value="#{bundle.EditRedneuronalLabel_redNoculta}" for="redNoculta" />
+                        <p:inputText id="redNoculta" value="#{redneuronalController.current.redNoculta}" title="#{bundle.EditRedneuronalTitle_redNoculta}" required="true" requiredMessage="#{bundle.EditRedneuronalRequiredMessage_redNoculta}"/>
+                        <h:outputLabel value="#{bundle.EditRedneuronalLabel_redNcapasocultas}" for="redNcapasocultas" />
+                        <p:inputText id="redNcapasocultas" value="#{redneuronalController.current.redNcapasocultas}" title="#{bundle.EditRedneuronalTitle_redNcapasocultas}" required="true" requiredMessage="#{bundle.EditRedneuronalRequiredMessage_redNcapasocultas}"/>
+                        <h:outputLabel value="#{bundle.EditRedneuronalLabel_redNsalida}" for="redNsalida" />
+                        <p:inputText id="redNsalida" value="#{redneuronalController.current.redNsalida}" title="#{bundle.EditRedneuronalTitle_redNsalida}" required="true" requiredMessage="#{bundle.EditRedneuronalRequiredMessage_redNsalida}"/>
+                        <h:outputLabel value="#{bundle.EditRedneuronalLabel_redIteraciones}" for="redIteraciones" />
+                        <p:inputText id="redIteraciones" value="#{redneuronalController.current.redIteraciones}" title="#{bundle.EditRedneuronalTitle_redIteraciones}" required="true" requiredMessage="#{bundle.EditRedneuronalRequiredMessage_redIteraciones}"/>
+                        <h:outputLabel value="#{bundle.EditRedneuronalLabel_redMaxerror}" for="redMaxerror" />
+                        <p:inputText id="redMaxerror" value="#{redneuronalController.current.redMaxerror}" title="#{bundle.EditRedneuronalTitle_redMaxerror}" required="true" requiredMessage="#{bundle.EditRedneuronalRequiredMessage_redMaxerror}"/>
+
+                    </h:panelGrid> 
+                    <br />
+                    <p:commandButton action="#{redneuronalController.create}" value="#{bundle.CreateRedneuronalSaveLink}" process="@all" update="@form"/>
+                    <p:commandButton action="#{redneuronalController.cancel}" value="#{bundle.CancelRedneuronalSaveLink}" process="@this" update="@form"/>                    
+                </p:panel>
+                <p:panel header="#{bundle.ViewRedneuronalTitle}">
+                   <p:dataTable 
+                        id="rowsTable"
+                        var="dataRow" 
+                        value="#{calificaciondetallematriculasController.data}" 
+                        emptyMessage="No sites found with given criteria" 
+                        filteredValue="#{calificaciondetallematriculasController.filteredData}"
+                        editable="true" 
+                        sortBy="#{calificaciondetallematriculasController.defaultColumnSort}"                        
+                        style="margin-bottom:20px"> 
+
+                        <p:ajax event="rowEdit" listener="#{calificaciondetallematriculasController.onRowEdit}" />
+                        <p:ajax event="rowEditCancel" listener="#{calificaciondetallematriculasController.onRowCancel}" />
+
+                        <p:columns value="#{calificaciondetallematriculasController.columns}" var="column" columnIndexVar="colIndex" sortBy="#{column}" filterBy="#{column}" filterMatchMode="contains">  
+                            <f:facet name="header">#{column}</f:facet>  
+                            <p:cellEditor>  
+                                <f:facet name="output">
+                                    <h:outputText value="#{dataRow[column]}" />
+                                </f:facet>  
+                                <f:facet name="input">
+                                    <p:inputText id="modelInput" value="#{dataRow[column]}" style="width:96%"/>
+                                </f:facet>  
+                            </p:cellEditor>
+                        </p:columns>
+                        <p:column style="width:32px">
+                            <p:rowEditor />
+                        </p:column>
+                    </p:dataTable> 
+                </p:panel>
+                <br />               
+                <h:link id="selectButtonReturn" outcome="/menus" value="#{bundle.ButtonReturn}"/>
+                <br />
+                <p:confirmDialog id="confirmDialog" message="#{bundle.ConfirmDialogMessage}" header="#{bundle.ConfirmDialogTitle}" severity="alert" widgetVar="confirmation">
+                    <p:commandButton id="confirm" value="#{bundle.ButtonYes}" update="messages" oncomplete="PF('confirmation').hide();" actionListener="#{redneuronalController.destroy}" />  
+                    <p:commandButton id="decline" value="#{bundle.ButtonNo}" onclick="PF('confirmation').hide();" type="button" /> 
+                </p:confirmDialog>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

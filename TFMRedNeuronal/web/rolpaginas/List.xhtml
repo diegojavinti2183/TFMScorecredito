@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListRolpaginasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListRolpaginasEmpty}" rendered="#{rolpaginasController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{rolpaginasController.items.rowCount > 0}">
+                    <h:outputText value="#{rolpaginasController.pagination.pageFirstItem + 1}..#{rolpaginasController.pagination.pageLastItem + 1}/#{rolpaginasController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{rolpaginasController.previous}" value="#{bundle.Previous} #{rolpaginasController.pagination.pageSize}" rendered="#{rolpaginasController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{rolpaginasController.next}" value="#{bundle.Next} #{rolpaginasController.pagination.pageSize}" rendered="#{rolpaginasController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{rolpaginasController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRolpaginasTitle_rolpCodigo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.rolpCodigo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRolpaginasTitle_rolpAdmining}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.rolpAdmining}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRolpaginasTitle_rolpAdminfec1}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.rolpAdminfec1}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRolpaginasTitle_rolpAdminact}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.rolpAdminact}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRolpaginasTitle_rolpAdminfec2}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.rolpAdminfec2}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRolpaginasTitle_rolpRol}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.rolpRol}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRolpaginasTitle_rolpPagina}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.rolpPagina}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{rolpaginasController.prepareView}" value="#{bundle.ListRolpaginasViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{rolpaginasController.prepareEdit}" value="#{bundle.ListRolpaginasEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{rolpaginasController.destroy}" value="#{bundle.ListRolpaginasDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{rolpaginasController.prepareCreate}" value="#{bundle.ListRolpaginasCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListRolpaginasIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

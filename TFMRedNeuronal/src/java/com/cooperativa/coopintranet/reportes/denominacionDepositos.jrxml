@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="denominacionDepositos" pageWidth="595" pageHeight="421" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a38b4ddf-4143-4fbe-a019-9a3676fa659e">
+	<property name="ireport.zoom" value="1.3310000000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="LOGO" class="java.io.InputStream"/>
+	<parameter name="SUBREPORT_DIR" class="java.io.InputStream" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="dedepNumero" class="java.lang.Integer"/>
+	<field name="dedepFechatransaccion" class="java.util.Date"/>
+	<field name="dedepIddepositante" class="java.lang.String"/>
+	<field name="dedepIdtitular" class="java.lang.String"/>
+	<field name="dedepValordeposito" class="java.math.BigDecimal"/>
+	<field name="dedepMontobilletes" class="java.math.BigDecimal"/>
+	<field name="seriebilletesCollection" class="java.util.Collection"/>
+	<field name="dedepNumerocuenta" class="java.lang.Integer"/>
+	<field name="dedepNombresocio" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="49" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="f257451a-9848-4887-b20c-35a1c76a5a5e" x="69" y="4" width="484" height="22"/>
+				<textElement textAlignment="Center">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COOPERATIVA DE AHORRO Y CRÉDITO SAN JOSÉ S.J.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="99cf9acf-c870-42c0-b1da-15385b0e3bf8" x="149" y="28" width="319" height="16"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Denominacion Billetes]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="8eb933c7-06d8-4ec3-a2d5-70032e7a0876" positionType="FixRelativeToBottom" x="1" y="47" width="555" height="1"/>
+			</line>
+			<image isUsingCache="true">
+				<reportElement uuid="5e97224a-36ac-48c3-a916-561ec075a840" x="1" y="4" width="67" height="40"/>
+				<imageExpression><![CDATA[$P{LOGO}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="90" splitType="Stretch">
+			<textField>
+				<reportElement uuid="33d6fd1e-7f67-4d10-bb48-5ebd432c5b11" x="1" y="31" width="552" height="53"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["Yo,"+$F{dedepNombresocio}+" con cédula Nro. "+$F{dedepIdtitular}+" entrego a la Cooperativa de Ahorro y Crédito SAN JOSE S.J., los billetes que detallo a continuación por concepto de depósito, en caso de que el Banco Central del Ecuador detecte la falsedad de los billetes me comprometo a reembolsar el valor respectivo."]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MMM-yyyy">
+				<reportElement uuid="8ce43d64-745c-4973-bff5-ffe801433083" x="75" y="6" width="151" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="e34b61bf-cb43-489b-81cc-1f8979621639" x="22" y="6" width="53" height="20"/>
+				<textElement/>
+				<text><![CDATA[Cuenca,]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="40" splitType="Stretch">
+			<subreport>
+				<reportElement uuid="0b0ad819-e9e3-456d-a111-0ab2f04cc6d5" x="22" y="0" width="516" height="40"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{seriebilletesCollection})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="50" splitType="Stretch">
+			<line>
+				<reportElement uuid="fbc6256c-df7d-4fe8-8443-9294019beeb5" x="49" y="19" width="218" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="1234ef14-1e34-473a-acad-62c5afff9eae" x="316" y="20" width="205" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="9cec0c30-0d90-437a-ae04-babd4b243d9b" x="49" y="21" width="218" height="20"/>
+				<textElement/>
+				<text><![CDATA[Firma Depositante]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6d7cf123-519b-4542-8c59-cf5f60ec120e" x="316" y="23" width="205" height="27"/>
+				<textElement/>
+				<text><![CDATA[Firma Recibe
+C.I.]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

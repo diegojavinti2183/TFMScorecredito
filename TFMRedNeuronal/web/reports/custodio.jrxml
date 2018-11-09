@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="facturas" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a38b4ddf-4143-4fbe-a019-9a3676fa659e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.io.InputStream" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="logo" class="java.io.InputStream"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="cusFecha" class="java.util.Date"/>
+	<field name="cusEmpleadorecibe.empNombre" class="java.lang.String"/>
+	<field name="cusEmpleadoentrega.empNombre" class="java.lang.String"/>
+	<field name="agencias.ageId" class="java.lang.String"/>
+	<field name="cusConcepto" class="java.lang.String"/>
+	<field name="agencias.ageNombre" class="java.lang.String"/>
+	<field name="cusEmpleadorecibe.empCargo.cargNombre" class="java.lang.String"/>
+	<field name="cusEmpleadoentrega.empCargo.cargNombre" class="java.lang.String"/>
+	<field name="dcustodiosCollection" class="java.util.List"/>
+	<field name="custodiosPK.cusCodigo" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="73" splitType="Stretch">
+			<image scaleImage="RetainShape">
+				<reportElement uuid="c12e00cf-872a-4f42-8abf-98d4d155e0b1" x="3" y="1" width="108" height="70"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="2566f4e8-342b-46c1-a8e0-b433ffa5abb2" x="167" y="13" width="200" height="25"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ACTA DE ENTREGA RECEPCION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="adbe8df2-0d65-4774-964d-ccc8cab82da2" x="167" y="38" width="46" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Codigo:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="67df857b-8ad5-43e2-9250-6981f74b3ddf" x="213" y="38" width="45" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["CB-"+$F{agencias.ageId}+"-"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="6d582df2-79ac-4363-9d07-2222f9f5052b" x="258" y="38" width="89" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{custodiosPK.cusCodigo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="87" splitType="Stretch">
+			<textField>
+				<reportElement uuid="ad98e5f4-2393-455d-876c-d882e2cb433b" x="19" y="5" width="526" height="78"/>
+				<textElement textAlignment="Justified">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["El dia "+$F{cusFecha}+" en la Agencia "+$F{agencias.ageNombre}+"  de la Cooperativa Banos Ltda se procede a la entrega de Activos Fijos entre los senores "+ $F{cusEmpleadoentrega.empNombre} + " con el cargo " + $F{cusEmpleadoentrega.empCargo.cargNombre} + " y el señor " + $F{cusEmpleadorecibe.empNombre} + " en calidad de " + $F{cusEmpleadorecibe.empCargo.cargNombre} + " se procede con la descripcion de los Activos para su custodio y buen uso:"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="100" splitType="Stretch">
+			<subreport>
+				<reportElement uuid="2b90c611-f645-4eaf-b3ac-bf97c39b49f8" x="19" y="0" width="526" height="100"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{dcustodiosCollection})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="175" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="5623f31f-94b0-438c-9144-aa62dade950c" x="19" y="14" width="161" height="20"/>
+				<textElement/>
+				<text><![CDATA[Para constancia firman:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="60737af2-ffd7-4961-8934-1c013ba7b420" x="103" y="53" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Entregue Conforme]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="abe43e5d-9640-4cb5-9c72-49e24321cbd5" x="367" y="53" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Recibi Conforme]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="3fc616eb-7630-44a0-9486-4c387e745bca" x="43" y="115" width="215" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="344d06be-ce6b-487b-b746-9cb21edb8ed5" x="323" y="115" width="187" height="1"/>
+			</line>
+			<textField>
+				<reportElement uuid="b7ec6e9a-b2d1-4a53-947e-38793c427e80" x="62" y="126" width="180" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{cusEmpleadoentrega.empNombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="1e44cc63-8747-42dd-a249-c6d74abdd1b2" x="335" y="126" width="175" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{cusEmpleadorecibe.empNombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="1445711a-a23a-424b-88c4-a8230053a460" x="62" y="146" width="180" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{cusEmpleadoentrega.empCargo.cargNombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3ea84eeb-a244-4093-90d2-d4a3754e02d1" x="335" y="146" width="175" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{cusEmpleadorecibe.empCargo.cargNombre}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

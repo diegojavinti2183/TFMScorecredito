@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="notificacionjd" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="61d9242f-a068-410c-935a-bcf6d1a710fd">
+	<property name="ireport.zoom" value="1.771561000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="456"/>
+	<parameter name="logo" class="java.io.InputStream"/>
+	<parameter name="garante" class="java.lang.Boolean"/>
+	<parameter name="SUBREPORT_DIR" class="java.io.InputStream"/>
+	<parameter name="subReportDataSource" class="java.util.Collection"/>
+	<parameter name="SUBREPORT_DIR2" class="java.io.InputStream"/>
+	<field name="hcreGrupoproducto" class="java.lang.String"/>
+	<field name="hcreProducto" class="java.lang.String"/>
+	<field name="hcreCodigosocio" class="java.lang.Integer"/>
+	<field name="hcreIdentificacion" class="java.lang.String"/>
+	<field name="hcreDireccion" class="java.lang.String"/>
+	<field name="hcreSector" class="java.lang.String"/>
+	<field name="hcreBarrio" class="java.lang.String"/>
+	<field name="hcreTelefono" class="java.lang.String"/>
+	<field name="hcreCelular" class="java.lang.String"/>
+	<field name="hcreProfesion" class="java.lang.String"/>
+	<field name="hcreIdentificacionconyugue" class="java.lang.String"/>
+	<field name="hcreNombresconyugue" class="java.lang.String"/>
+	<field name="hcreTelefonoconyugue" class="java.lang.String"/>
+	<field name="hcreTrabajo" class="java.lang.String"/>
+	<field name="hcreCargotrabajo" class="java.lang.String"/>
+	<field name="hcreDirecciontrabajo" class="java.lang.String"/>
+	<field name="hcreTelefonotrabajo" class="java.lang.String"/>
+	<field name="hcreOficial" class="java.lang.String"/>
+	<field name="hcreGarante1" class="java.lang.String"/>
+	<field name="hcreIdentificaciongarante1" class="java.lang.String"/>
+	<field name="hcreDirecciongarante1" class="java.lang.String"/>
+	<field name="hcreTelefonogarante1" class="java.lang.String"/>
+	<field name="hcreGarante2" class="java.lang.String"/>
+	<field name="hcreIdentificaciongarante2" class="java.lang.String"/>
+	<field name="hcreDirecciongarante2" class="java.lang.String"/>
+	<field name="hcreTelefonogarante2" class="java.lang.String"/>
+	<field name="hcreSaldodisponible" class="java.math.BigDecimal"/>
+	<field name="hcreSaldobloqueado" class="java.math.BigDecimal"/>
+	<field name="hcreSaldoencaje" class="java.math.BigDecimal"/>
+	<field name="hcreSaldocapital" class="java.math.BigDecimal"/>
+	<field name="hcreNotificaciones" class="java.math.BigDecimal"/>
+	<field name="hcreValorjudicial" class="java.math.BigDecimal"/>
+	<field name="hcreCapitalvencido" class="java.math.BigDecimal"/>
+	<field name="hcreFechavencimiento" class="java.util.Date"/>
+	<field name="hcreTotalvencido" class="java.math.BigDecimal"/>
+	<field name="hcrePorvencer" class="java.math.BigDecimal"/>
+	<field name="hcreDiasvencido" class="java.lang.Integer"/>
+	<field name="hcreCalificacion" class="java.lang.String"/>
+	<field name="hcreCuota" class="java.math.BigDecimal"/>
+	<field name="hcreCredito.creCodigo" class="java.lang.Integer"/>
+	<field name="hcreNombres" class="java.lang.String"/>
+	<field name="hcreCredito.creMontacreditado" class="java.math.BigDecimal"/>
+	<field name="hcreSeguro" class="java.math.BigDecimal"/>
+	<field name="hcreMora" class="java.math.BigDecimal"/>
+	<field name="hcreInteres" class="java.math.BigDecimal"/>
+	<field name="hcreGastosjudiciales" class="java.math.BigDecimal"/>
+	<field name="hcreGestion" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="70ff1d71-60b1-4165-9ee2-a3084660b054" x="194" y="59" width="158" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[PRE-JUDICIAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="831636ec-3772-472f-a54b-b3d72f1b076d" x="402" y="59" width="37" height="20"/>
+				<textElement/>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy HH.mm.ss">
+				<reportElement uuid="fdfa1ca2-cba9-4a3d-b33d-4abd74719f2e" x="439" y="59" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image isUsingCache="true">
+				<reportElement uuid="2ad2d266-1546-4e07-90fd-8714d0e820e3" x="2" y="0" width="553" height="50"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="700" splitType="Stretch">
+			<textField>
+				<reportElement uuid="40150f11-e172-4aef-9599-4990f3faa886" x="14" y="15" width="121" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["Cuenca - Chilcapamba,"]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement uuid="b761e845-ae29-42cd-98c2-8aa6e3ab2d8e" x="135" y="15" width="319" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("EEEE dd ' de ' MMMMM ' de 'yyyy").format(new Date())]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="81977ca9-b5cb-46d3-880c-7c580dab724d" x="14" y="325" width="289" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["DETALLE DEL CRÉDITO Nº "+ $F{hcreCredito.creCodigo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="df923da4-8af9-4548-a730-e02476afa02e" x="14" y="345" width="66" height="20"/>
+				<textElement/>
+				<text><![CDATA[Préstamo: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="30d7ce78-1d22-4cc6-a54d-9daaa287f7b1" x="14" y="365" width="66" height="20"/>
+				<textElement/>
+				<text><![CDATA[Días Mora:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="43ce3504-eba1-4ac4-961d-bb2258275a75" x="14" y="385" width="66" height="20"/>
+				<textElement/>
+				<text><![CDATA[Saldo Capital:	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="309fbd61-f264-428f-9339-32cc7d768156" x="245" y="345" width="58" height="20"/>
+				<textElement/>
+				<text><![CDATA[Capital:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="dc2eeb7d-3d49-4d5f-a0b7-81562e7967a0" x="245" y="365" width="58" height="20"/>
+				<textElement/>
+				<text><![CDATA[Interés:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="83095392-c2b1-4afc-b75c-ee2dd52dd6c0" x="245" y="385" width="58" height="20"/>
+				<textElement/>
+				<text><![CDATA[Mora:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a8264a70-b226-41cb-a774-a83d8e23072a" x="245" y="405" width="58" height="20"/>
+				<textElement/>
+				<text><![CDATA[Seguro ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f01b0201-88ee-407f-b5e8-bee898ca0104" x="245" y="446" width="58" height="20"/>
+				<textElement/>
+				<text><![CDATA[TOTAL:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="5c6bc52d-791f-4529-9b39-bd60a243c01d" x="304" y="345" width="100" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{hcreCapitalvencido}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="8d25c1c0-978a-4f8e-a297-ca45a5a3b3e0" x="304" y="365" width="100" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{hcreInteres}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="c4c13211-e9f3-492f-ba2b-ff264a904bd8" x="304" y="385" width="100" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{hcreMora}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="941b8481-509f-4da7-bdcb-87e61ca5c417" x="304" y="405" width="100" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{hcreSeguro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="991bcc37-34a5-4a82-8cdd-b53f6c699aec" x="305" y="446" width="100" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{hcreSeguro}.add( $F{hcreMora}.add( $F{hcreInteres}.add( $F{hcreCapitalvencido}.add( $F{hcreGestion} ) ) ) )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="6d0373d8-a1f3-4166-bd57-547f03e223a0" x="80" y="345" width="100" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{hcreCredito.creMontacreditado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b16e3f74-9878-489a-aced-89d454e54177" x="80" y="365" width="100" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{hcreDiasvencido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f65aca43-1878-4862-aa31-77aa7b4cacf9" x="80" y="385" width="100" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{hcreSaldocapital}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="da5f896d-0ba4-4e00-b52d-dab9ca504fa3" x="14" y="473" width="460" height="20"/>
+				<textElement/>
+				<text><![CDATA[Solicitamos la inmediata cancelación]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="858ade4a-5e9e-432c-bb82-ecfa34cc86d5" x="23" y="525" width="203" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="fe5a8b2f-ec19-4f6e-8461-5cc1f56ca9a1" x="290" y="524" width="233" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="2b99e4d9-5eae-4435-8e52-7a08bb7f3b5f" x="23" y="557" width="23" height="20"/>
+				<textElement/>
+				<text><![CDATA[C.I.:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="7eef90d5-5d97-48e2-b904-5639fb6ef514" x="46" y="557" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{hcreIdentificacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3b89da2e-de32-4357-b778-3b1e49c7ca40" x="23" y="537" width="203" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{hcreNombres}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="09acdc97-aa62-4e92-8aa1-23909ed9ed0b" x="303" y="537" width="183" height="20"/>
+				<textElement/>
+				<text><![CDATA[ COBRANZAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e6f48b4b-d04e-4d50-b521-e7afa480b12d" x="14" y="45" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Señor(a)]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="ace65844-46a8-404c-b00f-dba36898e67f" x="14" y="65" width="231" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{hcreNombres}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="e6f48b4b-d04e-4d50-b521-e7afa480b12d" x="13" y="124" width="89" height="20"/>
+				<textElement/>
+				<text><![CDATA[Dirección domicilio:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b11c78b9-190c-4da8-ad9d-3278482ee273" x="423" y="124" width="50" height="20"/>
+				<textElement/>
+				<text><![CDATA[Telefono:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="16cea911-764f-45fb-9f5c-897c39e29c01" x="102" y="124" width="303" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{hcreDireccion}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="52053e07-0ae1-4fdf-b26d-fd4267e14fd7" x="473" y="124" width="65" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{hcreTelefono}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="079ae402-697e-4c3c-b10b-90efdc90dd7f" x="423" y="144" width="50" height="20"/>
+				<textElement/>
+				<text><![CDATA[Celular:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4ab207b2-886c-47fc-8685-9a54374e3031" x="245" y="425" width="58" height="20"/>
+				<textElement/>
+				<text><![CDATA[G.Cobranza:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="7a6fa438-3df6-43a9-84b1-bfba8b75c19b" x="305" y="426" width="100" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{hcreGestion}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="e6abb1f0-2d35-405c-92bc-056ee233034b" x="473" y="144" width="65" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{hcreCelular}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="8f3786e9-d02e-4f66-b6a0-0d290ffbaf0a" x="13" y="164" width="89" height="20"/>
+				<textElement/>
+				<text><![CDATA[Dirección trabajo:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="e728f42c-6b10-49dd-a5e4-b150f60d4f5a" x="102" y="164" width="303" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{hcreTrabajo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="b11c78b9-190c-4da8-ad9d-3278482ee273" x="423" y="164" width="50" height="20"/>
+				<textElement/>
+				<text><![CDATA[Telefono:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="4bfaf75c-daa8-41dd-bda2-ae1aad10502b" x="474" y="164" width="65" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{hcreTelefonotrabajo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="428eb727-95bb-4846-a99c-7fb7a0d7ae65" x="11" y="194" width="525" height="70"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[Por medio de la presente comunicación, y una vez que se ha notificado por varias ocasiones, y en vista que usted, no se ha acercado a cancelar su deuda, nos permitimos realizar un último llamado de atención, con el fin de evitarle mayores contratiempos, honorarios de abogado, gastos y costas judiciales, por lo que solicitamos su cancelación inmediata de la deuda pendiente.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="cef44713-4df9-4267-a1fc-494a904f16e7" x="10" y="268" width="526" height="42"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[En caso de no cumplir con esta obligación, se procederá de inmediato con las acciones legales pertinentes en su contra y de los garantes.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e6f48b4b-d04e-4d50-b521-e7afa480b12d" x="14" y="85" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Ciudad.]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="60" splitType="Stretch">
+			<subreport>
+				<reportElement uuid="fe604a10-9966-4ed1-a7bb-00c5d7e6c118" x="0" y="0" width="555" height="30" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true">
+					<printWhenExpression><![CDATA[$P{garante} == true]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="logo">
+					<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource ($P{subReportDataSource})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="fe604a10-9966-4ed1-a7bb-00c5d7e6c118" positionType="Float" x="0" y="30" width="555" height="30" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true">
+					<printWhenExpression><![CDATA[$P{garante} == true && $F{hcreIdentificaciongarante2} != null]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="logo">
+					<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource ($P{subReportDataSource})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR2}]]></subreportExpression>
+			</subreport>
+		</band>
+	</summary>
+</jasperReport>

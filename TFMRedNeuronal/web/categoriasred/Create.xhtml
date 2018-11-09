@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/WEB-INF/plantilla.xhtml">
+        <ui:define name="top">
+            <h:outputText value="#{bundle.TitleProgram}"></h:outputText>
+        </ui:define>
+        <ui:define name="content" >            
+            <h:form id="form" styleClass="jsfcrud_list_form">
+                <script type="text/javascript" src="../resources/js/funciones.js"/>
+                <p:panel header="#{bundle.ViewCategoriasredTitle}">
+                    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" /> 
+                    <p:dataTable id="tablaCategoriasred" value="#{categoriasredController.items}" var="item" style="border:solid 1px" filteredValue="#{categoriasredController.filterItems}" widgetVar="categoriasredTabla" scrollHeight="300" scrollable="true">  
+
+                        <f:facet name="header">  
+                            <p:outputPanel> 
+                                <p:commandButton id="ButtonNew" image="ui-icon ui-icon-document" value="Nuevo" action="#{categoriasredController.nuevo}" process="@this" update="@form"/>                                
+                            </p:outputPanel>  
+                        </f:facet> 
+
+                        <p:column id="credCodigo" filterBy="#{item.credCodigo}" filterMatchMode="contains" headerText="#{bundle.ListCategoriasredTitle_credCodigo}">  
+                            <h:outputText value="#{item.credCodigo}" />  
+                        </p:column>
+
+                        <p:column id="credId" filterBy="#{item.credId}" filterMatchMode="contains" headerText="#{bundle.ListCategoriasredTitle_credId}">  
+                            <h:outputText value="#{item.credId}" />  
+                        </p:column>
+
+                        <p:column id="credNombre" filterBy="#{item.credNombre}" filterMatchMode="contains" headerText="#{bundle.ListCategoriasredTitle_credNombre}">  
+                            <h:outputText value="#{item.credNombre}" />  
+                        </p:column>
+
+                        <p:column id="credEstado" filterBy="#{item.credEstado}" filterMatchMode="contains" headerText="#{bundle.ListCategoriasredTitle_credEstado}">  
+                            <h:outputText value="#{item.credEstado}" />  
+                        </p:column>
+
+                        <p:column style="width:4%">  
+                            <p:commandButton id="selectButtonView" action="#{categoriasredController.prepareView}" update="@form" image="ui-icon ui-icon-search" title="View">  
+                                <f:setPropertyActionListener value="#{item}" target="#{categoriasredController.selectedCategoriasred}" />  
+                            </p:commandButton>                            
+                        </p:column> 
+                        <p:column style="width:4%"> 
+                            <p:commandButton id="selectButtonEdit" action="#{categoriasredController.prepareEdit}" update="@form" image="ui-icon ui-icon-pencil" title="Edit">
+                                <f:setPropertyActionListener value="#{item}" target="#{categoriasredController.selectedCategoriasred}" />  
+                            </p:commandButton>
+                        </p:column> 
+                        <p:column style="width:4%"> 
+                            <p:commandButton id="showDialogButton" image="ui-icon ui-icon-trash" onclick="PF('confirmation').show();" title="Destroy">                             
+                                <f:setPropertyActionListener value="#{item}" target="#{categoriasredController.selectedCategoriasred}" />  
+                            </p:commandButton>
+                        </p:column>                         
+
+                    </p:dataTable>  
+                </p:panel>
+
+                <p:panel id="panelCampos" header="#{bundle.CreateCategoriasredTitle}" rendered="#{categoriasredController.renderedPanel}">
+                    <h:panelGrid columns="2">  
+                        <h:outputLabel value="#{bundle.CreateCategoriasredLabel_credId}" for="credId" />
+                        <p:inputText id="credId" value="#{categoriasredController.current.credId}" title="#{bundle.CreateCategoriasredTitle_credId}" onkeyup="this.value=this.value.toUpperCase();" required="true" requiredMessage="#{bundle.CreateCategoriasredRequiredMessage_credId}"/>
+                        <h:outputLabel value="#{bundle.CreateCategoriasredLabel_credNombre}" for="credNombre" />
+                        <p:inputText id="credNombre" value="#{categoriasredController.current.credNombre}" title="#{bundle.CreateCategoriasredTitle_credNombre}" onkeyup="this.value=this.value.toUpperCase();" required="true" requiredMessage="#{bundle.CreateCategoriasredRequiredMessage_credNombre}"/>
+                        <h:outputLabel value="#{bundle.CreateCategoriasredLabel_credEstado}" for="credEstado" />
+                        <p:selectBooleanCheckbox id="credEstado" value="#{categoriasredController.current.credEstado}" required="true" requiredMessage="#{bundle.CreateCategoriasredRequiredMessage_credEstado}"/>
+
+                    </h:panelGrid> 
+                    <br />
+                    <p:commandButton action="#{categoriasredController.create}" value="#{bundle.CreateCategoriasredSaveLink}" rendered="#{categoriasredController.renderedGuardar}" process="@all" update="@form"/>
+                    <p:commandButton action="#{categoriasredController.update}" value="#{bundle.EditCategoriasredSaveLink}" rendered="#{categoriasredController.renderedEditar}" process="@all" update="@form"/>
+                    <p:commandButton action="#{categoriasredController.cancel}" value="#{bundle.CancelCategoriasredSaveLink}" process="@this" update="@form"/>                    
+                </p:panel>
+                <br />               
+                <h:link id="selectButtonReturn" outcome="/menus" value="#{bundle.ButtonReturn}"/>
+                <br />
+                <p:confirmDialog id="confirmDialog" message="#{bundle.ConfirmDialogMessage}" header="#{bundle.ConfirmDialogTitle}" severity="alert" widgetVar="confirmation">
+                    <p:commandButton id="confirm" value="#{bundle.ButtonYes}" update="messages,tablaCategoriasred" oncomplete="PF('confirmation').hide();" actionListener="#{categoriasredController.destroy}" />  
+                    <p:commandButton id="decline" value="#{bundle.ButtonNo}" onclick="PF('confirmation').hide();" type="button" /> 
+                </p:confirmDialog>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

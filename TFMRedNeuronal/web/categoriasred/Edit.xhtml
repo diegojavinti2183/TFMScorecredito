@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditCategoriasredTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditCategoriasredLabel_credCodigo}" for="credCodigo" />
+                    <h:inputText id="credCodigo" value="#{categoriasredController.selected.credCodigo}" title="#{bundle.EditCategoriasredTitle_credCodigo}" required="true" requiredMessage="#{bundle.EditCategoriasredRequiredMessage_credCodigo}"/>
+                    <h:outputLabel value="#{bundle.EditCategoriasredLabel_credId}" for="credId" />
+                    <h:inputText id="credId" value="#{categoriasredController.selected.credId}" title="#{bundle.EditCategoriasredTitle_credId}" required="true" requiredMessage="#{bundle.EditCategoriasredRequiredMessage_credId}"/>
+                    <h:outputLabel value="#{bundle.EditCategoriasredLabel_credNombre}" for="credNombre" />
+                    <h:inputText id="credNombre" value="#{categoriasredController.selected.credNombre}" title="#{bundle.EditCategoriasredTitle_credNombre}" required="true" requiredMessage="#{bundle.EditCategoriasredRequiredMessage_credNombre}"/>
+                    <h:outputLabel value="#{bundle.EditCategoriasredLabel_credEstado}" for="credEstado" />
+                    <h:inputText id="credEstado" value="#{categoriasredController.selected.credEstado}" title="#{bundle.EditCategoriasredTitle_credEstado}" required="true" requiredMessage="#{bundle.EditCategoriasredRequiredMessage_credEstado}"/>
+                    <h:outputLabel value="#{bundle.EditCategoriasredLabel_credAdmining}" for="credAdmining" />
+                    <h:inputText id="credAdmining" value="#{categoriasredController.selected.credAdmining}" title="#{bundle.EditCategoriasredTitle_credAdmining}" required="true" requiredMessage="#{bundle.EditCategoriasredRequiredMessage_credAdmining}"/>
+                    <h:outputLabel value="#{bundle.EditCategoriasredLabel_credAdminfec1}" for="credAdminfec1" />
+                    <h:inputText id="credAdminfec1" value="#{categoriasredController.selected.credAdminfec1}" title="#{bundle.EditCategoriasredTitle_credAdminfec1}" required="true" requiredMessage="#{bundle.EditCategoriasredRequiredMessage_credAdminfec1}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditCategoriasredLabel_credAdminact}" for="credAdminact" />
+                    <h:inputText id="credAdminact" value="#{categoriasredController.selected.credAdminact}" title="#{bundle.EditCategoriasredTitle_credAdminact}" required="true" requiredMessage="#{bundle.EditCategoriasredRequiredMessage_credAdminact}"/>
+                    <h:outputLabel value="#{bundle.EditCategoriasredLabel_credAdminfec2}" for="credAdminfec2" />
+                    <h:inputText id="credAdminfec2" value="#{categoriasredController.selected.credAdminfec2}" title="#{bundle.EditCategoriasredTitle_credAdminfec2}" required="true" requiredMessage="#{bundle.EditCategoriasredRequiredMessage_credAdminfec2}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                </h:panelGrid>
+                <h:commandLink action="#{categoriasredController.update}" value="#{bundle.EditCategoriasredSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditCategoriasredViewLink}"/>
+                <br />
+                <h:commandLink action="#{categoriasredController.prepareList}" value="#{bundle.EditCategoriasredShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditCategoriasredIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

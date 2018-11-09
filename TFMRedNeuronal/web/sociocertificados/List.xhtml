@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListSociocertificadosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListSociocertificadosEmpty}" rendered="#{sociocertificadosController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{sociocertificadosController.items.rowCount > 0}">
+                    <h:outputText value="#{sociocertificadosController.pagination.pageFirstItem + 1}..#{sociocertificadosController.pagination.pageLastItem + 1}/#{sociocertificadosController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{sociocertificadosController.previous}" value="#{bundle.Previous} #{sociocertificadosController.pagination.pageSize}" rendered="#{sociocertificadosController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{sociocertificadosController.next}" value="#{bundle.Next} #{sociocertificadosController.pagination.pageSize}" rendered="#{sociocertificadosController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{sociocertificadosController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSociocertificadosTitle_soccNumero}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.soccNumero}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSociocertificadosTitle_soccFecha}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.soccFecha}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSociocertificadosTitle_soccDocumento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.soccDocumento}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSociocertificadosTitle_soccSocio}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.soccSocio}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSociocertificadosTitle_soccCuenta}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.soccCuenta}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSociocertificadosTitle_soccFechapertura}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.soccFechapertura}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSociocertificadosTitle_soccNombre}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.soccNombre}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSociocertificadosTitle_soccGarante}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.soccGarante}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSociocertificadosTitle_soccMonto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.soccMonto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSociocertificadosTitle_soccObservaciones}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.soccObservaciones}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSociocertificadosTitle_soccAdmining}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.soccAdmining}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSociocertificadosTitle_soccAdminfec1}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.soccAdminfec1}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSociocertificadosTitle_soccTipodocumento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.soccTipodocumento}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{sociocertificadosController.prepareView}" value="#{bundle.ListSociocertificadosViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{sociocertificadosController.prepareEdit}" value="#{bundle.ListSociocertificadosEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{sociocertificadosController.destroy}" value="#{bundle.ListSociocertificadosDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{sociocertificadosController.prepareCreate}" value="#{bundle.ListSociocertificadosCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListSociocertificadosIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

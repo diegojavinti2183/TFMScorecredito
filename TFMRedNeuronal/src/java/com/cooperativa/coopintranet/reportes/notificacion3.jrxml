@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="notificacion3" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="61d9242f-a068-410c-935a-bcf6d1a710fd">
+	<property name="ireport.zoom" value="1.771561000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="345"/>
+	<parameter name="logo" class="java.io.InputStream"/>
+	<field name="hcreGrupoproducto" class="java.lang.String"/>
+	<field name="hcreProducto" class="java.lang.String"/>
+	<field name="hcreCodigosocio" class="java.lang.Integer"/>
+	<field name="hcreIdentificacion" class="java.lang.String"/>
+	<field name="hcreDireccion" class="java.lang.String"/>
+	<field name="hcreSector" class="java.lang.String"/>
+	<field name="hcreBarrio" class="java.lang.String"/>
+	<field name="hcreTelefono" class="java.lang.String"/>
+	<field name="hcreCelular" class="java.lang.String"/>
+	<field name="hcreProfesion" class="java.lang.String"/>
+	<field name="hcreIdentificacionconyugue" class="java.lang.String"/>
+	<field name="hcreNombresconyugue" class="java.lang.String"/>
+	<field name="hcreTelefonoconyugue" class="java.lang.String"/>
+	<field name="hcreTrabajo" class="java.lang.String"/>
+	<field name="hcreCargotrabajo" class="java.lang.String"/>
+	<field name="hcreDirecciontrabajo" class="java.lang.String"/>
+	<field name="hcreTelefonotrabajo" class="java.lang.String"/>
+	<field name="hcreOficial" class="java.lang.String"/>
+	<field name="hcreGarante1" class="java.lang.String"/>
+	<field name="hcreIdentificaciongarante1" class="java.lang.String"/>
+	<field name="hcreDirecciongarante1" class="java.lang.String"/>
+	<field name="hcreTelefonogarante1" class="java.lang.String"/>
+	<field name="hcreGarante2" class="java.lang.String"/>
+	<field name="hcreIdentificaciongarante2" class="java.lang.String"/>
+	<field name="hcreDirecciongarante2" class="java.lang.String"/>
+	<field name="hcreTelefonogarante2" class="java.lang.String"/>
+	<field name="hcreSaldodisponible" class="java.math.BigDecimal"/>
+	<field name="hcreSaldobloqueado" class="java.math.BigDecimal"/>
+	<field name="hcreSaldoencaje" class="java.math.BigDecimal"/>
+	<field name="hcreSaldocapital" class="java.math.BigDecimal"/>
+	<field name="hcreNotificaciones" class="java.math.BigDecimal"/>
+	<field name="hcreValorjudicial" class="java.math.BigDecimal"/>
+	<field name="hcreCapitalvencido" class="java.math.BigDecimal"/>
+	<field name="hcreFechavencimiento" class="java.util.Date"/>
+	<field name="hcreTotalvencido" class="java.math.BigDecimal"/>
+	<field name="hcrePorvencer" class="java.math.BigDecimal"/>
+	<field name="hcreDiasvencido" class="java.lang.Integer"/>
+	<field name="hcreCalificacion" class="java.lang.String"/>
+	<field name="hcreCuota" class="java.math.BigDecimal"/>
+	<field name="hcreCredito.creCodigo" class="java.lang.Integer"/>
+	<field name="hcreNombres" class="java.lang.String"/>
+	<field name="hcreCredito.creMontacreditado" class="java.math.BigDecimal"/>
+	<field name="hcreSeguro" class="java.math.BigDecimal"/>
+	<field name="hcreMora" class="java.math.BigDecimal"/>
+	<field name="hcreInteres" class="java.math.BigDecimal"/>
+	<field name="hcreGastosjudiciales" class="java.math.BigDecimal"/>
+	<field name="hcreGestion" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="70ff1d71-60b1-4165-9ee2-a3084660b054" x="194" y="59" width="158" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[SEGUNDA NOTIFICACIÓN]]></text>
+			</staticText>
+			<image isUsingCache="true">
+				<reportElement uuid="0135d821-e633-450a-8cff-b434a36e962d" x="0" y="0" width="555" height="50"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="600" splitType="Stretch">
+			<textField>
+				<reportElement uuid="40150f11-e172-4aef-9599-4990f3faa886" x="14" y="15" width="118" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["Cuenca - Chilcapamba,"]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement uuid="b761e845-ae29-42cd-98c2-8aa6e3ab2d8e" x="132" y="15" width="235" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("EEEE dd ' de ' MMMMM ' de 'yyyy").format(new Date())]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="81977ca9-b5cb-46d3-880c-7c580dab724d" x="14" y="306" width="289" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["DETALLE DEL CRÉDITO Nº "+ $F{hcreCredito.creCodigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="ae7feb29-996d-49fd-83ba-80155606c005" x="14" y="48" width="529" height="60"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["Señor,\n"+
+$F{hcreGarante1}+",\n"+
+"GARANTE del Sr. "+$F{hcreNombres}+",\n"+
+"Ciudad."]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="df923da4-8af9-4548-a730-e02476afa02e" x="14" y="326" width="62" height="20"/>
+				<textElement/>
+				<text><![CDATA[Préstamo: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="30d7ce78-1d22-4cc6-a54d-9daaa287f7b1" x="14" y="346" width="62" height="20"/>
+				<textElement/>
+				<text><![CDATA[Días Mora:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="43ce3504-eba1-4ac4-961d-bb2258275a75" x="14" y="366" width="62" height="20"/>
+				<textElement/>
+				<text><![CDATA[Saldo:	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="309fbd61-f264-428f-9339-32cc7d768156" x="252" y="326" width="66" height="20"/>
+				<textElement/>
+				<text><![CDATA[Capital:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="dc2eeb7d-3d49-4d5f-a0b7-81562e7967a0" x="252" y="346" width="66" height="20"/>
+				<textElement/>
+				<text><![CDATA[Interés:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="83095392-c2b1-4afc-b75c-ee2dd52dd6c0" x="252" y="366" width="66" height="20"/>
+				<textElement/>
+				<text><![CDATA[Mora:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a8264a70-b226-41cb-a774-a83d8e23072a" x="252" y="386" width="66" height="20"/>
+				<textElement/>
+				<text><![CDATA[Seguro ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f01b0201-88ee-407f-b5e8-bee898ca0104" x="252" y="428" width="66" height="20"/>
+				<textElement/>
+				<text><![CDATA[TOTAL:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="5c6bc52d-791f-4529-9b39-bd60a243c01d" x="319" y="327" width="100" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{hcreCapitalvencido}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="8d25c1c0-978a-4f8e-a297-ca45a5a3b3e0" x="319" y="347" width="100" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{hcreInteres}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="c4c13211-e9f3-492f-ba2b-ff264a904bd8" x="319" y="367" width="100" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{hcreMora}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="941b8481-509f-4da7-bdcb-87e61ca5c417" x="319" y="387" width="100" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{hcreSeguro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="991bcc37-34a5-4a82-8cdd-b53f6c699aec" x="320" y="428" width="100" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{hcreSeguro}.add( $F{hcreMora}.add( $F{hcreInteres}.add( $F{hcreCapitalvencido}.add( $F{hcreGestion} ) ) ) )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="6d0373d8-a1f3-4166-bd57-547f03e223a0" x="76" y="326" width="100" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{hcreCredito.creMontacreditado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b16e3f74-9878-489a-aced-89d454e54177" x="76" y="346" width="100" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{hcreDiasvencido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f65aca43-1878-4862-aa31-77aa7b4cacf9" x="76" y="366" width="100" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{hcreSaldocapital}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="da5f896d-0ba4-4e00-b52d-dab9ca504fa3" x="14" y="464" width="460" height="20"/>
+				<textElement/>
+				<text><![CDATA[Solicitamos la inmediata cancelación]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="858ade4a-5e9e-432c-bb82-ecfa34cc86d5" x="23" y="523" width="203" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="fe5a8b2f-ec19-4f6e-8461-5cc1f56ca9a1" x="290" y="522" width="233" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="2b99e4d9-5eae-4435-8e52-7a08bb7f3b5f" x="23" y="555" width="23" height="20"/>
+				<textElement/>
+				<text><![CDATA[C.I.:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="7eef90d5-5d97-48e2-b904-5639fb6ef514" x="46" y="555" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{hcreIdentificaciongarante1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3b89da2e-de32-4357-b778-3b1e49c7ca40" x="23" y="535" width="203" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{hcreGarante1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="09acdc97-aa62-4e92-8aa1-23909ed9ed0b" x="303" y="535" width="183" height="20"/>
+				<textElement/>
+				<text><![CDATA[Asistente de Créditos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fb520f9b-02b6-4790-a66c-799600eb99b2" x="252" y="406" width="66" height="20"/>
+				<textElement/>
+				<text><![CDATA[G. Cobranza]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="6138fe90-0aa9-4e65-bdf1-f740e2f1e157" x="320" y="408" width="100" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{hcreGestion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="08d9002e-ace4-459a-a688-d1239dc6af10" x="14" y="135" width="529" height="43"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[Señor Garante, en vista de que su garantizado no ha cumplido con la obligación adquirida con la Cooperativa, le notificamos, para que en el lapso de TRES DÍAS de recibida esta notificación cumpla con la obligación pendiente.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="54dd5d1b-68f5-4628-9954-428d3e2e3ff6" x="14" y="108" width="529" height="17"/>
+				<textElement/>
+				<text><![CDATA[De mi consideración:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="36055b20-6168-4ab2-8123-bc97824ca1a7" x="14" y="178" width="529" height="49"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[Caso contrario nos veremos obligados a dar por vencido el crédito de su garantizado, para que sea cobrado  por medio del ABOGADO EXTERNO, quien entablará la acción Judicial en su contra y del deudor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="32a57e86-2023-45bb-9714-cfcf1f5c4402" x="14" y="239" width="529" height="42"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[Si al recibir este aviso usted, ya efectuó el pago de la obligación mencionada, le rogamos omitir el presente, agradeciéndole por la cancelación oportuna.]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

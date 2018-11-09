@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="dfactura" pageWidth="297" pageHeight="421" columnWidth="297" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="c26f9713-27af-412d-8d93-51c9ca3ef843">
+	<property name="ireport.zoom" value="2.1435888100000016"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="detProductos.proNombre" class="java.lang.String"/>
+	<field name="detProductos.proCodigo" class="java.lang.Integer"/>
+	<field name="detallesPK.detCodigo" class="java.lang.Integer"/>
+	<field name="detCantidad" class="java.math.BigDecimal"/>
+	<field name="detValortotal" class="java.math.BigDecimal"/>
+	<field name="detPrecio" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="17" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="b78336e3-1fed-437a-a42e-7eef6e74f1c7" x="57" y="0" width="137" height="15" isRemoveLineWhenBlank="true"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{detProductos.proNombre}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="9afc3f85-b6fc-445d-be7d-fd6a235c3fc9" x="194" y="0" width="33" height="15" isRemoveLineWhenBlank="true"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{detPrecio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3653a6d8-18fe-419d-a76a-ad2279b9ea5c" x="229" y="1" width="43" height="15"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{detValortotal}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="9afc3f85-b6fc-445d-be7d-fd6a235c3fc9" x="24" y="0" width="33" height="15" isRemoveLineWhenBlank="true"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{detCantidad}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

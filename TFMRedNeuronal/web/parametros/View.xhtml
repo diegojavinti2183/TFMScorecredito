@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewParametrosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewParametrosLabel_parCodigo}"/>
+                    <h:outputText value="#{parametrosController.selected.parCodigo}" title="#{bundle.ViewParametrosTitle_parCodigo}"/>
+                    <h:outputText value="#{bundle.ViewParametrosLabel_parNombre}"/>
+                    <h:outputText value="#{parametrosController.selected.parNombre}" title="#{bundle.ViewParametrosTitle_parNombre}"/>
+                    <h:outputText value="#{bundle.ViewParametrosLabel_parValor}"/>
+                    <h:outputText value="#{parametrosController.selected.parValor}" title="#{bundle.ViewParametrosTitle_parValor}"/>
+                    <h:outputText value="#{bundle.ViewParametrosLabel_parAdmining}"/>
+                    <h:outputText value="#{parametrosController.selected.parAdmining}" title="#{bundle.ViewParametrosTitle_parAdmining}"/>
+                    <h:outputText value="#{bundle.ViewParametrosLabel_parAdminfec1}"/>
+                    <h:outputText value="#{parametrosController.selected.parAdminfec1}" title="#{bundle.ViewParametrosTitle_parAdminfec1}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewParametrosLabel_parAdminact}"/>
+                    <h:outputText value="#{parametrosController.selected.parAdminact}" title="#{bundle.ViewParametrosTitle_parAdminact}"/>
+                    <h:outputText value="#{bundle.ViewParametrosLabel_parAdminfec2}"/>
+                    <h:outputText value="#{parametrosController.selected.parAdminfec2}" title="#{bundle.ViewParametrosTitle_parAdminfec2}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{parametrosController.destroyAndView}" value="#{bundle.ViewParametrosDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewParametrosEditLink}"/>
+                <br />
+                <h:commandLink action="#{parametrosController.prepareCreate}" value="#{bundle.ViewParametrosCreateLink}" />
+                <br />
+                <h:commandLink action="#{parametrosController.prepareList}" value="#{bundle.ViewParametrosShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewParametrosIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

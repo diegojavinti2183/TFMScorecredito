@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListScoringdetalleTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListScoringdetalleEmpty}" rendered="#{scoringdetalleController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{scoringdetalleController.items.rowCount > 0}">
+                    <h:outputText value="#{scoringdetalleController.pagination.pageFirstItem + 1}..#{scoringdetalleController.pagination.pageLastItem + 1}/#{scoringdetalleController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{scoringdetalleController.previous}" value="#{bundle.Previous} #{scoringdetalleController.pagination.pageSize}" rendered="#{scoringdetalleController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{scoringdetalleController.next}" value="#{bundle.Next} #{scoringdetalleController.pagination.pageSize}" rendered="#{scoringdetalleController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{scoringdetalleController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListScoringdetalleTitle_scoringdetallePK_dscorNumero}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.scoringdetallePK.dscorNumero}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListScoringdetalleTitle_dscorValor}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dscorValor}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListScoringdetalleTitle_dscorHomologacion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dscorHomologacion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListScoringdetalleTitle_scoringpersonas}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.scoringpersonas}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListScoringdetalleTitle_dscorVariable}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dscorVariable}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{scoringdetalleController.prepareView}" value="#{bundle.ListScoringdetalleViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{scoringdetalleController.prepareEdit}" value="#{bundle.ListScoringdetalleEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{scoringdetalleController.destroy}" value="#{bundle.ListScoringdetalleDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{scoringdetalleController.prepareCreate}" value="#{bundle.ListScoringdetalleCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListScoringdetalleIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

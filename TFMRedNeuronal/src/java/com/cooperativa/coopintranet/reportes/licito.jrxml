@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="licitud" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="01530637-2184-40b8-88fa-883402f5eeec">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="200"/>
+	<parameter name="secuencia" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["D:\\NetBeansProjects\\SPI\\src\\java\\Reportes\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT C.APELLIDOPATERNO  ||' '|| C.APELLIDOMATERNO as apellidos, C.Primernombre ||' '|| C.Segundonombre as nombres ,to_char(A.SPI_FECHA,'dd-mm-yyyy') SPI_FECHA, A.SPI_MONTOTRANSFERIR,B.IDENTIFICACION,
+A.Spi_Ctaclienteordenante,D.MON_NOMBRE,A.SPI_INFADICIONAL,
+(SELECT DISTINCT(NUMEROTELEFONO) FROM FITERCO.TPERSONATELEFONOS WHERE CPERSONA = B.CPERSONA  AND FHASTA>SYSDATE AND CTIPOTELEFONO IN ('TEL') AND STELEFONO=1) AS telefonos_FIJOS,
+             (SELECT MIN(NUMEROTELEFONO) FROM FITERCO.TPERSONATELEFONOS WHERE CPERSONA = B.CPERSONA AND FHASTA>SYSDATE AND CTIPOTELEFONO NOT IN ('TEL')) AS telefonos_moviles,
+(SELECT TCIU.NOMBRE FROM FITERCO.TCIUDADES TCIU, FITERCO.TPERSONADIRECCIONES TPD
+                 WHERE TCIU.FHASTA > SYSDATE AND TPD.FHASTA > sysdate AND TPD.DIRECCIONPRINCIPAL = '1' AND TPD.CPERSONA = A.SPI_CPERSONA
+                 AND TCIU.CCIUDAD || TCIU.CProvincia || TCIU.CPais = TPD.CCIUDAD || TPD.CProvincia || TPD.CPais) AS CIUDAD,
+
+(SELECT UPPER(TPD.DIRECCION) FROM FITERCO.TPERSONADIRECCIONES TPD
+                 WHERE TPD.FHASTA > sysdate AND TPD.DIRECCIONPRINCIPAL = '1' AND TPD.Ctipodireccion='DO' AND TPD.CPERSONA = A.SPI_CPERSONA ) AS DIRECCION,
+        (select c.descripcion from fiterco.tnaturalinformacionadicional a,fiterco.tprofesiones c where a.cprofesion=c.cprofesion and a.fhasta>sysdate and c.fhasta>sysdate and a.cpersona=A.SPI_CPERSONA ) AS PROFESION,
+
+      e.descripcion AS ACTIVIDAD
+
+FROM TSPISAGENCIAS A, FITERCO.TPERSONA B, FITERCO.tnaturalinformacionbasica C, TMONEDA D, fiterco.tactividades e
+
+WHERE A.SPI_CPERSONA=B.CPERSONA
+AND A.SPI_CPERSONA=C.CPERSONA
+AND A.SPI_NUMREFERENCIA=$P{secuencia}
+AND A.Spi_Fhasta>sysdate
+AND A.Spi_Moneda=d.mon_codigo
+AND B.Cactividad=E.Cactividad
+And B.Ctipopersona=E.Ctipopersona
+AND B.FHASTA>sysdate
+AND C.FHASTA>sysdate
+AND E.FHASTA>sysdate]]>
+	</queryString>
+	<field name="APELLIDOS" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOMBRES" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SPI_FECHA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SPI_MONTOTRANSFERIR" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IDENTIFICACION" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SPI_CTACLIENTEORDENANTE" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MON_NOMBRE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SPI_INFADICIONAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TELEFONOS_FIJOS" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TELEFONOS_MOVILES" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CIUDAD" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DIRECCION" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PROFESION" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ACTIVIDAD" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="100">
+			<line>
+				<reportElement uuid="044cb66f-e308-4b16-842a-cb67acc2d473" x="0" y="8" width="555" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="a7af5120-a12e-4468-b115-437a363948b8" positionType="FixRelativeToBottom" x="0" y="51" width="555" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="e17586e5-991d-47c9-bd97-2fcc910e5921" x="1" y="13" width="551" height="35"/>
+				<textElement textAlignment="Center">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COOPERATIVA DE AHORRO Y CRÉDITO SAN JOSÉ S.J.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5a57768c-bcc3-4fe4-a9fd-36c1269b2115" x="27" y="62" width="500" height="33"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[FORMULARIO DE TRANSACCIONES EN EFECTIVO DE US$ 2.000 O MAS O SU EQUIVALENTE EN MONEDA EXTRANJERA Y DESTINO LICITO DE FONDOS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band/>
+	</pageHeader>
+	<columnHeader>
+		<band/>
+	</columnHeader>
+	<detail>
+		<band height="650">
+			<staticText>
+				<reportElement uuid="030b981f-e277-4566-b4ee-849f409ca673" x="50" y="62" width="51" height="14"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Apellidos]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="64e08c7f-2ea9-4ae7-919a-70bd257c3303" x="10" y="82" width="130" height="49"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{APELLIDOS}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="6e37b427-8b0a-4d87-b984-71e145a3a249" x="188" y="62" width="51" height="14"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombres]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="91d1a6e7-3218-43be-88c1-298ef2a17463" x="145" y="82" width="144" height="49"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOMBRES}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="98c68aae-6ca4-4d91-8fed-3babc1aceff5" x="411" y="14" width="35" height="14"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="c0d1fafa-3ab2-45b1-8990-749f66044b0a" x="446" y="14" width="87" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""+$F{SPI_FECHA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="b568a58b-0702-4f83-aefd-8f7179bbe7ae" x="48" y="221" width="51" height="14"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="8ef262b1-3e81-44a3-b253-8566e1a68428" x="41" y="244" width="70" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SPI_MONTOTRANSFERIR}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="a3099899-a9e5-49a8-8bb4-97d00bcbce52" x="188" y="158" width="51" height="14"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nro: CI / Otros]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="d768ecb1-9b5c-406a-bf1a-b36aca3adc27" x="168" y="180" width="100" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IDENTIFICACION}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="23ff76f7-5e6c-4703-868d-1f70ada9179b" x="188" y="220" width="65" height="14"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nro. Cuenta]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="a13ad3af-c8ef-4471-8ed2-36c422b742da" x="178" y="245" width="85" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SPI_CTACLIENTEORDENANTE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="9a629e7d-5ec0-4895-92f4-ae6a0c233bc0" x="326" y="62" width="51" height="14"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Telefonos]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="9d5faf18-410b-4400-a6ce-127023390146" x="304" y="83" width="100" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TELEFONOS_FIJOS}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="3ce53320-738c-41d5-9f69-7b537dcaa893" x="327" y="220" width="41" height="14"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Divisas]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="324b6296-6074-4b34-a86a-a7a294f70fc9" x="297" y="102" width="113" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TELEFONOS_MOVILES}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="a4072a62-a71e-49ae-891e-9363ffc310fd" x="50" y="158" width="51" height="14"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ciudad]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="f6daeec1-3b19-48e2-96f2-f045406beb4c" x="32" y="179" width="84" height="14"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CIUDAD}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="331e1f15-c0a3-42cd-8ee5-bd34cb15d589" x="448" y="62" width="51" height="14"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Direccion]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="0adce0a8-33d9-4050-904c-616115f95f48" x="419" y="83" width="114" height="36"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DIRECCION}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="25942ca6-6883-4369-8684-119d52d91896" x="325" y="158" width="50" height="14"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Profesion]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="c71bd791-209e-412e-a7fb-349dcde35482" x="419" y="174" width="114" height="35"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ACTIVIDAD}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="4d125948-787c-4eac-8746-4c5381fe753b" x="140" y="51" width="1" height="227"/>
+			</line>
+			<line>
+				<reportElement uuid="79c51013-b088-4637-9bc9-abf23edfc7be" x="7" y="220" width="532" height="1"/>
+			</line>
+			<rectangle>
+				<reportElement uuid="4df8a4d6-9097-4456-a89c-c45e27377a34" mode="Transparent" x="6" y="51" width="533" height="227" backcolor="#FFFFFF"/>
+			</rectangle>
+			<line>
+				<reportElement uuid="c9d94b14-9879-4ea7-8487-65c1a4e5845a" x="6" y="146" width="533" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="206c7a6f-55f9-45dc-9b89-3db34c8f8ea9" x="414" y="51" width="1" height="227"/>
+			</line>
+			<line>
+				<reportElement uuid="91164d5f-9fc8-4234-9b8b-cd72f7540737" x="289" y="51" width="1" height="227"/>
+			</line>
+			<staticText>
+				<reportElement uuid="a54f714f-066e-4f11-b41b-c3d2993ec605" x="425" y="158" width="100" height="14"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Actividad Economica]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6f5c5eb5-ebdf-4522-8f6c-b14603ecec23" x="423" y="221" width="100" height="20"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo Transferencia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1f719bdf-f2d6-4bfa-a867-fc47bb1ac0ce" x="50" y="14" width="339" height="20"/>
+				<textElement/>
+				<text><![CDATA[IDENTIDAD DEL TITULAR DE LA TRANSACCIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="92d1e357-8b78-45b3-b583-b8e5bf3aff04" x="21" y="301" width="506" height="170"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[1.- Los fondos provenientes de préstamos otorgados por la COOPERATIVA o los retiros de mis cuentas no serán destinados a actividades relacionadas con el narcotráfico y delitos tipificados en la Ley de Sustancias Estupefacientes y Psicotrópicas
+
+2.- No utilizaré a terceras personas para que realicen retiros de mis cuentas cuyos fondos se destinen de actividades ilícitas ni efectuaré transacciones destinadas a tales actividades.
+
+3.- La COOPERATIVA, en caso de que se inicie en mi contra investigaciones relacionadas con el narcotráfico y delitos tipificados en la Ley de Sustancias Estupefacientes y Psicotrópicas, proporcionará a las autoridades judiciales competentes y de control financiero, la información que estos demanden; al mismo tiempo la COOPERATIVA cerrará automáticamente las cuentas que mantenga en esta institución así como también procederá a declarar de plazo vencido todas las obligaciones que mantenga a su favor.
+]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="854b13d2-97ca-4cad-8d21-932656a9beca" x="300" y="244" width="100" height="20"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MON_NOMBRE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="1b3e91b0-0af7-4eab-9b1b-c354c61e1477" x="419" y="245" width="110" height="20"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SPI_INFADICIONAL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="2a31dbc7-0c97-4b57-947a-25395d05a4ae" x="50" y="566" width="213" height="20"/>
+				<textElement/>
+				<text><![CDATA[Firma del cliente que realiza la transacción]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="35871f38-172c-48e7-b465-f78c5469c654" x="313" y="566" width="193" height="20"/>
+				<textElement/>
+				<text><![CDATA[Persona que verifica la información]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="6d8273fb-001d-44fc-a5d1-1a06038ef8d7" x="46" y="550" width="199" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="a6c0c734-ae57-46e1-80e1-7514943859c8" x="311" y="551" width="205" height="1"/>
+			</line>
+			<textField>
+				<reportElement uuid="f1ef65d0-1c8f-406e-bcf2-268cc4fc5ccf" x="300" y="174" width="100" height="35"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PROFESION}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="26">
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement uuid="fb01e78c-573c-48a9-8bad-a90be5fd6146" key="textField" x="1" y="6" width="209" height="19" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

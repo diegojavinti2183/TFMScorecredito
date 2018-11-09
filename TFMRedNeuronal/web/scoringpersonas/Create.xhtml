@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/WEB-INF/plantilla.xhtml">
+        <ui:define name="top">
+            <h:outputText value="#{bundle.TitleProgram}"></h:outputText>
+        </ui:define>
+        <ui:define name="content" >  
+            <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+
+            <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+                <p:graphicImage value="../images/ajaxloadingbar.gif" />
+            </p:dialog>
+            <h:form id="form" styleClass="jsfcrud_list_form">
+                <script type="text/javascript" src="../resources/js/funciones.js"/>
+                <p:panel id="panelCampos" header="#{bundle.CreateScoringpersonasTitle}">
+                    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" /> 
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="#{bundle.CreateScoringpersonasLabel_scorFecha}" for="scorFecha" />
+                        <p:calendar id="scorFecha" value="#{scoringpersonasController.current.scorFecha}" pattern="MM/dd/yyyy" title="#{bundle.CreateScoringpersonasTitle_scorFecha}" required="true" requiredMessage="#{bundle.CreateScoringpersonasRequiredMessage_scorFecha}"/>                          
+                        <h:outputLabel value="#{bundle.CreateScoringpersonasLabel_scorPersona}" for="scorPersona" />
+                        <p:selectOneMenu id="scorPersona" value="#{scoringpersonasController.current.scorPersona}" filter="true" filterMatchMode="contains" title="#{bundle.CreateScoringpersonasTitle_scorPersona}" required="true" requiredMessage="#{bundle.CreateScoringpersonasRequiredMessage_scorPersona}">
+                            <f:selectItems value="#{personasController.itemsAvailableSelectOne}"/>                            
+                        </p:selectOneMenu>
+                        <h:outputLabel value="#{bundle.CreateScoringpersonasLabel_scorUsuario}" for="scorUsuario" />
+                        <p:inputText id="scorUsuario" value="#{scoringpersonasController.current.scorUsuario}" title="#{bundle.CreateScoringpersonasTitle_scorUsuario}" required="true" readonly="true" requiredMessage="#{bundle.CreateScoringpersonasRequiredMessage_scorUsuario}"/>
+                        <h:outputLabel value="#{bundle.CreateScoringpersonasLabel_scorCalificacion}" for="scorCalificacion" />
+                        <p:inputText id="scorCalificacion" value="#{scoringpersonasController.current.scorCalificacion}" title="#{bundle.CreateScoringpersonasTitle_scorCalificacion}" required="true" readonly="true" requiredMessage="#{bundle.CreateScoringpersonasRequiredMessage_scorCalificacion}" />
+
+                        <p:commandButton action="#{scoringpersonasController.datos}" value="#{bundle.ButtonCargar}" process="@all" update="@form"/>
+
+                    </h:panelGrid> 
+                </p:panel>
+                <p:panel header="#{bundle.ViewScoringpersonasTitle}">
+
+                    <p:dataTable id="tablaScoringpersonas" value="#{scoringpersonasController.itemsScoringdetalleTemp}" var="item" style="border:solid 1px" filteredValue="#{scoringpersonasController.filterItems}" editable="true" widgetVar="scoringpersonasTabla" scrollHeight="300" scrollable="true">  
+
+                        <p:ajax event="rowEdit" listener="#{scoringpersonasController.onRowEdit}" />
+                        <p:ajax event="rowEditCancel" listener="#{scoringpersonasController.onRowCancel}"/>
+
+                        <p:column id="numero" filterBy="#{item.numero}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_vredCodigo}">  
+                            <h:outputText value="#{item.numero}" />  
+                        </p:column>
+
+                        <p:column id="vredId" filterBy="#{item.dscorVariable.vredId}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_vredId}">  
+                            <h:outputText value="#{item.dscorVariable.vredId}" />  
+                        </p:column>
+
+                        <p:column id="vredNombre" filterBy="#{item.dscorVariable.vredNombre}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_vredNombre}">  
+                            <h:outputText value="#{item.dscorVariable.vredNombre}" />  
+                        </p:column>
+
+                        <p:column headerText="#{bundle.ListScoringdetalleTitle_dscorValor}">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText value="#{item.dscorValor}" /></f:facet>
+                                <f:facet name="input"><p:inputText id="dscorValor" value="#{item.dscorValor}" style="width:100%"/></f:facet>
+                            </p:cellEditor>
+                        </p:column>
+
+                        <p:column id="vredDescripcion" filterBy="#{item.dscorVariable.vredDescripcion}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_vredDescripcion}">  
+                            <h:outputText value="#{item.dscorVariable.vredDescripcion}" />  
+                        </p:column>
+
+                        <p:column style="width:32px">
+                            <p:rowEditor />
+                        </p:column>
+
+                    </p:dataTable>  
+                </p:panel>
+                <br /> 
+                <br />
+                <h:panelGrid columns="3">
+                    <p:commandButton action="#{scoringpersonasController.validate}" value="#{bundle.ButtonValidar}" process="@all" update="@form"/>
+                    <p:commandButton action="#{scoringpersonasController.create}" value="#{bundle.CreateScoringpersonasSaveLink}" process="@all" update="@form"/>
+                    <p:commandButton action="#{scoringpersonasController.cancel}" value="#{bundle.CancelScoringpersonasSaveLink}" process="@this" update="@form"/>                    
+
+                    <h:link id="selectButtonReturn" outcome="/menus" value="#{bundle.ButtonReturn}"/>
+                </h:panelGrid>
+                <br />
+                <p:confirmDialog id="confirmDialog" message="#{bundle.ConfirmDialogMessage}" header="#{bundle.ConfirmDialogTitle}" severity="alert" widgetVar="confirmation">
+                    <p:commandButton id="confirm" value="#{bundle.ButtonYes}" update="messages,tablaScoringpersonas" oncomplete="PF('confirmation').hide();" actionListener="#{abogadosController.destroy}" />  
+                    <p:commandButton id="decline" value="#{bundle.ButtonNo}" onclick="PF('confirmation').hide();" type="button" /> 
+                </p:confirmDialog>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+
+

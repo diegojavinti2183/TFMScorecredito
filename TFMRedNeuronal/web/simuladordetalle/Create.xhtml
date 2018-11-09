@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateSimuladordetalleTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateSimuladordetalleLabel_simuladordetallePK_dscreNumero}" for="simuladordetallePK_dscreNumero" />
+                    <h:inputText id="simuladordetallePK_dscreNumero" value="#{simuladordetalleController.selected.simuladordetallePK.dscreNumero}" title="#{bundle.CreateSimuladordetalleTitle_simuladordetallePK_dscreNumero}" required="true" requiredMessage="#{bundle.CreateSimuladordetalleRequiredMessage_simuladordetallePK_dscreNumero}"/>
+                    <h:outputLabel value="#{bundle.CreateSimuladordetalleLabel_simuladordetallePK_dscreSimulador}" for="simuladordetallePK_dscreSimulador" />
+                    <h:inputText id="simuladordetallePK_dscreSimulador" value="#{simuladordetalleController.selected.simuladordetallePK.dscreSimulador}" title="#{bundle.CreateSimuladordetalleTitle_simuladordetallePK_dscreSimulador}" required="true" requiredMessage="#{bundle.CreateSimuladordetalleRequiredMessage_simuladordetallePK_dscreSimulador}"/>
+                    <h:outputLabel value="#{bundle.CreateSimuladordetalleLabel_dscreCapital}" for="dscreCapital" />
+                    <h:inputText id="dscreCapital" value="#{simuladordetalleController.selected.dscreCapital}" title="#{bundle.CreateSimuladordetalleTitle_dscreCapital}" required="true" requiredMessage="#{bundle.CreateSimuladordetalleRequiredMessage_dscreCapital}"/>
+                    <h:outputLabel value="#{bundle.CreateSimuladordetalleLabel_dscreInteres}" for="dscreInteres" />
+                    <h:inputText id="dscreInteres" value="#{simuladordetalleController.selected.dscreInteres}" title="#{bundle.CreateSimuladordetalleTitle_dscreInteres}" required="true" requiredMessage="#{bundle.CreateSimuladordetalleRequiredMessage_dscreInteres}"/>
+                    <h:outputLabel value="#{bundle.CreateSimuladordetalleLabel_dscreFechainicio}" for="dscreFechainicio" />
+                    <h:inputText id="dscreFechainicio" value="#{simuladordetalleController.selected.dscreFechainicio}" title="#{bundle.CreateSimuladordetalleTitle_dscreFechainicio}" required="true" requiredMessage="#{bundle.CreateSimuladordetalleRequiredMessage_dscreFechainicio}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateSimuladordetalleLabel_dscreFechafin}" for="dscreFechafin" />
+                    <h:inputText id="dscreFechafin" value="#{simuladordetalleController.selected.dscreFechafin}" title="#{bundle.CreateSimuladordetalleTitle_dscreFechafin}" required="true" requiredMessage="#{bundle.CreateSimuladordetalleRequiredMessage_dscreFechafin}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateSimuladordetalleLabel_dscreSeguro}" for="dscreSeguro" />
+                    <h:inputText id="dscreSeguro" value="#{simuladordetalleController.selected.dscreSeguro}" title="#{bundle.CreateSimuladordetalleTitle_dscreSeguro}" required="true" requiredMessage="#{bundle.CreateSimuladordetalleRequiredMessage_dscreSeguro}"/>
+                    <h:outputLabel value="#{bundle.CreateSimuladordetalleLabel_dscreValorcuota}" for="dscreValorcuota" />
+                    <h:inputText id="dscreValorcuota" value="#{simuladordetalleController.selected.dscreValorcuota}" title="#{bundle.CreateSimuladordetalleTitle_dscreValorcuota}" required="true" requiredMessage="#{bundle.CreateSimuladordetalleRequiredMessage_dscreValorcuota}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{simuladordetalleController.create}" value="#{bundle.CreateSimuladordetalleSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{simuladordetalleController.prepareList}" value="#{bundle.CreateSimuladordetalleShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateSimuladordetalleIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

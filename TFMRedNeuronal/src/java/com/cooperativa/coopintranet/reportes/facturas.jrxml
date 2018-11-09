@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="facturas" pageWidth="297" pageHeight="421" columnWidth="257" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a38b4ddf-4143-4fbe-a019-9a3676fa659e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.io.InputStream" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="factFecha" class="java.util.Date"/>
+	<field name="facturasPK.factAgencia" class="java.lang.Integer"/>
+	<field name="facturasPK.factPemision" class="java.lang.Integer"/>
+	<field name="factSocio" class="java.lang.Integer"/>
+	<field name="factNombre" class="java.lang.String"/>
+	<field name="factSubtotal" class="java.math.BigDecimal"/>
+	<field name="factImpuesto" class="java.math.BigDecimal"/>
+	<field name="factTotal" class="java.math.BigDecimal"/>
+	<field name="detallesCollection" class="java.util.List"/>
+	<field name="factIdentificacion" class="java.lang.String"/>
+	<field name="factDireccion" class="java.lang.String"/>
+	<field name="factTelefono" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="63" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="100" splitType="Stretch">
+			<textField>
+				<reportElement uuid="ad98e5f4-2393-455d-876c-d882e2cb433b" x="90" y="31" width="62" height="15"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{factFecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="77b28dc1-a17d-4f2d-94cc-e5d51575fe70" x="67" y="62" width="95" height="15"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{factIdentificacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e24a24cf-7079-4a3f-bf21-168be505abfd" x="218" y="31" width="27" height="15"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{facturasPK.factAgencia}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="2566f4e8-342b-46c1-a8e0-b433ffa5abb2" x="171" y="31" width="47" height="15"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Agencia:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="05705ec6-bbcb-4758-8a9a-f2dc1c621c4b" x="58" y="47" width="189" height="15"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{factNombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="05705ec6-bbcb-4758-8a9a-f2dc1c621c4b" x="60" y="79" width="187" height="15"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{factDireccion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="ad98e5f4-2393-455d-876c-d882e2cb433b" x="189" y="62" width="58" height="15"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{factTelefono}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<subreport>
+				<reportElement uuid="3f398714-91ae-4198-8a14-d9485f0473d9" x="0" y="0" width="254" height="25"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{detallesCollection})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="70" splitType="Stretch">
+			<textField>
+				<reportElement uuid="2bbd4635-da11-4547-a21f-88f0bcd8f4f6" x="170" y="25" width="83" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{factImpuesto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="cc45efdb-e45a-49d8-8d9d-004a62aa24e4" x="171" y="52" width="83" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{factTotal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d299c865-5a35-4aa8-b97c-f84f275b88ae" x="169" y="10" width="83" height="15"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{factSubtotal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

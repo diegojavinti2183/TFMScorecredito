@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="../WEB-INF/plantilla.xhtml">
+        <ui:define name="top">
+            <h:outputText value="#{bundle.TitleProgram}"></h:outputText>
+        </ui:define>
+        <ui:define name="content" >            
+            <h:form id="form" styleClass="jsfcrud_list_form">
+                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                <p:panel id="panelCampos" header="#{bundle.CambioUsuariosTitle}">
+                    <h:panelGrid columns="3">                     
+                                                
+                        <h:outputLabel value="#{bundle.CreateUsuariosLabel_usuAnterior}" for="usuAnterior" />
+                        <p:password id="usuAnterior" value="#{usuariosController.anterior}" title="#{bundle.CreateUsuariosTitle_usuAnterior}" required="true"/>
+                        <p:message for="usuAnterior" display="#{bundle.CreateUsuariosTitle_usuAnterior}"/>
+                        
+                        
+                        <h:outputLabel value="#{bundle.CreateUsuariosLabel_usuNueva}" for="usuNueva" />
+                        <p:password id="usuNueva" value="#{usuariosController.nueva}" title="#{bundle.CreateUsuariosTitle_usuNueva}" required="true" />
+                        <p:message for="usuNueva" display="#{bundle.CreateUsuariosTitle_usuNueva}"/>
+                        
+                        <h:outputLabel value="#{bundle.CreateUsuariosLabel_usuPassword}" for="usuConfirma" />
+                        <p:password id="usuConfirma" value="#{usuariosController.confirma}" title="#{bundle.CreateUsuariosTitle_usuConfirma}" required="true" />
+                        <p:message for="usuConfirma" display="#{bundle.CreateUsuariosTitle_usuConfirma}"/>                
+                        
+                    </h:panelGrid> 
+                    <br />                    
+                    <p:commandButton action="#{usuariosController.cambio}" value="#{bundle.EditUsuariosSaveLink}" process="@all" update="@form"/>
+                    
+                </p:panel>
+                <h:link outcome="/menus" value="#{bundle.CreateUsuariosIndexLink}"/>               
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPersonasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPersonasLabel_perCodigo}" for="perCodigo" />
+                    <h:inputText id="perCodigo" value="#{personasController.selected.perCodigo}" title="#{bundle.EditPersonasTitle_perCodigo}" required="true" requiredMessage="#{bundle.EditPersonasRequiredMessage_perCodigo}"/>
+                    <h:outputLabel value="#{bundle.EditPersonasLabel_perIdentificacion}" for="perIdentificacion" />
+                    <h:inputText id="perIdentificacion" value="#{personasController.selected.perIdentificacion}" title="#{bundle.EditPersonasTitle_perIdentificacion}" required="true" requiredMessage="#{bundle.EditPersonasRequiredMessage_perIdentificacion}"/>
+                    <h:outputLabel value="#{bundle.EditPersonasLabel_perApellidopaterno}" for="perApellidopaterno" />
+                    <h:inputText id="perApellidopaterno" value="#{personasController.selected.perApellidopaterno}" title="#{bundle.EditPersonasTitle_perApellidopaterno}" required="true" requiredMessage="#{bundle.EditPersonasRequiredMessage_perApellidopaterno}"/>
+                    <h:outputLabel value="#{bundle.EditPersonasLabel_perApellidomaterno}" for="perApellidomaterno" />
+                    <h:inputText id="perApellidomaterno" value="#{personasController.selected.perApellidomaterno}" title="#{bundle.EditPersonasTitle_perApellidomaterno}" required="true" requiredMessage="#{bundle.EditPersonasRequiredMessage_perApellidomaterno}"/>
+                    <h:outputLabel value="#{bundle.EditPersonasLabel_perPrimernombre}" for="perPrimernombre" />
+                    <h:inputText id="perPrimernombre" value="#{personasController.selected.perPrimernombre}" title="#{bundle.EditPersonasTitle_perPrimernombre}" required="true" requiredMessage="#{bundle.EditPersonasRequiredMessage_perPrimernombre}"/>
+                    <h:outputLabel value="#{bundle.EditPersonasLabel_perSegundonombre}" for="perSegundonombre" />
+                    <h:inputText id="perSegundonombre" value="#{personasController.selected.perSegundonombre}" title="#{bundle.EditPersonasTitle_perSegundonombre}" required="true" requiredMessage="#{bundle.EditPersonasRequiredMessage_perSegundonombre}"/>
+                    <h:outputLabel value="#{bundle.EditPersonasLabel_perFechanacimiento}" for="perFechanacimiento" />
+                    <h:inputText id="perFechanacimiento" value="#{personasController.selected.perFechanacimiento}" title="#{bundle.EditPersonasTitle_perFechanacimiento}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditPersonasLabel_perGenero}" for="perGenero" />
+                    <h:inputText id="perGenero" value="#{personasController.selected.perGenero}" title="#{bundle.EditPersonasTitle_perGenero}" />
+                    <h:outputLabel value="#{bundle.EditPersonasLabel_perAgencia}" for="perAgencia" />
+                    <h:inputText id="perAgencia" value="#{personasController.selected.perAgencia}" title="#{bundle.EditPersonasTitle_perAgencia}" />
+                    <h:outputLabel value="#{bundle.EditPersonasLabel_perDireccion}" for="perDireccion" />
+                    <h:inputText id="perDireccion" value="#{personasController.selected.perDireccion}" title="#{bundle.EditPersonasTitle_perDireccion}" required="true" requiredMessage="#{bundle.EditPersonasRequiredMessage_perDireccion}"/>
+                    <h:outputLabel value="#{bundle.EditPersonasLabel_perTelefono}" for="perTelefono" />
+                    <h:inputText id="perTelefono" value="#{personasController.selected.perTelefono}" title="#{bundle.EditPersonasTitle_perTelefono}" required="true" requiredMessage="#{bundle.EditPersonasRequiredMessage_perTelefono}"/>
+                    <h:outputLabel value="#{bundle.EditPersonasLabel_perEstado}" for="perEstado" />
+                    <h:inputText id="perEstado" value="#{personasController.selected.perEstado}" title="#{bundle.EditPersonasTitle_perEstado}" />
+                    <h:outputLabel value="#{bundle.EditPersonasLabel_perAdmining}" for="perAdmining" />
+                    <h:inputText id="perAdmining" value="#{personasController.selected.perAdmining}" title="#{bundle.EditPersonasTitle_perAdmining}" required="true" requiredMessage="#{bundle.EditPersonasRequiredMessage_perAdmining}"/>
+                    <h:outputLabel value="#{bundle.EditPersonasLabel_perAdminfec1}" for="perAdminfec1" />
+                    <h:inputText id="perAdminfec1" value="#{personasController.selected.perAdminfec1}" title="#{bundle.EditPersonasTitle_perAdminfec1}" required="true" requiredMessage="#{bundle.EditPersonasRequiredMessage_perAdminfec1}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditPersonasLabel_perAdminact}" for="perAdminact" />
+                    <h:inputText id="perAdminact" value="#{personasController.selected.perAdminact}" title="#{bundle.EditPersonasTitle_perAdminact}" required="true" requiredMessage="#{bundle.EditPersonasRequiredMessage_perAdminact}"/>
+                    <h:outputLabel value="#{bundle.EditPersonasLabel_perAdminfec2}" for="perAdminfec2" />
+                    <h:inputText id="perAdminfec2" value="#{personasController.selected.perAdminfec2}" title="#{bundle.EditPersonasTitle_perAdminfec2}" required="true" requiredMessage="#{bundle.EditPersonasRequiredMessage_perAdminfec2}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditPersonasLabel_perTipoid}" for="perTipoid" />
+                    <h:selectOneMenu id="perTipoid" value="#{personasController.selected.perTipoid}" title="#{bundle.EditPersonasTitle_perTipoid}" required="true" requiredMessage="#{bundle.EditPersonasRequiredMessage_perTipoid}">
+                        <f:selectItems value="#{tipoidentificacionController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{personasController.update}" value="#{bundle.EditPersonasSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditPersonasViewLink}"/>
+                <br />
+                <h:commandLink action="#{personasController.prepareList}" value="#{bundle.EditPersonasShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditPersonasIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

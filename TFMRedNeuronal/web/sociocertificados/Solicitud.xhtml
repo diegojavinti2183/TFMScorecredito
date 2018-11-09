@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateSociocertificadosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateSociocertificadosLabel_soccNumero}" for="soccNumero" />
+                    <h:inputText id="soccNumero" value="#{sociocertificadosController.selected.soccNumero}" title="#{bundle.CreateSociocertificadosTitle_soccNumero}" required="true" requiredMessage="#{bundle.CreateSociocertificadosRequiredMessage_soccNumero}"/>
+                    <h:outputLabel value="#{bundle.CreateSociocertificadosLabel_soccFecha}" for="soccFecha" />
+                    <h:inputText id="soccFecha" value="#{sociocertificadosController.selected.soccFecha}" title="#{bundle.CreateSociocertificadosTitle_soccFecha}" required="true" requiredMessage="#{bundle.CreateSociocertificadosRequiredMessage_soccFecha}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateSociocertificadosLabel_soccDocumento}" for="soccDocumento" />
+                    <h:inputText id="soccDocumento" value="#{sociocertificadosController.selected.soccDocumento}" title="#{bundle.CreateSociocertificadosTitle_soccDocumento}" required="true" requiredMessage="#{bundle.CreateSociocertificadosRequiredMessage_soccDocumento}"/>
+                    <h:outputLabel value="#{bundle.CreateSociocertificadosLabel_soccSocio}" for="soccSocio" />
+                    <h:inputText id="soccSocio" value="#{sociocertificadosController.selected.soccSocio}" title="#{bundle.CreateSociocertificadosTitle_soccSocio}" required="true" requiredMessage="#{bundle.CreateSociocertificadosRequiredMessage_soccSocio}"/>
+                    <h:outputLabel value="#{bundle.CreateSociocertificadosLabel_soccCuenta}" for="soccCuenta" />
+                    <h:inputText id="soccCuenta" value="#{sociocertificadosController.selected.soccCuenta}" title="#{bundle.CreateSociocertificadosTitle_soccCuenta}" />
+                    <h:outputLabel value="#{bundle.CreateSociocertificadosLabel_soccFechapertura}" for="soccFechapertura" />
+                    <h:inputText id="soccFechapertura" value="#{sociocertificadosController.selected.soccFechapertura}" title="#{bundle.CreateSociocertificadosTitle_soccFechapertura}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateSociocertificadosLabel_soccNombre}" for="soccNombre" />
+                    <h:inputText id="soccNombre" value="#{sociocertificadosController.selected.soccNombre}" title="#{bundle.CreateSociocertificadosTitle_soccNombre}" required="true" requiredMessage="#{bundle.CreateSociocertificadosRequiredMessage_soccNombre}"/>
+                    <h:outputLabel value="#{bundle.CreateSociocertificadosLabel_soccGarante}" for="soccGarante" />
+                    <h:inputText id="soccGarante" value="#{sociocertificadosController.selected.soccGarante}" title="#{bundle.CreateSociocertificadosTitle_soccGarante}" />
+                    <h:outputLabel value="#{bundle.CreateSociocertificadosLabel_soccMonto}" for="soccMonto" />
+                    <h:inputText id="soccMonto" value="#{sociocertificadosController.selected.soccMonto}" title="#{bundle.CreateSociocertificadosTitle_soccMonto}" />
+                    <h:outputLabel value="#{bundle.CreateSociocertificadosLabel_soccObservaciones}" for="soccObservaciones" />
+                    <h:inputText id="soccObservaciones" value="#{sociocertificadosController.selected.soccObservaciones}" title="#{bundle.CreateSociocertificadosTitle_soccObservaciones}" />
+                    <h:outputLabel value="#{bundle.CreateSociocertificadosLabel_soccAdmining}" for="soccAdmining" />
+                    <h:inputText id="soccAdmining" value="#{sociocertificadosController.selected.soccAdmining}" title="#{bundle.CreateSociocertificadosTitle_soccAdmining}" required="true" requiredMessage="#{bundle.CreateSociocertificadosRequiredMessage_soccAdmining}"/>
+                    <h:outputLabel value="#{bundle.CreateSociocertificadosLabel_soccAdminfec1}" for="soccAdminfec1" />
+                    <h:inputText id="soccAdminfec1" value="#{sociocertificadosController.selected.soccAdminfec1}" title="#{bundle.CreateSociocertificadosTitle_soccAdminfec1}" required="true" requiredMessage="#{bundle.CreateSociocertificadosRequiredMessage_soccAdminfec1}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateSociocertificadosLabel_soccTipodocumento}" for="soccTipodocumento" />
+                    <h:selectOneMenu id="soccTipodocumento" value="#{sociocertificadosController.selected.soccTipodocumento}" title="#{bundle.CreateSociocertificadosTitle_soccTipodocumento}" required="true" requiredMessage="#{bundle.CreateSociocertificadosRequiredMessage_soccTipodocumento}">
+                        <f:selectItems value="#{tipocertificadosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{sociocertificadosController.create}" value="#{bundle.CreateSociocertificadosSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{sociocertificadosController.prepareList}" value="#{bundle.CreateSociocertificadosShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateSociocertificadosIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

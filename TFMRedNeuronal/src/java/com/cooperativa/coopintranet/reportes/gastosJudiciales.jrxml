@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="autorizacion" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a38b4ddf-4143-4fbe-a019-9a3676fa659e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.io.InputStream" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="LOGO" class="java.io.InputStream"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="factFecha" class="java.util.Date"/>
+	<field name="facturasPK.factAgencia" class="java.lang.Integer"/>
+	<field name="facturasPK.factPemision" class="java.lang.Integer"/>
+	<field name="factSocio" class="java.lang.Integer"/>
+	<field name="factNombre" class="java.lang.String"/>
+	<field name="factSubtotal" class="java.math.BigDecimal"/>
+	<field name="factImpuesto" class="java.math.BigDecimal"/>
+	<field name="factTotal" class="java.math.BigDecimal"/>
+	<field name="detallesCollection" class="java.util.List"/>
+	<field name="factIdentificacion" class="java.lang.String"/>
+	<field name="factDireccion" class="java.lang.String"/>
+	<field name="factTelefono" class="java.lang.String"/>
+	<field name="factCuentasocio" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="53" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="f257451a-9848-4887-b20c-35a1c76a5a5e" x="71" y="10" width="484" height="22"/>
+				<textElement textAlignment="Center">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COOPERATIVA DE AHORRO Y CRÉDITO SAN JOSÉ S.J.]]></text>
+			</staticText>
+			<image isUsingCache="true">
+				<reportElement uuid="5e97224a-36ac-48c3-a916-561ec075a840" x="6" y="8" width="67" height="40"/>
+				<imageExpression><![CDATA[$P{LOGO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="99cf9acf-c870-42c0-b1da-15385b0e3bf8" x="146" y="32" width="319" height="16"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Gastos Judiciales]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="70" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

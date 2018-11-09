@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="../WEB-INF/plantilla.xhtml">
+        <ui:define name="top">
+            <h:outputText value="#{bundle.TitleProgram}"></h:outputText>
+        </ui:define>
+        <ui:define name="content" >            
+            <h:form id="form" styleClass="jsfcrud_list_form">
+                <p:panel header="#{bundle.ViewRolesTitle}">
+                    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" /> 
+                    <p:dataTable id="tablaRoles" value="#{rolesController.items}" var="item" style="border:solid 1px" filteredValue="#{rolesController.filterItems}" widgetVar="rolTabla" scrollHeight="300" scrollable="true">  
+                        <f:facet name="header">  
+                            <p:outputPanel>  
+                                <h:outputText value="#{bundle.GlobalFilter}" />  
+                                <p:inputText id="globalFilter" onkeyup="rolTabla.filter()" style="width:150px" />  
+                                <p:commandButton id="ButtonNew" image="ui-icon ui-icon-document" value="Nuevo" action="#{rolesController.nuevo}" process="@this" update="@form"/>
+                            </p:outputPanel>  
+                        </f:facet>
+                        
+                        <p:column id="rolNombre" filterBy="#{item.rolNombre}" filterMatchMode="contains" headerText="#{bundle.ListRolesTitle_rolNombre}">  
+                            <h:outputText value="#{item.rolNombre}" />  
+                        </p:column>
+
+                        <p:column id="rolActivo" filterBy="#{item.rolActivo}" filterMatchMode="contains"  headerText="#{bundle.ListRolesTitle_rolActivo}">  
+                            <h:outputText value="#{item.rolActivo}" />  
+                        </p:column>                     
+
+                        <p:column style="width:4%">  
+                            <p:commandButton id="selectButtonView" action="#{rolesController.prepareView}" update="@form" image="ui-icon ui-icon-search" title="View">  
+                                <f:setPropertyActionListener value="#{item}" target="#{rolesController.selectedRoles}" />  
+                            </p:commandButton>                            
+                        </p:column> 
+                        <p:column style="width:4%"> 
+                            <p:commandButton id="selectButtonEdit" action="#{rolesController.prepareEdit}" update="@form" image="ui-icon ui-icon-pencil" title="Edit">
+                                <f:setPropertyActionListener value="#{item}" target="#{rolesController.selectedRoles}" />  
+                            </p:commandButton>
+                        </p:column> 
+                        <p:column style="width:4%"> 
+                            <p:commandButton id="showDialogButton" image="ui-icon ui-icon-trash" onclick="PF('confirmation').show();" title="Destroy">                             
+                                <f:setPropertyActionListener value="#{item}" target="#{rolesController.selectedRoles}" />  
+                            </p:commandButton>
+                        </p:column> 
+
+                    </p:dataTable>  
+                </p:panel>
+
+                <p:panel id="panelCampos" header="#{bundle.CreateRolesTitle}" rendered="#{rolesController.renderedPanel}">
+                    <h:panelGrid columns="3">                    
+                    <h:outputLabel value="#{bundle.CreateRolesLabel_rolNombre}" for="rolNombre" />
+                    <p:inputText id="rolNombre" value="#{rolesController.current.rolNombre}" title="#{bundle.CreateRolesTitle_rolNombre}" required="true" onkeyup="this.value=this.value.toUpperCase();"/>
+                    <p:message for="rolNombre" display="#{bundle.CreateRolesTitle_rolNombre}"/>
+                    <h:outputLabel value="#{bundle.CreateRolesLabel_rolActivo}" for="rolActivo" />
+                    <p:selectBooleanCheckbox id="rolActivo" value="#{rolesController.current.rolActivo}"/>
+                    <p:message for="rolActivo" display="#{bundle.CreateRolesTitle_rolActivo}"/>
+                </h:panelGrid> 
+                    <br />
+                    <p:commandButton action="#{rolesController.create}" value="#{bundle.CreateRolesSaveLink}" rendered="#{rolesController.renderedGuardar}" process="@all" update="@form"/>
+                    <p:commandButton action="#{rolesController.update}" value="#{bundle.EditRolesSaveLink}" rendered="#{rolesController.renderedEditar}" process="@all" update="@form"/>
+                    <p:commandButton action="#{rolesController.cancel}" value="#{bundle.CancelRolesSaveLink}" process="@this" update="@form"/>                    
+                </p:panel>
+                <h:link outcome="/menus" value="#{bundle.CreateRolesIndexLink}"/>
+
+                <p:confirmDialog id="confirmDialog" message="#{bundle.ConfirmDialogMessage}" header="#{bundle.ConfirmDialogTitle}" severity="alert" widgetVar="confirmation">
+                    <p:commandButton id="confirm" value="#{bundle.ButtonYes}" update="messages,tablaRoles" oncomplete="PF('confirmation').hide();" actionListener="#{rolesController.destroy}" />  
+                    <p:commandButton id="decline" value="#{bundle.ButtonNo}" onclick="PF('confirmation').hide();" type="button" /> 
+                </p:confirmDialog>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

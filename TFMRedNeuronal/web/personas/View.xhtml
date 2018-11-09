@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewPersonasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewPersonasLabel_perCodigo}"/>
+                    <h:outputText value="#{personasController.selected.perCodigo}" title="#{bundle.ViewPersonasTitle_perCodigo}"/>
+                    <h:outputText value="#{bundle.ViewPersonasLabel_perIdentificacion}"/>
+                    <h:outputText value="#{personasController.selected.perIdentificacion}" title="#{bundle.ViewPersonasTitle_perIdentificacion}"/>
+                    <h:outputText value="#{bundle.ViewPersonasLabel_perApellidopaterno}"/>
+                    <h:outputText value="#{personasController.selected.perApellidopaterno}" title="#{bundle.ViewPersonasTitle_perApellidopaterno}"/>
+                    <h:outputText value="#{bundle.ViewPersonasLabel_perApellidomaterno}"/>
+                    <h:outputText value="#{personasController.selected.perApellidomaterno}" title="#{bundle.ViewPersonasTitle_perApellidomaterno}"/>
+                    <h:outputText value="#{bundle.ViewPersonasLabel_perPrimernombre}"/>
+                    <h:outputText value="#{personasController.selected.perPrimernombre}" title="#{bundle.ViewPersonasTitle_perPrimernombre}"/>
+                    <h:outputText value="#{bundle.ViewPersonasLabel_perSegundonombre}"/>
+                    <h:outputText value="#{personasController.selected.perSegundonombre}" title="#{bundle.ViewPersonasTitle_perSegundonombre}"/>
+                    <h:outputText value="#{bundle.ViewPersonasLabel_perFechanacimiento}"/>
+                    <h:outputText value="#{personasController.selected.perFechanacimiento}" title="#{bundle.ViewPersonasTitle_perFechanacimiento}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewPersonasLabel_perGenero}"/>
+                    <h:outputText value="#{personasController.selected.perGenero}" title="#{bundle.ViewPersonasTitle_perGenero}"/>
+                    <h:outputText value="#{bundle.ViewPersonasLabel_perAgencia}"/>
+                    <h:outputText value="#{personasController.selected.perAgencia}" title="#{bundle.ViewPersonasTitle_perAgencia}"/>
+                    <h:outputText value="#{bundle.ViewPersonasLabel_perDireccion}"/>
+                    <h:outputText value="#{personasController.selected.perDireccion}" title="#{bundle.ViewPersonasTitle_perDireccion}"/>
+                    <h:outputText value="#{bundle.ViewPersonasLabel_perTelefono}"/>
+                    <h:outputText value="#{personasController.selected.perTelefono}" title="#{bundle.ViewPersonasTitle_perTelefono}"/>
+                    <h:outputText value="#{bundle.ViewPersonasLabel_perEstado}"/>
+                    <h:outputText value="#{personasController.selected.perEstado}" title="#{bundle.ViewPersonasTitle_perEstado}"/>
+                    <h:outputText value="#{bundle.ViewPersonasLabel_perAdmining}"/>
+                    <h:outputText value="#{personasController.selected.perAdmining}" title="#{bundle.ViewPersonasTitle_perAdmining}"/>
+                    <h:outputText value="#{bundle.ViewPersonasLabel_perAdminfec1}"/>
+                    <h:outputText value="#{personasController.selected.perAdminfec1}" title="#{bundle.ViewPersonasTitle_perAdminfec1}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewPersonasLabel_perAdminact}"/>
+                    <h:outputText value="#{personasController.selected.perAdminact}" title="#{bundle.ViewPersonasTitle_perAdminact}"/>
+                    <h:outputText value="#{bundle.ViewPersonasLabel_perAdminfec2}"/>
+                    <h:outputText value="#{personasController.selected.perAdminfec2}" title="#{bundle.ViewPersonasTitle_perAdminfec2}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewPersonasLabel_perTipoid}"/>
+                    <h:outputText value="#{personasController.selected.perTipoid}" title="#{bundle.ViewPersonasTitle_perTipoid}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{personasController.destroyAndView}" value="#{bundle.ViewPersonasDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewPersonasEditLink}"/>
+                <br />
+                <h:commandLink action="#{personasController.prepareCreate}" value="#{bundle.ViewPersonasCreateLink}" />
+                <br />
+                <h:commandLink action="#{personasController.prepareList}" value="#{bundle.ViewPersonasShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewPersonasIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

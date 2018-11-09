@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewSimuladordetalleTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewSimuladordetalleLabel_simuladordetallePK_dscreNumero}"/>
+                    <h:outputText value="#{simuladordetalleController.selected.simuladordetallePK.dscreNumero}" title="#{bundle.ViewSimuladordetalleTitle_simuladordetallePK_dscreNumero}"/>
+                    <h:outputText value="#{bundle.ViewSimuladordetalleLabel_simuladordetallePK_dscreSimulador}"/>
+                    <h:outputText value="#{simuladordetalleController.selected.simuladordetallePK.dscreSimulador}" title="#{bundle.ViewSimuladordetalleTitle_simuladordetallePK_dscreSimulador}"/>
+                    <h:outputText value="#{bundle.ViewSimuladordetalleLabel_dscreCapital}"/>
+                    <h:outputText value="#{simuladordetalleController.selected.dscreCapital}" title="#{bundle.ViewSimuladordetalleTitle_dscreCapital}"/>
+                    <h:outputText value="#{bundle.ViewSimuladordetalleLabel_dscreInteres}"/>
+                    <h:outputText value="#{simuladordetalleController.selected.dscreInteres}" title="#{bundle.ViewSimuladordetalleTitle_dscreInteres}"/>
+                    <h:outputText value="#{bundle.ViewSimuladordetalleLabel_dscreFechainicio}"/>
+                    <h:outputText value="#{simuladordetalleController.selected.dscreFechainicio}" title="#{bundle.ViewSimuladordetalleTitle_dscreFechainicio}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewSimuladordetalleLabel_dscreFechafin}"/>
+                    <h:outputText value="#{simuladordetalleController.selected.dscreFechafin}" title="#{bundle.ViewSimuladordetalleTitle_dscreFechafin}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewSimuladordetalleLabel_dscreSeguro}"/>
+                    <h:outputText value="#{simuladordetalleController.selected.dscreSeguro}" title="#{bundle.ViewSimuladordetalleTitle_dscreSeguro}"/>
+                    <h:outputText value="#{bundle.ViewSimuladordetalleLabel_dscreValorcuota}"/>
+                    <h:outputText value="#{simuladordetalleController.selected.dscreValorcuota}" title="#{bundle.ViewSimuladordetalleTitle_dscreValorcuota}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{simuladordetalleController.destroyAndView}" value="#{bundle.ViewSimuladordetalleDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewSimuladordetalleEditLink}"/>
+                <br />
+                <h:commandLink action="#{simuladordetalleController.prepareCreate}" value="#{bundle.ViewSimuladordetalleCreateLink}" />
+                <br />
+                <h:commandLink action="#{simuladordetalleController.prepareList}" value="#{bundle.ViewSimuladordetalleShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewSimuladordetalleIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

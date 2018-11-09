@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/WEB-INF/plantilla.xhtml">
+        <ui:define name="top">
+            <h:outputText value="#{bundle.TitleProgram}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">            
+            <h:form>
+                <script type="text/javascript" src="../resources/js/funciones.js"/>
+                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" /> 
+                <p:panel id="panelCabecera">
+                    <h:panelGrid columns="8">
+                        <h:outputLabel value="#{bundle.ListSociocertificadosTitle_soccTipodocumento}" for="soccTipodocumento" />
+                        <p:selectOneMenu id="soccTipodocumento" value="#{sociocertificadosController.current.soccTipodocumento}" required="true" requiredMessage="#{bundle.CreateSociocertificadosTitle_soccTipodocumento}">
+                            <f:selectItems value="#{tipocertificadosController.itemsAvailableSelectOne}"/>
+                            <p:ajax event="change" />
+                        </p:selectOneMenu>
+                        <h:outputLabel value="#{bundle.ListSociocertificadosTitle_soccSocio}" for="soccSocio" />
+                        <p:inputText id="soccSocio" value="#{sociocertificadosController.codigoSocio}" title="#{bundle.CreateResuTitle_resuValor}" onkeypress="return ingresoEnteros(event);" required="true" requiredMessage="#{bundle.CreateResuRequiredMessage_resuValor}"/>
+                        <p:commandButton id="ButtonConsult" value="#{bundle.ButtonConsult}" action="#{sociocertificadosController.searchCuenta}" update="tablaCuentas"/> 
+                    </h:panelGrid> 
+                </p:panel>
+
+                <p:panel id="panelDetalle">
+                    <p:dataTable id="tablaCuentas" value="#{sociocertificadosController.itemsCuentaUsuariosTemp}" var="item" selection="#{sociocertificadosController.selectedCuentaUsuariosTemp}" rowKey="#{item.cuenta}" style="border:solid 1px" widgetVar="cuentaTabla" scrollHeight="200" scrollable="true">  
+
+                        <p:column selectionMode="single" style="width:16px;text-align:center"/>
+                        <p:column id="soccCuenta" headerText="#{bundle.CreateSociocertificadosTitle_soccCuenta}">  
+                            <h:outputText value="#{item.cuenta}" />  
+                        </p:column>
+
+                        <p:column id="soccFechaapertura" headerText="#{bundle.CreateSociocertificadosTitle_soccFechapertura}">  
+                            <h:outputText value="#{item.fechaapertura}" />  
+                        </p:column>
+
+                        <p:column id="soccIdentificacion" headerText="#{bundle.CreateSociocertificadosTitle_soccIdentificacion}">  
+                            <h:outputText value="#{item.identificacion}" />  
+                        </p:column>
+
+                        <p:column id="soccNombre" headerText="#{bundle.CreateSociocertificadosTitle_soccNombre}">  
+                            <h:outputText value="#{item.nombre}" />  
+                        </p:column>
+
+                        <p:column id="soccSaldodisponible" headerText="#{bundle.CreateSociocertificadosTitle_soccSaldodisponible}">  
+                            <h:outputText value="#{item.saldoDisponible}" />  
+                        </p:column>
+
+                        <p:column id="soccSaldototal" headerText="#{bundle.CreateSociocertificadosTitle_soccSaldototal}">  
+                            <h:outputText value="#{item.saldoTotal}" />  
+                        </p:column>
+
+                    </p:dataTable>                   
+
+                </p:panel>
+
+                <p:panel header="Reporte">  
+                    <p:commandButton action="#{sociocertificadosController.create}" value="#{bundle.CreateSociocertificadosSaveLink}" update="@form"/>
+                    <p:commandButton action="#{sociocertificadosController.imprimirPdf}" value="#{bundle.ButtonGenerar}" rendered="#{sociocertificadosController.renderGenerar}" ajax="false" />
+                    <p:commandButton id="selectButtonFacturar" action="#{sociocertificadosController.facturar}" value="#{bundle.ButtonFacturar}" rendered="#{sociocertificadosController.renderGenerar}"/>
+                </p:panel>
+
+                <br />
+
+                <br />
+                <h:link id="selectButtonReturn" outcome="/menus" value="#{bundle.ButtonReturn}"/>  
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+
+

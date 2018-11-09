@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="dfactura" pageWidth="420" pageHeight="595" columnWidth="420" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="c26f9713-27af-412d-8d93-51c9ca3ef843">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="dcusAgenciactivo.activos.actNombre" class="java.lang.String"/>
+	<field name="dcusAgenciactivo.activos.actModelo" class="java.lang.String"/>
+	<field name="dcustodiosPK.dcusCodigo" class="java.lang.Integer"/>
+	<field name="dcusAgenciactivo.activos.actSerie" class="java.lang.String"/>
+	<field name="dcusAgenciactivo.activos.actMarca" class="java.lang.String"/>
+	<field name="dcusAgenciactivo.agaId" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="17" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="3a28b2e4-30fc-4d08-b5a8-89cea1bb21fe" x="237" y="0" width="56" height="15"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Serie]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="5660ab98-34e5-4929-87c1-a702aa43cdbc" x="0" y="15" width="418" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="b8501c14-c88d-4c99-9d14-ddafd7d5b9da" x="84" y="0" width="153" height="15"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d62fc698-ec5f-45a3-a5f7-299d36264780" x="33" y="1" width="47" height="15"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2a1c072c-1fd6-4dce-9f06-639fb21244c3" x="0" y="1" width="31" height="15"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Item]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3a28b2e4-30fc-4d08-b5a8-89cea1bb21fe" x="293" y="-1" width="56" height="15"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mdelo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f33bca16-9bbd-4c5a-b077-ef4a88dbdb22" x="349" y="0" width="69" height="14"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Marca]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="b78336e3-1fed-437a-a42e-7eef6e74f1c7" x="84" y="1" width="153" height="15" isRemoveLineWhenBlank="true"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{dcusAgenciactivo.activos.actNombre}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="d8a3140e-7fac-4eb7-b7ef-a33ad8d6ba72" x="33" y="1" width="47" height="15" isRemoveLineWhenBlank="true"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{dcusAgenciactivo.agaId}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d39da43c-d0bb-47e2-851c-6069294c3c01" x="0" y="1" width="31" height="15"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{dcustodiosPK.dcusCodigo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="9afc3f85-b6fc-445d-be7d-fd6a235c3fc9" x="293" y="0" width="56" height="15" isRemoveLineWhenBlank="true"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{dcusAgenciactivo.activos.actModelo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="9afc3f85-b6fc-445d-be7d-fd6a235c3fc9" x="237" y="1" width="56" height="15" isRemoveLineWhenBlank="true"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{dcusAgenciactivo.activos.actSerie}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e1581799-9d5e-4e81-ab50-d2537573a7c1" x="349" y="0" width="69" height="14"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{dcusAgenciactivo.activos.actMarca}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

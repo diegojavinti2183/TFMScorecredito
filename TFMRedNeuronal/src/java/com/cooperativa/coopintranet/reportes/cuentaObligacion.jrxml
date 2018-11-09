@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0d701d82-5e88-4ef5-8bd6-ad67e0513718">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="392"/>
+	<parameter name="usuario" class="java.lang.String"/>
+	<parameter name="cargo" class="java.lang.String"/>
+	<field name="soccCuenta" class="java.lang.Integer"/>
+	<field name="soccDocumento" class="java.lang.String"/>
+	<field name="soccSocio" class="java.lang.String"/>
+	<field name="soccNumero" class="java.lang.Integer"/>
+	<field name="soccFecha" class="java.util.Date"/>
+	<field name="soccFechapertura" class="java.util.Date"/>
+	<field name="soccMonto" class="java.math.BigDecimal"/>
+	<field name="soccObservaciones" class="java.lang.String"/>
+	<field name="soccNombre" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="130" splitType="Stretch">
+			<componentElement>
+				<reportElement uuid="fcc51e36-a970-46c7-9429-1ab4dbd30e9e" x="14" y="79" width="200" height="50"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code39" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA[$F{soccNumero}.toString()]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="558" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch">
+			<textField>
+				<reportElement uuid="00b8c13a-8c5b-4691-8b73-2d5557807155" x="18" y="-468" width="499" height="54"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA["Que el (la) Señor(a). " + $F{soccNombre} +" portador(a) de la cedula de ciudadanía "+ $F{soccDocumento} +" no mantiene ninguna  obligación crediticia DIRECTA o INDIRECTA en nuestra institución."]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="85b9e11d-f381-4889-81b8-b63007690ff2" x="18" y="-540" width="499" height="28"/>
+				<textElement/>
+				<text><![CDATA[La COOPERATIVA DE AHORRO Y CRÉDITO SAN JOSE S.J.., a petición de parte interesada:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4d2a031e-26d6-452c-a4e6-afa8ccccd918" x="159" y="-512" width="207" height="27"/>
+				<textElement textAlignment="Center">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CERTIFICA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4b54a7f0-5fea-405a-a7ef-94cb57d04b71" x="18" y="-401" width="499" height="61"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[La información aquí descrita  es de carácter estrictamente confidencial  está dirigida únicamente a su destinatario principal y no implica forma de garantía ni responsabilidad alguna por parte de la Cooperativa de Ahorro y Crédito San José S.J.]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="f844367c-9b8b-4ccb-a378-a7fa312c042a" x="339" y="-332" width="178" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["Cuenca, "+$F{soccFecha}.getDate()+" de "+( $F{soccFecha}.getMonth() == 1 ? "febrero" : ( $F{soccFecha}.getMonth() == 2 ? "marzo" : ( $F{soccFecha}.getMonth() == 3 ? "abril" : ( $F{soccFecha}.getMonth() == 4 ? "mayo" : ( $F{soccFecha}.getMonth() == 5 ? "junio" : ( $F{soccFecha}.getMonth() == 6 ? "julio" : ( $F{soccFecha}.getMonth() == 7 ? "agosto" : ( $F{soccFecha}.getMonth() == 8 ? "septiembre" : ( $F{soccFecha}.getMonth() == 9 ? "octubre" : ( $F{soccFecha}.getMonth() == 10 ? "noviembre" : ( $F{soccFecha}.getMonth() == 11 ? "diciembre" : "enero" ) ) ) ) ) ) ) ) ) ) )+" del "+($F{soccFecha}.getYear()+1900)]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="379bcff9-eaf9-4be2-890a-8723630c3960" x="21" y="-35" width="365" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["NOTA: Este documento no se validó si hay indicio de alteración"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d25d18ac-4f75-4132-97f9-8bcc1f363586" x="18" y="-53" width="365" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["Este certificado sera valido por 30 dias"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="a9dd8e30-c29f-472a-b10e-3a7d2612221d" x="19" y="-119" width="403" height="46"/>
+				<textElement/>
+				<text><![CDATA[COOPERATIVA DE AHORRO Y CRÉDITO SAN JOSÉ S.J.
+Web: www.coacsanjosesj.fin.ec
+Telfs: 4141481/4140852
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3a7f6bbb-3084-40f5-889f-e02775258bf6" x="19" y="-224" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Atentamente,]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="baec837c-7379-4f37-88e8-84d2f527b3ba" x="19" y="-159" width="182" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{usuario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="7c1439af-1127-40ee-9591-7c670e07876c" x="19" y="-140" width="182" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{cargo}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="2f5aae2c-9304-482b-870a-63ef2b5388e5" x="18" y="-161" width="251" height="1"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

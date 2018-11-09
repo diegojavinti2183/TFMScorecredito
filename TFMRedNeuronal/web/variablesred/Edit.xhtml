@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditVariablesredTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditVariablesredLabel_vredCodigo}" for="vredCodigo" />
+                    <h:inputText id="vredCodigo" value="#{variablesredController.selected.vredCodigo}" title="#{bundle.EditVariablesredTitle_vredCodigo}" required="true" requiredMessage="#{bundle.EditVariablesredRequiredMessage_vredCodigo}"/>
+                    <h:outputLabel value="#{bundle.EditVariablesredLabel_vredId}" for="vredId" />
+                    <h:inputText id="vredId" value="#{variablesredController.selected.vredId}" title="#{bundle.EditVariablesredTitle_vredId}" required="true" requiredMessage="#{bundle.EditVariablesredRequiredMessage_vredId}"/>
+                    <h:outputLabel value="#{bundle.EditVariablesredLabel_vredNombre}" for="vredNombre" />
+                    <h:inputText id="vredNombre" value="#{variablesredController.selected.vredNombre}" title="#{bundle.EditVariablesredTitle_vredNombre}" required="true" requiredMessage="#{bundle.EditVariablesredRequiredMessage_vredNombre}"/>
+                    <h:outputLabel value="#{bundle.EditVariablesredLabel_vredDescripcion}" for="vredDescripcion" />
+                    <h:inputText id="vredDescripcion" value="#{variablesredController.selected.vredDescripcion}" title="#{bundle.EditVariablesredTitle_vredDescripcion}" required="true" requiredMessage="#{bundle.EditVariablesredRequiredMessage_vredDescripcion}"/>
+                    <h:outputLabel value="#{bundle.EditVariablesredLabel_vredTipodato}" for="vredTipodato" />
+                    <h:inputText id="vredTipodato" value="#{variablesredController.selected.vredTipodato}" title="#{bundle.EditVariablesredTitle_vredTipodato}" required="true" requiredMessage="#{bundle.EditVariablesredRequiredMessage_vredTipodato}"/>
+                    <h:outputLabel value="#{bundle.EditVariablesredLabel_vredEstado}" for="vredEstado" />
+                    <h:inputText id="vredEstado" value="#{variablesredController.selected.vredEstado}" title="#{bundle.EditVariablesredTitle_vredEstado}" required="true" requiredMessage="#{bundle.EditVariablesredRequiredMessage_vredEstado}"/>
+                    <h:outputLabel value="#{bundle.EditVariablesredLabel_vredAdmining}" for="vredAdmining" />
+                    <h:inputText id="vredAdmining" value="#{variablesredController.selected.vredAdmining}" title="#{bundle.EditVariablesredTitle_vredAdmining}" required="true" requiredMessage="#{bundle.EditVariablesredRequiredMessage_vredAdmining}"/>
+                    <h:outputLabel value="#{bundle.EditVariablesredLabel_vredAdminfec1}" for="vredAdminfec1" />
+                    <h:inputText id="vredAdminfec1" value="#{variablesredController.selected.vredAdminfec1}" title="#{bundle.EditVariablesredTitle_vredAdminfec1}" required="true" requiredMessage="#{bundle.EditVariablesredRequiredMessage_vredAdminfec1}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditVariablesredLabel_vredAdminact}" for="vredAdminact" />
+                    <h:inputText id="vredAdminact" value="#{variablesredController.selected.vredAdminact}" title="#{bundle.EditVariablesredTitle_vredAdminact}" required="true" requiredMessage="#{bundle.EditVariablesredRequiredMessage_vredAdminact}"/>
+                    <h:outputLabel value="#{bundle.EditVariablesredLabel_vredAdminfec2}" for="vredAdminfec2" />
+                    <h:inputText id="vredAdminfec2" value="#{variablesredController.selected.vredAdminfec2}" title="#{bundle.EditVariablesredTitle_vredAdminfec2}" required="true" requiredMessage="#{bundle.EditVariablesredRequiredMessage_vredAdminfec2}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditVariablesredLabel_vredCategoria}" for="vredCategoria" />
+                    <h:selectOneMenu id="vredCategoria" value="#{variablesredController.selected.vredCategoria}" title="#{bundle.EditVariablesredTitle_vredCategoria}" required="true" requiredMessage="#{bundle.EditVariablesredRequiredMessage_vredCategoria}">
+                        <f:selectItems value="#{categoriasredController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{variablesredController.update}" value="#{bundle.EditVariablesredSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditVariablesredViewLink}"/>
+                <br />
+                <h:commandLink action="#{variablesredController.prepareList}" value="#{bundle.EditVariablesredShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditVariablesredIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="memos" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a38b4ddf-4143-4fbe-a019-9a3676fa659e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="logo" class="java.io.InputStream"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="memosPK.memTipo" class="java.lang.Object"/>
+	<field name="memosPK.memCodigo" class="java.lang.Integer"/>
+	<field name="memFecha" class="java.util.Date"/>
+	<field name="memDestinos" class="java.lang.String"/>
+	<field name="memAsunto" class="java.lang.String"/>
+	<field name="memDetalle" class="java.lang.String"/>
+	<field name="memDeempleado.empNombre" class="java.lang.String"/>
+	<field name="memParaempleado.empNombre" class="java.lang.String"/>
+	<field name="memDeempleado.empCargo.cargNombre" class="java.lang.String"/>
+	<field name="memParaempleado.empCargo.cargNombre" class="java.lang.String"/>
+	<field name="memCcempleado.empNombre" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<image scaleImage="RetainShape">
+				<reportElement uuid="c12e00cf-872a-4f42-8abf-98d4d155e0b1" x="0" y="0" width="108" height="70"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="423" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="8d24c6c8-d3a7-43be-aab1-0d4ead7153d8" x="25" y="57" width="48" height="20"/>
+				<textElement/>
+				<text><![CDATA[De:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8a6bed44-4cdc-47cb-b63a-c7e3ef82ad03" x="25" y="138" width="48" height="20" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{memParaempleado.empNombre} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<text><![CDATA[Para:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="969b56fa-d14b-4fb1-baf0-6c32ab0c2eca" x="73" y="57" width="212" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{memDeempleado.empNombre}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="e217d64b-3c50-41e6-95ca-69fad1824028" x="73" y="138" width="212" height="20" isRemoveLineWhenBlank="true"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{memParaempleado.empNombre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="01dc5fa3-b1e2-47e8-bf80-a27b52164068" x="25" y="236" width="37" height="20"/>
+				<textElement/>
+				<text><![CDATA[Asunto:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="d0ad5fa0-393e-431f-9da8-236390c24d76" x="62" y="236" width="473" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{memAsunto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="bfeeb8eb-a86d-4d1d-abe0-b767bcaaaf1d" x="27" y="268" width="508" height="155"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{memDetalle}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="f1a5d65e-ca9a-4726-8907-4fd3008c9a7f" x="311" y="0" width="72" height="20"/>
+				<textElement/>
+				<text><![CDATA[Memorandum:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="ae2a0908-27b2-48c5-83ac-dbcd4dcfd2f3" x="383" y="0" width="19" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{memosPK.memTipo}.toString()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="cc39082f-4e68-46ba-a6de-0da10c073fc5" x="402" y="0" width="45" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{memosPK.memCodigo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="b1303aa6-7d0a-4162-8e53-50faba394b80" x="73" y="77" width="425" height="20" isRemoveLineWhenBlank="true"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{memDeempleado.empCargo.cargNombre}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="27caf9ee-c859-4100-bc32-f0b5d36673d6" x="73" y="158" width="425" height="20" isRemoveLineWhenBlank="true"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{memParaempleado.empCargo.cargNombre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="23274180-8679-4f74-bea8-e0cee6e00fd6" x="27" y="178" width="46" height="20" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{memDestinos} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<text><![CDATA[Destinos:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="c14b2e49-7c11-4311-8d9a-dbcebd8fd49e" x="73" y="178" width="425" height="20" isRemoveLineWhenBlank="true"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{memDestinos}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="c3e41090-0266-46c1-8da7-4f78f1ae575d" x="25" y="97" width="48" height="20" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{memCcempleado.empNombre} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<text><![CDATA[Cc:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="532a1988-ee84-4e58-9de0-3047384f7637" isPrintRepeatedValues="false" x="73" y="97" width="212" height="20" isRemoveLineWhenBlank="true"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{memCcempleado.empNombre}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="100" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/WEB-INF/plantilla.xhtml">
+        <ui:define name="top">           
+            <h:outputText value="#{bundle.TitleProgram}"></h:outputText>
+        </ui:define>
+        <ui:define name="content" >            
+            <h:form id="form" styleClass="jsfcrud_list_form">
+                <script type="text/javascript" src="../resources/js/funciones.js"/>
+                <h:outputScript library="js" name="spanishLocale.js"/>
+                <p:panel header="#{bundle.ViewPersonasTitle}">                    
+                    <p:dataTable id="tablaPersonas" value="#{personasController.items}" var="item" style="border:solid 1px" filteredValue="#{personasController.filterItems}" widgetVar="personaTabla" scrollHeight="300" scrollable="true">  
+
+                        <f:facet name="header">  
+                            <p:outputPanel> 
+                                <p:commandButton id="ButtonNew" image="ui-icon ui-icon-document" value="Nuevo" action="#{personasController.nuevo}" process="@this" update="@form"/>                                
+                            </p:outputPanel>  
+                        </f:facet> 
+
+                        <p:column id="perIdentificacion" filterBy="#{item.perIdentificacion}" filterMatchMode="contains" headerText="#{bundle.ListPersonasTitle_perIdentificacion}">  
+                            <h:outputText value="#{item.perIdentificacion}" />  
+                        </p:column>
+
+                        <p:column id="perApellidopaterno" filterBy="#{item.perApellidopaterno}" filterMatchMode="contains" headerText="#{bundle.ListPersonasTitle_perApellidopaterno}">  
+                            <h:outputText value="#{item.perApellidopaterno}" />  
+                        </p:column>
+
+                        <p:column id="perApellidomaterno" filterBy="#{item.perApellidomaterno}" filterMatchMode="contains" headerText="#{bundle.ListPersonasTitle_perApellidomaterno}">  
+                            <h:outputText value="#{item.perApellidomaterno}" />  
+                        </p:column>
+
+                        <p:column id="perPrimernombre" filterBy="#{item.perPrimernombre}" filterMatchMode="contains" headerText="#{bundle.ListPersonasTitle_perPrimernombre}">  
+                            <h:outputText value="#{item.perPrimernombre}" />  
+                        </p:column>
+
+                        <p:column id="perSegundonombre" filterBy="#{item.perSegundonombre}" filterMatchMode="contains" headerText="#{bundle.ListPersonasTitle_perSegundonombre}">  
+                            <h:outputText value="#{item.perSegundonombre}" />  
+                        </p:column>
+
+                        <p:column style="width:4%">  
+                            <p:commandButton id="selectButtonView" action="#{personasController.prepareView}" update="@form" image="ui-icon ui-icon-search" title="View">  
+                                <f:setPropertyActionListener value="#{item}" target="#{personasController.selectedPersonas}" />  
+                            </p:commandButton>                            
+                        </p:column> 
+                        <p:column style="width:4%"> 
+                            <p:commandButton id="selectButtonEdit" action="#{personasController.prepareEdit}" update="@form" image="ui-icon ui-icon-pencil" title="Edit">
+                                <f:setPropertyActionListener value="#{item}" target="#{personasController.selectedPersonas}" />  
+                            </p:commandButton>
+                        </p:column> 
+                        <p:column style="width:4%"> 
+                            <p:commandButton id="showDialogButton" image="ui-icon ui-icon-trash" onclick="PF('confirmation').show();" title="Destroy">                             
+                                <f:setPropertyActionListener value="#{item}" target="#{personasController.selectedPersonas}" />  
+                            </p:commandButton>
+                        </p:column>                         
+
+                    </p:dataTable>  
+                </p:panel>
+
+                <p:panel id="panelCampos" header="#{bundle.CreatePersonasTitle}" rendered="#{personasController.renderedPanel}">
+                    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/> 
+                    <p:panelGrid>
+                        <h:panelGrid columns="4">
+                            <p:outputLabel value="#{bundle.CreatePersonasLabel_perTipoid}" for="perTipoid" />
+                            <p:selectOneMenu id="perTipoid" value="#{personasController.current.perTipoid}" title="#{bundle.CreatePersonasTitle_perTipoid}" required="true" requiredMessage="#{bundle.CreatePersonasRequiredMessage_perTipoid}">
+                                <f:selectItems value="#{tipoidentificacionController.itemsAvailableSelectOne}"/>
+                                <p:ajax event="change"  process="@this"/>
+                            </p:selectOneMenu>
+                            <p:outputLabel value="#{bundle.CreatePersonasLabel_perIdentificacion}" for="perIdentificacion" />
+                            <p:inputText id="perIdentificacion"  value="#{personasController.current.perIdentificacion}" title="#{bundle.CreatePersonasTitle_perIdentificacion}" onkeypress="return ingresoEnteros(event);" required="true" requiredMessage="#{bundle.CreatePersonasRequiredMessage_perIdentificacion}">
+                                <p:ajax event="blur" listener="#{personasController.validaIdentificacion}" process="@this" update="messages" />
+                            </p:inputText>
+                        </h:panelGrid>
+                        <h:panelGrid columns="4">
+                            <p:outputLabel value="#{bundle.CreatePersonasLabel_perApellidopaterno}" for="perApellidopaterno" />
+                            <p:inputText id="perApellidopaterno" value="#{personasController.current.perApellidopaterno}" title="#{bundle.CreatePersonasTitle_perApellidopaterno}" onkeyup="this.value = this.value.toUpperCase();" required="true" requiredMessage="#{bundle.CreatePersonasRequiredMessage_perApellidopaterno}"/>
+                            <p:outputLabel value="#{bundle.CreatePersonasLabel_perApellidomaterno}" for="perApellidomaterno" />
+                            <p:inputText id="perApellidomaterno" value="#{personasController.current.perApellidomaterno}" title="#{bundle.CreatePersonasTitle_perApellidomaterno}" onkeyup="this.value = this.value.toUpperCase();" requiredMessage="#{bundle.CreatePersonasRequiredMessage_perApellidomaterno}"/>
+                            <p:outputLabel value="#{bundle.CreatePersonasLabel_perPrimernombre}" for="perPrimernombre" />
+                            <p:inputText id="perPrimernombre" value="#{personasController.current.perPrimernombre}" title="#{bundle.CreatePersonasTitle_perPrimernombre}" onkeyup="this.value = this.value.toUpperCase();" required="true" requiredMessage="#{bundle.CreatePersonasRequiredMessage_perPrimernombre}"/>
+                            <p:outputLabel value="#{bundle.CreatePersonasLabel_perSegundonombre}" for="perSegundonombre" />
+                            <p:inputText id="perSegundonombre" value="#{personasController.current.perSegundonombre}" title="#{bundle.CreatePersonasTitle_perSegundonombre}" onkeyup="this.value = this.value.toUpperCase();" requiredMessage="#{bundle.CreatePersonasRequiredMessage_perSegundonombre}"/>
+
+                        </h:panelGrid>
+                        <h:panelGrid columns="2">
+                            <p:outputLabel value="#{bundle.CreatePersonasLabel_perFechanacimiento}" for="perFechanacimiento" />
+                            <p:calendar id="perFechanacimiento" value="#{personasController.current.perFechanacimiento}" title="#{bundle.CreatePersonasTitle_perFechanacimiento}" pattern="dd/MM/yyyy" navigator="true" locale="es"/>
+                            <p:outputLabel value="#{bundle.CreatePersonasLabel_perGenero}" for="perGenero" />                        
+                            <p:selectOneMenu id="perGenero" value="#{personasController.current.perGenero}" required="true" requiredMessage="#{bundle.CreatePersonasTitle_perGenero}">
+                                <f:selectItem itemLabel="Masculino" itemValue="M"/>
+                                <f:selectItem itemLabel="Femenino" itemValue="F"/>                                 
+                            </p:selectOneMenu>                        
+                            <p:outputLabel value="#{bundle.CreatePersonasLabel_perDireccion}" for="perDireccion" />
+                            <p:inputText id="perDireccion" value="#{personasController.current.perDireccion}" title="#{bundle.CreatePersonasTitle_perDireccion}" onkeyup="this.value = this.value.toUpperCase();" required="true" requiredMessage="#{bundle.CreatePersonasRequiredMessage_perDireccion}"/>
+                            <p:outputLabel value="#{bundle.CreatePersonasLabel_perTelefono}" for="perTelefono" />
+                            <p:inputText id="perTelefono" value="#{personasController.current.perTelefono}" title="#{bundle.CreatePersonasTitle_perTelefono}" requiredMessage="#{bundle.CreatePersonasRequiredMessage_perTelefono}"/>
+                            <p:outputLabel value="#{bundle.CreatePersonasLabel_perGenero}" for="perGenero" />                        
+                            <p:selectOneMenu id="perTipo" value="#{personasController.current.perTipo}" required="true" requiredMessage="#{bundle.CreatePersonasTitle_perTipo}">
+                                <f:selectItem itemLabel="Socio" itemValue="S"/>
+                                <f:selectItem itemLabel="Cliente" itemValue="C"/>                                 
+                            </p:selectOneMenu>
+
+                            <p:outputLabel value="#{bundle.CreatePersonasLabel_perEstado}" for="perEstado" />
+                            <p:selectBooleanCheckbox id="perEstado" value="#{personasController.current.perEstado}" />
+                        </h:panelGrid>
+                    </p:panelGrid>
+                    <p:commandButton action="#{personasController.create}" value="#{bundle.CreatePersonasSaveLink}" rendered="#{personasController.renderedGuardar}" process="@all" update="@form"/>
+                    <p:commandButton action="#{personasController.update}" value="#{bundle.EditPersonasSaveLink}" rendered="#{personasController.renderedEditar}" process="@all" update="@form"/>
+                    <p:commandButton action="#{personasController.cancel}" value="#{bundle.CancelPersonasSaveLink}" process="@all" update="@form"/>                    
+                </p:panel>
+                <br />               
+                <h:link id="selectButtonReturn" outcome="/menus" value="#{bundle.ButtonReturn}"/>
+                <br />
+                <p:confirmDialog id="confirmDialog" message="#{bundle.ConfirmDialogMessage}" header="#{bundle.ConfirmDialogTitle}" severity="alert" widgetVar="confirmation">
+                    <p:commandButton id="confirm" value="#{bundle.ButtonYes}" update="messages,tablaPersonas" oncomplete="PF('confirmation').hide();" actionListener="#{personasController.destroy}" />  
+                    <p:commandButton id="decline" value="#{bundle.ButtonNo}" onclick="PF('confirmation').hide();" type="button" /> 
+                </p:confirmDialog>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

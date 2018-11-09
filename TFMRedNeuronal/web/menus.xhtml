@@ -1,0 +1,299 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/WEB-INF/plantilla.xhtml">
+        <ui:define name="top">
+            <h:outputText value="#{bundle.TitleProgram}"></h:outputText>
+        </ui:define>
+        <ui:define name="content" >
+            <h:form>
+                <p:menubar>
+                    <p:submenu label="#{bundle.MenuConfiguraciones}">                    
+                        <p:menuitem value="#{bundle.MenuConfiguracionesParametros}" action="#{menusController.parametros}"></p:menuitem>
+                        <p:menuitem value="#{bundle.MenuConfiguracionesAgencias}" action="#{menusController.agencias}"></p:menuitem>
+                        <p:menuitem value="#{bundle.MenuConfiguracionesCajas}" action="#{menusController.cajas}"></p:menuitem>
+                        <p:submenu label="#{bundle.MenuConfiguracionesComprobantes}">
+                            <p:menuitem value="#{bundle.MenuComprobantesCabecera}" action="#{menusController.ctipocomprobantes}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuComprobantesDetalle}" action="#{menusController.dtipocomprobantes}"></p:menuitem>                            
+                        </p:submenu>
+                        <p:submenu label="#{bundle.MenuConfiguracionesUsuarios}">
+                            <p:menuitem value="#{bundle.MenuUsuariosUsuarios}" action="#{menusController.usuarios}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuUsuariosCambio}" action="#{menusController.cambio}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuUsuariosRoles}" action="#{menusController.roles}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuUsuariosRolesPaginas}" action="#{menusController.rolpaginas}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuUsuariosPaginas}" action="#{menusController.paginas}"></p:menuitem>
+                        </p:submenu>
+                        <p:submenu label="#{bundle.MenuConfiguracionesCorreo}">
+                            <p:menuitem value="#{bundle.MenuCorreoConfiguracion}" action="#{menusController.configuracioncorreo}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuCorreoInstitucion}" action="#{menusController.correosinstitucion}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuCorreoEventos}" action="#{menusController.eventoscorreo}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuCorreoEnvios}" action="#{menusController.registroenvioscorreo}"></p:menuitem>                           
+                            <p:menuitem value="#{bundle.MenuCorreoRegistros}" action="#{menusController.registroeventoscorreo}"></p:menuitem>                           
+                        </p:submenu>
+                    </p:submenu>
+
+                    <p:submenu label="#{bundle.MenuOrganismos}">   
+                        <p:submenu label="#{bundle.MenuOrganismosUAF}">
+                            <p:menuitem value="#{bundle.MenuOrganismosUAFResu}" action="#{menusController.uafresu}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuOrganismosLicitudCreditos}" action="#{menusController.licitudcreditos}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuOrganismosPrecancelacionCreditos}" action="#{menusController.precancelacioncreditos}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuOrganismosListarPrecancelacionCreditos}" action="#{menusController.listaprecancelacioncreditos}"></p:menuitem>
+                            <p:submenu label="#{bundle.MenuOrganismosDenominaciones}">
+                                <p:menuitem value="#{bundle.MenuOrganismosDenominacionesIngresar}" action="#{menusController.denominaciones}"></p:menuitem>
+                                <p:menuitem value="#{bundle.MenuOrganismosDenominacionesListar}" action="#{menusController.denominacioneslista}"></p:menuitem>
+                            </p:submenu>
+                            <p:menuitem value="#{bundle.MenuOrganismosListarUltimaTransaccionesCuenta}" action="#{menusController.ultimaTransaccionesCuentas}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuOrganismosListarUltimaTransaccionCuenta}" action="#{menusController.ultimaTransaccionCuentas}"></p:menuitem>
+                        </p:submenu>
+                        <p:submenu label="#{bundle.MenuOrganismosSRI}">
+                            <p:menuitem value="#{bundle.MenuOrganismosSRIRotef}" action="#{menusController.rotef}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuOrganismosSRICompras}" action="#{menusController.compras}"></p:menuitem>
+                        </p:submenu>
+                        <p:submenu label="#{bundle.MenuOrganismosSEPS}">
+                            <p:menuitem value="#{bundle.MenuOrganismosSEPSDepositos}" action="#{menusController.sepsdepositos}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuOrganismosSEPSCartera}" action="#{menusController.sepscartera}"></p:menuitem>
+                            <p:submenu label="#{bundle.MenuOrganismosSEPSSocios}">
+                                <p:menuitem value="#{bundle.MenuOrganismosSEPSSociosS01}" action="#{menusController.sepssociosS01}"></p:menuitem>
+                            </p:submenu>
+                            <p:submenu label="#{bundle.MenuOrganismosSEPSCartera}">
+                                <p:menuitem value="#{bundle.MenuOrganismosSEPSCarteraC01}" action="#{menusController.sepscarteraC01}"></p:menuitem>
+                                <p:menuitem value="#{bundle.MenuOrganismosSEPSCarteraC02}" action="#{menusController.sepscarteraC02}"></p:menuitem>
+                            </p:submenu>
+                            <p:submenu label="#{bundle.MenuOrganismosSEPSLiquidez}">
+                                <p:menuitem value="#{bundle.MenuOrganismosSEPSLiquidezGenerar}" action="#{menusController.sepsliquidezgenerar}"></p:menuitem>
+                                <p:menuitem value="#{bundle.MenuOrganismosSEPSLiquidezListar}" action="#{menusController.sepsliquidezlistar}"></p:menuitem>
+                            </p:submenu>
+                        </p:submenu>
+                        <p:submenu label="#{bundle.MenuOrganismosBCE}">
+                            <p:menuitem value="#{bundle.MenuOrganismosBCE}" action="#{menusController.bce}"></p:menuitem>
+                            <p:submenu label="#{bundle.MenuOrganismosBCESrp}">                        
+                                <p:submenu label="#{bundle.MenuOrganismosBCESrpMantenimientos}">
+                                    <p:menuitem value="#{bundle.MenuOrganismosBCESrpMantenimientosConcepto}" action="#{menusController.conceptosrp}"></p:menuitem>
+                                    <p:menuitem value="#{bundle.MenuOrganismosBCESrpMantenimientosEntidad}" action="#{menusController.entidadsrp}"></p:menuitem>                        
+                                </p:submenu>
+                                <p:menuitem value="#{bundle.MenuOrganismosBCESrpRegistro}" action="#{menusController.registro}"></p:menuitem>
+                                <p:menuitem value="#{bundle.MenuOrganismosBCESrpListarregistro}" action="#{menusController.listRegistro}"></p:menuitem>
+                                <p:menuitem value="#{bundle.MenuOrganismosBCESrpSrp1}" action="#{menusController.srp1}"></p:menuitem>
+                                <p:menuitem value="#{bundle.MenuOrganismosBCESrpSrp2}" action="#{menusController.srp2}"></p:menuitem>
+                                <p:menuitem value="#{bundle.MenuOrganismosBCESrpSrp3}" action="#{menusController.srp3}"></p:menuitem>
+                                <p:submenu label="#{bundle.MenuOrganismosBCESrpSrp4}">
+                                    <p:menuitem value="#{bundle.MenuOrganismosBCESrpSrp4Carga}" action="#{menusController.srp4}"></p:menuitem>
+                                    <p:menuitem value="#{bundle.MenuOrganismosBCESrpSrp4Listar}" action="#{menusController.lsrp4}"></p:menuitem>
+                                </p:submenu>
+
+                            </p:submenu>
+                            <p:submenu label="#{bundle.MenuOrganismosBCEIrp}">
+                                <p:menuitem value="#{bundle.MenuOrganismosBCEIrpCarga}" action="#{menusController.irp}"></p:menuitem>
+                                <p:menuitem value="#{bundle.MenuOrganismosBCEIrpListar}" action="#{menusController.lirp}"></p:menuitem>
+                            </p:submenu>
+                        </p:submenu>
+                        <p:submenu label="#{bundle.MenuOrganismosBuro}">
+                            <p:menuitem value="#{bundle.MenuOrganismosBuroCredireport}" action="#{menusController.burocredito}"></p:menuitem>
+                        </p:submenu>
+                    </p:submenu>
+                    <p:submenu label="#{bundle.MenuObligacionesFinancieras}">                         
+                        <p:menuitem value="#{bundle.MenuObligacionesEntidades}" action="#{menusController.entidadesprestamos}"></p:menuitem>
+                        <p:menuitem value="#{bundle.MenuObligacionesPrestamos}" action="#{menusController.prestamos}"></p:menuitem>
+                        <p:menuitem value="#{bundle.MenuObligacionesCuentas}" action="#{menusController.cuentasprestamo}"></p:menuitem>
+                        <p:menuitem value="#{bundle.MenuObligacionesMaduracion}" action="#{menusController.prestamosmadurar}"></p:menuitem>
+                        <p:menuitem value="#{bundle.MenuObligacionesPrecancelacion}" action="#{menusController.prestamoprecancelacion}"></p:menuitem>
+                        <p:submenu label="#{bundle.MenuObligacionesConsultas}">
+                            <p:menuitem value="#{bundle.MenuObligacionesConsultasMaduracion}" action="#{menusController.consultaprestamosmadurar}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuObligacionesConsultasInteres}" action="#{menusController.consultaprestamosinteres}"></p:menuitem>
+                        </p:submenu>
+                    </p:submenu>
+
+                    <p:submenu label="#{bundle.MenuFacturacion}">
+                        <p:submenu label="#{bundle.MenuFacturacionMantenimientos}">
+                            <p:menuitem value="#{bundle.MenuFacturacionTipoambiente}" action="#{menusController.tipoambiente}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuFacturacionClasetransaccion}" action="#{menusController.clasetransaccion}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuFacturacionTipoconsumo}" action="#{menusController.tipoconsumo}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuFacturacionTipotransaccion}" action="#{menusController.tipotransaccion}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuFacturacionTipoidentificaciontarjeta}" action="#{menusController.tipoidentificaciontarjeta}"></p:menuitem>                        
+                            <p:menuitem value="#{bundle.MenuFacturacionTipoemision}" action="#{menusController.tipoemision}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuFacturacionImpuestos}" action="#{menusController.impuestos}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuFacturacionValorimpuestos}" action="#{menusController.valorimpuestos}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuFacturacionTipoidentificacion}" action="#{menusController.tipoidentificacion}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuFacturacionProductoimpuestos}" action="#{menusController.productoimpuestos}"></p:menuitem>
+                        </p:submenu>
+                        <p:menuitem value="#{bundle.MenuFacturacionClientes}" action="#{menusController.personas}"></p:menuitem>
+                        <p:menuitem value="#{bundle.MenuFacturacionProductos}" action="#{menusController.productos}"></p:menuitem>
+                        <p:menuitem value="#{bundle.MenuFacturacionFacturas}" action="#{menusController.facturas}"></p:menuitem>
+                        <p:separator/>
+                        <p:menuitem value="#{bundle.MenuFacturacionListarFacturas}" action="#{menusController.lfacturas}"></p:menuitem>
+                        <p:menuitem value="#{bundle.MenuFacturacionAnulaFacturas}" action="#{menusController.afacturas}"></p:menuitem>
+                        <p:menuitem value="#{bundle.MenuFacturacionMail}" action="#{menusController.salir}"></p:menuitem>
+
+                    </p:submenu>
+
+                    <p:submenu label="#{bundle.MenuActivos}">
+                        <p:menuitem value="#{bundle.MenuActivosDepartamentos}" action="#{menusController.departamentos}"></p:menuitem>
+                        <p:menuitem value="#{bundle.MenuActivosGrupos}" action="#{menusController.grupos}"></p:menuitem>
+                        <p:menuitem value="#{bundle.MenuActivosActivos}" action="#{menusController.activos}"></p:menuitem>
+                        <p:menuitem value="#{bundle.MenuActivosAgenciactivos}" action="#{menusController.agenciactivos}"></p:menuitem>
+                        <p:menuitem value="#{bundle.MenuActivosCustodios}" action="#{menusController.custodios}"></p:menuitem>
+                        <p:menuitem value="#{bundle.MenuActivosListarCustodios}" action="#{menusController.lcustodios}"></p:menuitem>
+                        <p:menuitem value="#{bundle.MenuActivosDepreciacion}" action="#{menusController.depreciaciones}"></p:menuitem>
+
+                    </p:submenu>
+
+                    <p:submenu label="#{bundle.MenuNomina}">
+                        <p:menuitem value="#{bundle.MenuNominaHorarios}" action="#{menusController.horarios}"></p:menuitem>
+                        <p:menuitem value="#{bundle.MenuNominaCalculohorarios}" action="#{menusController.calculohoras}"></p:menuitem>
+                        <p:menuitem value="#{bundle.MenuNominaImpuestorenta}" action="#{menusController.impuestorenta}"></p:menuitem>
+                        <p:menuitem value="#{bundle.MenuNominaLimitegasto}" action="#{menusController.limitegasto}"></p:menuitem>
+                        <p:menuitem value="#{bundle.MenuNominaPermisos}" action="#{menusController.permisos}"></p:menuitem>
+                        <p:menuitem value="#{bundle.MenuNominaRubros}" action="#{menusController.rubros}"></p:menuitem>
+                        <p:menuitem value="#{bundle.MenuNominaEmpleados}" action="#{menusController.empleados}"></p:menuitem>
+                        <p:menuitem value="#{bundle.MenuNominaActualizaInformacion}" action="#{menusController.actualizaempleados}"></p:menuitem>
+                        <p:menuitem value="#{bundle.MenuNominaCargos}" action="#{menusController.cargos}"></p:menuitem>
+                        <p:menuitem value="#{bundle.MenuNominaRegistros}" action="#{menusController.lregistros}"></p:menuitem>
+                        <p:menuitem value="#{bundle.MenuNominaHistorial}" action="#{menusController.empleadoshistorial}"></p:menuitem>
+                        <p:menuitem value="#{bundle.MenuNominaRegistrorubros}" action="#{menusController.registroingresos}"></p:menuitem>                        
+                        <p:menuitem value="#{bundle.MenuNominaRolpagos}" action="#{menusController.rolpagos}"></p:menuitem>                        
+                    </p:submenu>
+
+                    <p:submenu label="#{bundle.MenuIndices}">
+                        <p:menuitem value="#{bundle.MenuIndicesBalances}" action="#{menusController.balances}"></p:menuitem>
+                        <p:menuitem value="#{bundle.MenuIndicesGrupos}" action="#{menusController.igrupos}"></p:menuitem>
+                        <p:menuitem value="#{bundle.MenuIndicesDetalleGrupos}" action="#{menusController.detallegrupos}"></p:menuitem>
+                        <p:menuitem value="#{bundle.MenuIndicesRatios}" action="#{menusController.ratios}"></p:menuitem>
+
+                    </p:submenu>
+
+                    <p:submenu label="#{bundle.MenuServicios}">
+                        <p:menuitem value="#{bundle.MenuServiciosAtencioncreditos}" action="#{menusController.atencioncreditos}"></p:menuitem>
+                        <p:menuitem value="#{bundle.MenuServiciosConvenios}" action="#{menusController.convenios}"></p:menuitem>
+                        <p:menuitem value="#{bundle.MenuServiciosPlanseguro}" action="#{menusController.planseguro}"></p:menuitem>
+                        <p:submenu label="#{bundle.MenuServiciosSocioconvenios}">
+                            <p:menuitem value="#{bundle.MenuServiciosSocioconveniosIngresos}" action="#{menusController.convenioingreso}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuServiciosSocioconveniosIngresosSeguro}" action="#{menusController.convenioingresoseguro()}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuServiciosSocioconveniosFamiliar}" action="#{menusController.conveniofamilia}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuServiciosSocioconveniosConsulta}" action="#{menusController.convenioconsulta}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuServiciosSocioconveniosAnulaciones}" action="#{menusController.convenioanula}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuServiciosSocioconveniosDebitos}" action="#{menusController.conveniodebito}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuServiciosSocioconveniosListar}" action="#{menusController.listardebitos}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuServiciosBDH}" action="#{menusController.cargaBDH}"></p:menuitem>
+                        </p:submenu>
+                        <p:menuitem value="#{bundle.MenuServiciosTiposcertificados}" action="#{menusController.tipocertificados}"></p:menuitem>
+                        <p:submenu label="#{bundle.MenuServiciosCertificados}">
+                            <p:menuitem value="#{bundle.MenuServiciosCertificadosIngresoSocios}" action="#{menusController.solicitudingreso}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuServiciosCertificadosCuentas}" action="#{menusController.certificados}"></p:menuitem>
+                            <p:submenu label="#{bundle.MenuServiciosCertificadosRegistros}" >
+                                <p:menuitem value="#{bundle.MenuServiciosCertificadosRegistrosRegistrar}" action="#{menusController.registrofirmas}"></p:menuitem>
+                                <p:menuitem value="#{bundle.MenuServiciosCertificadosRegistrosListar}" action="#{menusController.lregistrofirmas}"></p:menuitem>
+                            </p:submenu>
+                        </p:submenu>
+                        <p:submenu label="#{bundle.MenuServiciosSpi}">
+                            <p:submenu label="#{bundle.MenuServiciosSpiMantenimientos}">
+                                <p:menuitem value="#{bundle.MenuServiciosSpiMantenimientosConcepto}" action="#{menusController.conceptospi}"></p:menuitem>
+                                <p:menuitem value="#{bundle.MenuServiciosSpiMantenimientosCtacorriente}" action="#{menusController.ctacorrientespi}"></p:menuitem>
+                                <p:menuitem value="#{bundle.MenuServiciosSpiMantenimientosMoneda}" action="#{menusController.monedaspi}"></p:menuitem>
+                                <p:menuitem value="#{bundle.MenuServiciosSpiMantenimientosOordenpago}" action="#{menusController.oordenpagospi}"></p:menuitem>
+                                <p:menuitem value="#{bundle.MenuServiciosSpiMantenimientosTipocuenta}" action="#{menusController.tipocuentaspi}"></p:menuitem>
+                                <p:menuitem value="#{bundle.MenuServiciosSpiMantenimientosCorteproceso}" action="#{menusController.corteprocesospi}"></p:menuitem>
+                                <p:menuitem value="#{bundle.MenuServiciosSpiMantenimientosEfinalordenpago}" action="#{menusController.efinalordenpagospi}"></p:menuitem>
+                            </p:submenu>
+                            <p:submenu label="#{bundle.MenuServiciosSpiSpi1}">
+                                <p:menuitem value="#{bundle.MenuServiciosSpiSpi1Crear}" action="#{menusController.spi1}"></p:menuitem>
+                                <p:menuitem value="#{bundle.MenuServiciosSpiSpi1Listar}" action="#{menusController.lspi1}"></p:menuitem>
+                                <p:separator/>
+                                <p:menuitem value="#{bundle.MenuServiciosSpiSpi1Generar}" action="#{menusController.gspi1}"></p:menuitem>
+                                <p:menuitem value="#{bundle.MenuServiciosSpiSpi1ListarArchivo}" action="#{menusController.lgspi1}"></p:menuitem>
+                            </p:submenu>
+
+                            <p:menuitem value="#{bundle.MenuServiciosSpiSpi2}" action="#{menusController.spi2}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuServiciosSpiSpi3}" action="#{menusController.spi3}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuServiciosSpiSpi4}" action="#{menusController.spi4}"></p:menuitem>
+
+                        </p:submenu>
+                        <p:menuitem value="#{bundle.MenuServiciosUbicaciones}" action="#{menusController.ubicaciones}"></p:menuitem>
+                        <p:menuitem value="#{bundle.MenuServiciosCorreos}" action="#{menusController.correos}"></p:menuitem>
+                    </p:submenu>
+
+                    <p:submenu label="#{bundle.MenuRecuperacion}">
+                        <p:submenu label="#{bundle.MenuRecuperacionMantenimientos}">
+                            <p:menuitem value="#{bundle.MenuRecuperacionAbogados}" action="#{menusController.abogados}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuRecuperacionEstadojuicios}" action="#{menusController.estadojuicios}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuRecuperacionGestionconceptos}" action="#{menusController.gestionconceptos}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuRecuperacionConceptocostosjudiciales}" action="#{menusController.conceptocostosjudiciales}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuRecuperacionCreditos}" action="#{menusController.creditos}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuRecuperacionAbogadoscreditos}" action="#{menusController.abogadoscreditos}"></p:menuitem>
+                        </p:submenu>
+                        <p:submenu label="#{bundle.MenuRecuperacionGestioncreditos}">
+                            <p:menuitem value="#{bundle.MenuRecuperacionGestionHistorialcreditos}" action="#{menusController.historialcreditos}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuRecuperacionGestionAsignacioncreditos}" action="#{menusController.asignacioncreditos}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuRecuperacionGestionGestion}" action="#{menusController.gestioncreditos}"></p:menuitem>                            
+                            <p:menuitem value="#{bundle.MenuRecuperacionGestionAsignacioncartera}" action="#{menusController.asignacioncartera}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuRecuperacionGestionGestioncobranzas}" action="#{menusController.gestioncobranzas}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuRecuperacionGestionGenerarcobranzas}" action="#{menusController.generarcobranzas}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuRecuperacionGestionAnulacobranzas}" action="#{menusController.anulacobranzas}"></p:menuitem>
+                        </p:submenu>                        
+                        <p:menuitem value="#{bundle.MenuRecuperacionGestionjuicios}" action="#{menusController.gestionjuicios}"></p:menuitem>
+                        <p:menuitem value="#{bundle.MenuRecuperacionLiquidacionjuicios}" action="#{menusController.liquidacionjuicios}"></p:menuitem>
+                        <p:menuitem value="#{bundle.MenuRecuperacionCondonacionjuicios}" action="#{menusController.condonacionjuicios}"></p:menuitem>
+                        <p:submenu label="#{bundle.MenuRecuperacionConsultas}">
+                            <p:menuitem value="#{bundle.MenuRecuperacionConsultasCompromisos}" action="#{menusController.ccompromisos}"></p:menuitem> 
+                            <p:menuitem value="#{bundle.MenuRecuperacionConsultasDetallecobranzas}" action="#{menusController.cdetallecobranzas}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuRecuperacionConsultasGastosJudiciales}" action="#{menusController.cgastosjudiciales}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuRecuperacionConsultasMorosidadTotal}" action="#{menusController.porcentajemorosidad}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuRecuperacionConsultasMorosidadOficial}" action="#{menusController.morosidadoficial}"></p:menuitem>
+                        </p:submenu>
+                    </p:submenu>
+
+                    <p:submenu label="#{bundle.MenuScoringCrediticio}">
+                        <p:submenu label="#{bundle.MenuScoringCrediticioRNA}">
+                            <p:menuitem value="#{bundle.MenuScoringCrediticioCategorias}" action="#{menusController.categoriasred}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuScoringCrediticioVariables}" action="#{menusController.variablesred}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuScoringCrediticioRedNeuronal}" action="#{menusController.redneuronal}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuScoringCrediticioEntrenamiento}" action="#{menusController.entrenamientored}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuScoringCrediticioPruebas}" action="#{menusController.gestionconceptos}"></p:menuitem>                            
+                        </p:submenu>
+                        <p:submenu label="#{bundle.MenuScoringCrediticioCalificador}">
+                            <p:menuitem value="#{bundle.ScoringCrediticioValidador}" action="#{menusController.scoringpersonas}"></p:menuitem>
+                            <p:menuitem value="#{bundle.ScoringCrediticioHistorial}" action="#{menusController.asignacioncreditos}"></p:menuitem>                            
+                        </p:submenu>                  
+
+                    </p:submenu>
+
+                    <p:submenu label="#{bundle.MenuDocumentologia}">
+                        <p:submenu label="#{bundle.MenuDocumentologiaManuales}">
+                            <p:menuitem value="#{bundle.MenuDocumentologiaManualesIngreso}" action="#{menusController.manuales}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuDocumentologiaManualesVisor}" action="#{menusController.vmanuales}"></p:menuitem>
+                        </p:submenu>
+                        <p:menuitem value="#{bundle.MenuDocumentologiaCabecera}" action="#{menusController.cabeceradocumentos}"></p:menuitem>
+                        <p:menuitem value="#{bundle.MenuDocumentologiaEsquema}" action="#{menusController.detalledocumentos}"></p:menuitem>
+                        <p:submenu label="#{bundle.MenuDocumentologiaCreditos}">
+                            <p:menuitem value="#{bundle.MenuDocumentologiaMantenimientoCreditos}" action="#{menusController.detalledocumentoscreditos}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuDocumentologiaVisorCreditos}" action="#{menusController.visorcreditos}"></p:menuitem>
+                        </p:submenu>
+                        <p:submenu label="#{bundle.MenuDocumentologiaContabilidad}">
+                            <p:menuitem value="#{bundle.MenuDocumentologiaMantenimientoContabilidad}" action="#{menusController.liquidacionjuicios}"></p:menuitem>
+                            <p:menuitem value="#{bundle.MenuDocumentologiaVisorContabilidad}" action="#{menusController.liquidacionjuicios}"></p:menuitem>
+                        </p:submenu>
+                    </p:submenu>
+
+                    <p:menuitem value="#{bundle.MenuSalir}" action="#{menusController.salir}"></p:menuitem>
+
+                </p:menubar>
+                <p:panel header="#{bundle.MenuTitle_Menus}">
+                    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" /> 
+                    <br />
+                    <p:panelGrid>
+                        <f:facet name="header">
+                            <p:graphicImage value="#{menusController.graphicImage}" cache="false"/>   
+                        </f:facet>
+                    </p:panelGrid>
+                </p:panel>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>      
+
+</html>
+

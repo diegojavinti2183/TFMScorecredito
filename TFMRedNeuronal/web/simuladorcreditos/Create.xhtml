@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateSimuladorcreditosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateSimuladorcreditosLabel_screNumero}" for="screNumero" />
+                    <h:inputText id="screNumero" value="#{simuladorcreditosController.selected.screNumero}" title="#{bundle.CreateSimuladorcreditosTitle_screNumero}" required="true" requiredMessage="#{bundle.CreateSimuladorcreditosRequiredMessage_screNumero}"/>
+                    <h:outputLabel value="#{bundle.CreateSimuladorcreditosLabel_screFecha}" for="screFecha" />
+                    <h:inputText id="screFecha" value="#{simuladorcreditosController.selected.screFecha}" title="#{bundle.CreateSimuladorcreditosTitle_screFecha}" required="true" requiredMessage="#{bundle.CreateSimuladorcreditosRequiredMessage_screFecha}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateSimuladorcreditosLabel_screTipocredito}" for="screTipocredito" />
+                    <h:inputText id="screTipocredito" value="#{simuladorcreditosController.selected.screTipocredito}" title="#{bundle.CreateSimuladorcreditosTitle_screTipocredito}" required="true" requiredMessage="#{bundle.CreateSimuladorcreditosRequiredMessage_screTipocredito}"/>
+                    <h:outputLabel value="#{bundle.CreateSimuladorcreditosLabel_screMonto}" for="screMonto" />
+                    <h:inputText id="screMonto" value="#{simuladorcreditosController.selected.screMonto}" title="#{bundle.CreateSimuladorcreditosTitle_screMonto}" required="true" requiredMessage="#{bundle.CreateSimuladorcreditosRequiredMessage_screMonto}"/>
+                    <h:outputLabel value="#{bundle.CreateSimuladorcreditosLabel_screTasa}" for="screTasa" />
+                    <h:inputText id="screTasa" value="#{simuladorcreditosController.selected.screTasa}" title="#{bundle.CreateSimuladorcreditosTitle_screTasa}" required="true" requiredMessage="#{bundle.CreateSimuladorcreditosRequiredMessage_screTasa}"/>
+                    <h:outputLabel value="#{bundle.CreateSimuladorcreditosLabel_screProductoSocio}" for="screProductoSocio" />
+                    <h:inputText id="screProductoSocio" value="#{simuladorcreditosController.selected.screProductoSocio}" title="#{bundle.CreateSimuladorcreditosTitle_screProductoSocio}" />
+                    <h:outputLabel value="#{bundle.CreateSimuladorcreditosLabel_screCapital}" for="screCapital" />
+                    <h:inputText id="screCapital" value="#{simuladorcreditosController.selected.screCapital}" title="#{bundle.CreateSimuladorcreditosTitle_screCapital}" />
+                    <h:outputLabel value="#{bundle.CreateSimuladorcreditosLabel_screDesembolso}" for="screDesembolso" />
+                    <h:inputText id="screDesembolso" value="#{simuladorcreditosController.selected.screDesembolso}" title="#{bundle.CreateSimuladorcreditosTitle_screDesembolso}" />
+                    <h:outputLabel value="#{bundle.CreateSimuladorcreditosLabel_screSaldo}" for="screSaldo" />
+                    <h:inputText id="screSaldo" value="#{simuladorcreditosController.selected.screSaldo}" title="#{bundle.CreateSimuladorcreditosTitle_screSaldo}" />
+                    <h:outputLabel value="#{bundle.CreateSimuladorcreditosLabel_screInteres}" for="screInteres" />
+                    <h:inputText id="screInteres" value="#{simuladorcreditosController.selected.screInteres}" title="#{bundle.CreateSimuladorcreditosTitle_screInteres}" />
+                    <h:outputLabel value="#{bundle.CreateSimuladorcreditosLabel_screPlazo}" for="screPlazo" />
+                    <h:inputText id="screPlazo" value="#{simuladorcreditosController.selected.screPlazo}" title="#{bundle.CreateSimuladorcreditosTitle_screPlazo}" />
+                    <h:outputLabel value="#{bundle.CreateSimuladorcreditosLabel_screDiasAmortizacion}" for="screDiasAmortizacion" />
+                    <h:inputText id="screDiasAmortizacion" value="#{simuladorcreditosController.selected.screDiasAmortizacion}" title="#{bundle.CreateSimuladorcreditosTitle_screDiasAmortizacion}" />
+                    <h:outputLabel value="#{bundle.CreateSimuladorcreditosLabel_screCuotas}" for="screCuotas" />
+                    <h:inputText id="screCuotas" value="#{simuladorcreditosController.selected.screCuotas}" title="#{bundle.CreateSimuladorcreditosTitle_screCuotas}" />
+                    <h:outputLabel value="#{bundle.CreateSimuladorcreditosLabel_screDestino}" for="screDestino" />
+                    <h:inputText id="screDestino" value="#{simuladorcreditosController.selected.screDestino}" title="#{bundle.CreateSimuladorcreditosTitle_screDestino}" />
+                    <h:outputLabel value="#{bundle.CreateSimuladorcreditosLabel_screAdmining}" for="screAdmining" />
+                    <h:inputText id="screAdmining" value="#{simuladorcreditosController.selected.screAdmining}" title="#{bundle.CreateSimuladorcreditosTitle_screAdmining}" required="true" requiredMessage="#{bundle.CreateSimuladorcreditosRequiredMessage_screAdmining}"/>
+                    <h:outputLabel value="#{bundle.CreateSimuladorcreditosLabel_screAdminfec1}" for="screAdminfec1" />
+                    <h:inputText id="screAdminfec1" value="#{simuladorcreditosController.selected.screAdminfec1}" title="#{bundle.CreateSimuladorcreditosTitle_screAdminfec1}" required="true" requiredMessage="#{bundle.CreateSimuladorcreditosRequiredMessage_screAdminfec1}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateSimuladorcreditosLabel_screAdminact}" for="screAdminact" />
+                    <h:inputText id="screAdminact" value="#{simuladorcreditosController.selected.screAdminact}" title="#{bundle.CreateSimuladorcreditosTitle_screAdminact}" required="true" requiredMessage="#{bundle.CreateSimuladorcreditosRequiredMessage_screAdminact}"/>
+                    <h:outputLabel value="#{bundle.CreateSimuladorcreditosLabel_screAdminfec2}" for="screAdminfec2" />
+                    <h:inputText id="screAdminfec2" value="#{simuladorcreditosController.selected.screAdminfec2}" title="#{bundle.CreateSimuladorcreditosTitle_screAdminfec2}" required="true" requiredMessage="#{bundle.CreateSimuladorcreditosRequiredMessage_screAdminfec2}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateSimuladorcreditosLabel_screPersona}" for="screPersona" />
+                    <h:selectOneMenu id="screPersona" value="#{simuladorcreditosController.selected.screPersona}" title="#{bundle.CreateSimuladorcreditosTitle_screPersona}" required="true" requiredMessage="#{bundle.CreateSimuladorcreditosRequiredMessage_screPersona}">
+                        <f:selectItems value="#{personasController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{simuladorcreditosController.create}" value="#{bundle.CreateSimuladorcreditosSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{simuladorcreditosController.prepareList}" value="#{bundle.CreateSimuladorcreditosShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateSimuladorcreditosIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

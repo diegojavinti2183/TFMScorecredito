@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewVariablesredTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewVariablesredLabel_vredCodigo}"/>
+                    <h:outputText value="#{variablesredController.selected.vredCodigo}" title="#{bundle.ViewVariablesredTitle_vredCodigo}"/>
+                    <h:outputText value="#{bundle.ViewVariablesredLabel_vredId}"/>
+                    <h:outputText value="#{variablesredController.selected.vredId}" title="#{bundle.ViewVariablesredTitle_vredId}"/>
+                    <h:outputText value="#{bundle.ViewVariablesredLabel_vredNombre}"/>
+                    <h:outputText value="#{variablesredController.selected.vredNombre}" title="#{bundle.ViewVariablesredTitle_vredNombre}"/>
+                    <h:outputText value="#{bundle.ViewVariablesredLabel_vredDescripcion}"/>
+                    <h:outputText value="#{variablesredController.selected.vredDescripcion}" title="#{bundle.ViewVariablesredTitle_vredDescripcion}"/>
+                    <h:outputText value="#{bundle.ViewVariablesredLabel_vredTipodato}"/>
+                    <h:outputText value="#{variablesredController.selected.vredTipodato}" title="#{bundle.ViewVariablesredTitle_vredTipodato}"/>
+                    <h:outputText value="#{bundle.ViewVariablesredLabel_vredEstado}"/>
+                    <h:outputText value="#{variablesredController.selected.vredEstado}" title="#{bundle.ViewVariablesredTitle_vredEstado}"/>
+                    <h:outputText value="#{bundle.ViewVariablesredLabel_vredAdmining}"/>
+                    <h:outputText value="#{variablesredController.selected.vredAdmining}" title="#{bundle.ViewVariablesredTitle_vredAdmining}"/>
+                    <h:outputText value="#{bundle.ViewVariablesredLabel_vredAdminfec1}"/>
+                    <h:outputText value="#{variablesredController.selected.vredAdminfec1}" title="#{bundle.ViewVariablesredTitle_vredAdminfec1}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewVariablesredLabel_vredAdminact}"/>
+                    <h:outputText value="#{variablesredController.selected.vredAdminact}" title="#{bundle.ViewVariablesredTitle_vredAdminact}"/>
+                    <h:outputText value="#{bundle.ViewVariablesredLabel_vredAdminfec2}"/>
+                    <h:outputText value="#{variablesredController.selected.vredAdminfec2}" title="#{bundle.ViewVariablesredTitle_vredAdminfec2}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewVariablesredLabel_vredCategoria}"/>
+                    <h:outputText value="#{variablesredController.selected.vredCategoria}" title="#{bundle.ViewVariablesredTitle_vredCategoria}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{variablesredController.destroyAndView}" value="#{bundle.ViewVariablesredDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewVariablesredEditLink}"/>
+                <br />
+                <h:commandLink action="#{variablesredController.prepareCreate}" value="#{bundle.ViewVariablesredCreateLink}" />
+                <br />
+                <h:commandLink action="#{variablesredController.prepareList}" value="#{bundle.ViewVariablesredShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewVariablesredIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

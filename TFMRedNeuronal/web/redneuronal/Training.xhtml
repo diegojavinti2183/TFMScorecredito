@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/WEB-INF/plantilla.xhtml">
+        <ui:define name="top">
+            <h:outputText value="#{bundle.TitleProgram}"></h:outputText>
+        </ui:define>
+        <ui:define name="content" >            
+            <h:form id="form" styleClass="jsfcrud_list_form">
+                <script type="text/javascript" src="../resources/js/funciones.js"/>
+                <p:panel id="panelCampos" header="#{bundle.CreateRedneuronalTitle}" >
+                    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" /> 
+                    <h:panelGrid columns="2">                
+                        <h:outputLabel value="#{bundle.EditRedneuronalLabel_redNentrada}" for="redNentrada" />
+                        <p:inputText id="redNentrada" value="#{redneuronalController.current.redNentrada}" title="#{bundle.EditRedneuronalTitle_redNentrada}" required="true" requiredMessage="#{bundle.EditRedneuronalRequiredMessage_redNentrada}"/>
+                        <h:outputLabel value="#{bundle.EditRedneuronalLabel_redNoculta}" for="redNoculta" />
+                        <p:inputText id="redNoculta" value="#{redneuronalController.current.redNoculta}" title="#{bundle.EditRedneuronalTitle_redNoculta}" required="true" requiredMessage="#{bundle.EditRedneuronalRequiredMessage_redNoculta}"/>
+                        <h:outputLabel value="#{bundle.EditRedneuronalLabel_redNcapasocultas}" for="redNcapasocultas" />
+                        <p:inputText id="redNcapasocultas" value="#{redneuronalController.current.redNcapasocultas}" title="#{bundle.EditRedneuronalTitle_redNcapasocultas}" required="true" requiredMessage="#{bundle.EditRedneuronalRequiredMessage_redNcapasocultas}"/>
+                        <h:outputLabel value="#{bundle.EditRedneuronalLabel_redNsalida}" for="redNsalida" />
+                        <p:inputText id="redNsalida" value="#{redneuronalController.current.redNsalida}" title="#{bundle.EditRedneuronalTitle_redNsalida}" required="true" requiredMessage="#{bundle.EditRedneuronalRequiredMessage_redNsalida}"/>
+                        <h:outputLabel value="#{bundle.EditRedneuronalLabel_redIteraciones}" for="redIteraciones" />
+                        <p:inputText id="redIteraciones" value="#{redneuronalController.current.redIteraciones}" title="#{bundle.EditRedneuronalTitle_redIteraciones}" required="true" requiredMessage="#{bundle.EditRedneuronalRequiredMessage_redIteraciones}"/>
+                        <h:outputLabel value="#{bundle.EditRedneuronalLabel_redMaxerror}" for="redMaxerror" />
+                        <p:inputText id="redMaxerror" value="#{redneuronalController.current.redMaxerror}" title="#{bundle.EditRedneuronalTitle_redMaxerror}" required="true" requiredMessage="#{bundle.EditRedneuronalRequiredMessage_redMaxerror}"/>
+
+                    </h:panelGrid> 
+                    <br />
+                    <p:commandButton action="#{redneuronalController.training}" value="#{bundle.CreateRedneuronalSaveLink}" process="@all" update="@form"/>
+                    <p:commandButton action="#{redneuronalController.cancel}" value="#{bundle.CancelRedneuronalSaveLink}" process="@this" update="@form"/>                    
+                </p:panel>
+                <p:panel header="#{bundle.ViewRedneuronalTitle}">
+                    <p:dataTable id="tablaDataset" value="#{redneuronalController.itemsDatasetTemp}" var="item" style="border:solid 1px" filteredValue="#{redneuronalController.filterItemsDatasetTemp}" widgetVar="datasetTabla" scrollHeight="300" scrollable="true">  
+
+                        <p:column id="paisOrigen" filterBy="#{item.paisOrigen}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_paisOrigen}">  
+                            <h:outputText value="#{item.paisOrigen}" />  
+                        </p:column>
+
+                        <p:column id="provinciaOrigen" filterBy="#{item.provinciaOrigen}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_provinciaOrigen}">  
+                            <h:outputText value="#{item.provinciaOrigen}" />  
+                        </p:column>
+
+                        <p:column id="cantonOrigen" filterBy="#{item.cantonOrigen}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_cantonOrigen}">  
+                            <h:outputText value="#{item.cantonOrigen}" />  
+                        </p:column>
+
+                        <p:column id="paisRadica" filterBy="#{item.paisRadica}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_paisRadica}">  
+                            <h:outputText value="#{item.paisRadica}" />  
+                        </p:column>
+
+                        <p:column id="provinciaRadica" filterBy="#{item.provinciaRadica}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_provinciaRadica}">  
+                            <h:outputText value="#{item.provinciaRadica}" />  
+                        </p:column>
+                        
+                         <p:column id="cantonRadica" filterBy="#{item.cantonRadica}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_cantonRadica}">  
+                            <h:outputText value="#{item.cantonRadica}" />  
+                        </p:column>
+
+                        <p:column id="parroquiaRadica" filterBy="#{item.parroquiaRadica}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_parroquiaRadica}">  
+                            <h:outputText value="#{item.parroquiaRadica}" />  
+                        </p:column>
+
+                        <p:column id="socioInstruccion" filterBy="#{item.socioInstruccion}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_socioInstruccion}">  
+                            <h:outputText value="#{item.socioInstruccion}" />  
+                        </p:column>
+                        
+                        <p:column id="tipoVivienda" filterBy="#{item.tipoVivienda}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_tipoVivienda}">  
+                            <h:outputText value="#{item.tipoVivienda}" />  
+                        </p:column>
+                        
+                         <p:column id="socioIngreso" filterBy="#{item.socioIngreso}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_socioIngreso}">  
+                            <h:outputText value="#{item.socioIngreso}" />  
+                        </p:column>
+
+                        <p:column id="creditosConcedidos" filterBy="#{item.creditosConcedidos}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_creditosConcedidos}">  
+                            <h:outputText value="#{item.creditosConcedidos}" />  
+                        </p:column>
+
+                        <p:column id="creditosUltimoAnio" filterBy="#{item.creditosUltimoAnio}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_creditosUltimoAnio}">  
+                            <h:outputText value="#{item.creditosUltimoAnio}" />  
+                        </p:column>
+
+                                
+                        <p:column id="actividadEconomica" filterBy="#{item.actividadEconomica}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_actividadEconomica}">  
+                            <h:outputText value="#{item.actividadEconomica}" />  
+                        </p:column>
+                        
+                        <p:column id="destinoCredito" filterBy="#{item.destinoCredito}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_destinoCredito}">  
+                            <h:outputText value="#{item.destinoCredito}" />  
+                        </p:column>
+                        
+                         <p:column id="clienteClasificacion" filterBy="#{item.clienteClasificacion}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_clienteClasificacion}">  
+                            <h:outputText value="#{item.clienteClasificacion}" />  
+                        </p:column>
+
+                        <p:column id="numCuotasPagadas" filterBy="#{item.numCuotasPagadas}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_numCuotasPagadas}">  
+                            <h:outputText value="#{item.numCuotasPagadas}" />  
+                        </p:column>
+
+                        <p:column id="numCuotasMora" filterBy="#{item.numCuotasMora}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_numCuotasMora}">  
+                            <h:outputText value="#{item.numCuotasMora}" />  
+                        </p:column>
+                        
+                        
+                        <p:column id="mediaMora" filterBy="#{item.mediaMora}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_mediaMora}">  
+                            <h:outputText value="#{item.mediaMora}" />  
+                        </p:column>
+                        
+                        <p:column id="moraMayor" filterBy="#{item.moraMayor}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_moraMayor}">  
+                            <h:outputText value="#{item.moraMayor}" />  
+                        </p:column>
+                        
+                         <p:column id="saldoEntidad" filterBy="#{item.saldoEntidad}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_saldoEntidad}">  
+                            <h:outputText value="#{item.saldoEntidad}" />  
+                        </p:column>
+
+                        <p:column id="numEntidades" filterBy="#{item.numEntidades}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_numEntidades}">  
+                            <h:outputText value="#{item.numEntidades}" />  
+                        </p:column>
+
+                        <p:column id="saldoEntidades" filterBy="#{item.saldoEntidades}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_saldoEntidades}">  
+                            <h:outputText value="#{item.saldoEntidades}" />  
+                        </p:column>
+                        
+                        <p:column id="sexo" filterBy="#{item.sexo}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_sexo}">  
+                            <h:outputText value="#{item.sexo}" />  
+                        </p:column>
+                        
+                        <p:column id="edad" filterBy="#{item.edad}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_edad}">  
+                            <h:outputText value="#{item.edad}" />  
+                        </p:column>
+                        
+                         <p:column id="numCargas" filterBy="#{item.numCargas}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_numCargas}">  
+                            <h:outputText value="#{item.numCargas}" />  
+                        </p:column>
+
+                        <p:column id="estadoCivil" filterBy="#{item.estadoCivil}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_estadoCivil}">  
+                            <h:outputText value="#{item.estadoCivil}" />  
+                        </p:column>
+
+                        <p:column id="situacionlaboral" filterBy="#{item.situacionlaboral}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_situacionlaboral}">  
+                            <h:outputText value="#{item.situacionlaboral}" />  
+                        </p:column>
+                        
+                        
+                        <p:column id="liquidez" filterBy="#{item.liquidez}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_liquidez}">  
+                            <h:outputText value="#{item.liquidez}" />  
+                        </p:column>
+                        
+                        <p:column id="dependencia" filterBy="#{item.dependencia}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_dependencia}">  
+                            <h:outputText value="#{item.dependencia}" />  
+                        </p:column>
+                        
+                         <p:column id="apalancamiento" filterBy="#{item.apalancamiento}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_apalancamiento}">  
+                            <h:outputText value="#{item.apalancamiento}" />  
+                        </p:column>
+
+                        <p:column id="garantias" filterBy="#{item.garantias}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_garantias}">  
+                            <h:outputText value="#{item.garantias}" />  
+                        </p:column>
+
+                        <p:column id="moneda" filterBy="#{item.moneda}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_moneda}">  
+                            <h:outputText value="#{item.moneda}" />  
+                        </p:column>
+                        
+                         <p:column id="monto" filterBy="#{item.monto}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_monto}">  
+                            <h:outputText value="#{item.monto}" />  
+                        </p:column>
+                        
+                        <p:column id="duracion" filterBy="#{item.duracion}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_duracion}">  
+                            <h:outputText value="#{item.duracion}" />  
+                        </p:column>
+                        
+                         <p:column id="interesMensual" filterBy="#{item.interesMensual}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_interesMensual}">  
+                            <h:outputText value="#{item.interesMensual}" />  
+                        </p:column>
+
+                        <p:column id="pib" filterBy="#{item.pib}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_pib}">  
+                            <h:outputText value="#{item.pib}" />  
+                        </p:column>
+
+                        <p:column id="ipc" filterBy="#{item.ipc}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_ipc}">  
+                            <h:outputText value="#{item.ipc}" />  
+                        </p:column>
+                        
+                        <p:column id="ie" filterBy="#{item.ie}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_ie}">  
+                            <h:outputText value="#{item.ie}" />  
+                        </p:column>
+                        
+                        <p:column id="y1" filterBy="#{item.y1}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_y1}">  
+                            <h:outputText value="#{item.y1}" />  
+                        </p:column>
+                        
+                         <p:column id="y2" filterBy="#{item.y2}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_y2}">  
+                            <h:outputText value="#{item.y2}" />  
+                        </p:column>
+
+                        <p:column id="y3" filterBy="#{item.y3}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_y3}">  
+                            <h:outputText value="#{item.y3}" />  
+                        </p:column>
+                        
+                        <p:column id="y4" filterBy="#{item.y4}" filterMatchMode="contains" headerText="#{bundle.ListVariablesredTitle_y3}">  
+                            <h:outputText value="#{item.y4}" />  
+                        </p:column>
+
+                    </p:dataTable>  
+                    
+                    
+                </p:panel>
+                <br />               
+                <h:link id="selectButtonReturn" outcome="/menus" value="#{bundle.ButtonReturn}"/>
+                <br />
+                <p:confirmDialog id="confirmDialog" message="#{bundle.ConfirmDialogMessage}" header="#{bundle.ConfirmDialogTitle}" severity="alert" widgetVar="confirmation">
+                    <p:commandButton id="confirm" value="#{bundle.ButtonYes}" update="messages" oncomplete="PF('confirmation').hide();" actionListener="#{redneuronalController.destroy}" />  
+                    <p:commandButton id="decline" value="#{bundle.ButtonNo}" onclick="PF('confirmation').hide();" type="button" /> 
+                </p:confirmDialog>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

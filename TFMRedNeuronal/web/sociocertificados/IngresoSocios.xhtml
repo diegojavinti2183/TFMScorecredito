@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/WEB-INF/plantilla.xhtml">
+        <ui:define name="top">
+            <h:outputText value="#{bundle.TitleProgram}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">            
+            <h:form>
+                <script type="text/javascript" src="../resources/js/funciones.js"/>
+                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" /> 
+                <p:panel id="panelCabecera">
+                    <h:panelGrid columns="4">  
+                        <h:outputLabel value="#{bundle.ListSociocertificadosTitle_soccSocio}" for="soccSocio" />
+                        <p:inputText id="soccSocio" value="#{ingresoSociosController.codigoSocio}" title="#{bundle.CreateResuTitle_resuValor}" onkeypress="return ingresoEnteros(event);" required="true" requiredMessage="#{bundle.CreateResuRequiredMessage_resuValor}"/>
+                        <h:outputLabel value="#{bundle.ListSociocertificadosTitle_soccDocumento}" for="soccDocumento" />
+                        <p:inputText id="soccDocumento" value="#{ingresoSociosController.currentIngresoSocios.identificacion}"title="#{bundle.ListSociocertificadosTitle_soccDocumento}" required="true"/>
+                        <h:outputLabel value="#{bundle.ListSociocertificadosTitle_soccNombre}" for="soccNombre" />
+                        <p:inputText id="soccNombre" value="#{ingresoSociosController.currentIngresoSocios.nombres}" title="#{ListSociocertificadosTitle_soccNombre}" required="true" />
+                        <p:commandButton id="ButtonConsult" value="#{bundle.ButtonConsult}" action="#{ingresoSociosController.aceptar}" update="soccDocumento,soccNombre"/> 
+                    </h:panelGrid> 
+                    
+                </p:panel>
+
+                <p:panel header="Reporte">  
+                    <p:commandButton id="selectButtonImprimir" action="#{ingresoSociosController.imprimirPdf}" value="#{bundle.ButtonGenerar}" ajax="false" />
+                </p:panel>
+               
+                <br />
+
+                <br />
+                <h:link id="selectButtonReturn" outcome="/menus" value="#{bundle.ButtonReturn}"/>  
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+

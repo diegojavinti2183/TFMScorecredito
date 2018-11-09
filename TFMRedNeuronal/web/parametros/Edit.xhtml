@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditParametrosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditParametrosLabel_parCodigo}" for="parCodigo" />
+                    <h:inputText id="parCodigo" value="#{parametrosController.selected.parCodigo}" title="#{bundle.EditParametrosTitle_parCodigo}" required="true" requiredMessage="#{bundle.EditParametrosRequiredMessage_parCodigo}"/>
+                    <h:outputLabel value="#{bundle.EditParametrosLabel_parNombre}" for="parNombre" />
+                    <h:inputText id="parNombre" value="#{parametrosController.selected.parNombre}" title="#{bundle.EditParametrosTitle_parNombre}" required="true" requiredMessage="#{bundle.EditParametrosRequiredMessage_parNombre}"/>
+                    <h:outputLabel value="#{bundle.EditParametrosLabel_parValor}" for="parValor" />
+                    <h:inputText id="parValor" value="#{parametrosController.selected.parValor}" title="#{bundle.EditParametrosTitle_parValor}" required="true" requiredMessage="#{bundle.EditParametrosRequiredMessage_parValor}"/>
+                    <h:outputLabel value="#{bundle.EditParametrosLabel_parAdmining}" for="parAdmining" />
+                    <h:inputText id="parAdmining" value="#{parametrosController.selected.parAdmining}" title="#{bundle.EditParametrosTitle_parAdmining}" required="true" requiredMessage="#{bundle.EditParametrosRequiredMessage_parAdmining}"/>
+                    <h:outputLabel value="#{bundle.EditParametrosLabel_parAdminfec1}" for="parAdminfec1" />
+                    <h:inputText id="parAdminfec1" value="#{parametrosController.selected.parAdminfec1}" title="#{bundle.EditParametrosTitle_parAdminfec1}" required="true" requiredMessage="#{bundle.EditParametrosRequiredMessage_parAdminfec1}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditParametrosLabel_parAdminact}" for="parAdminact" />
+                    <h:inputText id="parAdminact" value="#{parametrosController.selected.parAdminact}" title="#{bundle.EditParametrosTitle_parAdminact}" required="true" requiredMessage="#{bundle.EditParametrosRequiredMessage_parAdminact}"/>
+                    <h:outputLabel value="#{bundle.EditParametrosLabel_parAdminfec2}" for="parAdminfec2" />
+                    <h:inputText id="parAdminfec2" value="#{parametrosController.selected.parAdminfec2}" title="#{bundle.EditParametrosTitle_parAdminfec2}" required="true" requiredMessage="#{bundle.EditParametrosRequiredMessage_parAdminfec2}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                </h:panelGrid>
+                <h:commandLink action="#{parametrosController.update}" value="#{bundle.EditParametrosSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditParametrosViewLink}"/>
+                <br />
+                <h:commandLink action="#{parametrosController.prepareList}" value="#{bundle.EditParametrosShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditParametrosIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

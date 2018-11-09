@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0d701d82-5e88-4ef5-8bd6-ad67e0513718">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="484"/>
+	<parameter name="usuario" class="java.lang.String"/>
+	<parameter name="cargo" class="java.lang.String"/>
+	<field name="soccCuenta" class="java.lang.Integer"/>
+	<field name="soccDocumento" class="java.lang.String"/>
+	<field name="soccSocio" class="java.lang.String"/>
+	<field name="soccNumero" class="java.lang.Integer"/>
+	<field name="soccFecha" class="java.util.Date"/>
+	<field name="soccFechapertura" class="java.util.Date"/>
+	<field name="soccMonto" class="java.math.BigDecimal"/>
+	<field name="soccObservaciones" class="java.lang.String"/>
+	<field name="soccNombre" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="130" splitType="Stretch">
+			<componentElement>
+				<reportElement uuid="fcc51e36-a970-46c7-9429-1ab4dbd30e9e" x="0" y="79" width="200" height="50"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code39" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA[$F{soccNumero}.toString()]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="650" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch">
+			<textField>
+				<reportElement uuid="00b8c13a-8c5b-4691-8b73-2d5557807155" x="10" y="-559" width="499" height="54"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA["Que el (la ) Señor(a). " + $F{soccNombre} +" portador(a) de la cedula de ciudadanía con el Nº "+ $F{soccDocumento} +" es socio activo de la Cooperativa de Ahorro y Crédito San José S.J."]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="4d2a031e-26d6-452c-a4e6-afa8ccccd918" x="151" y="-603" width="207" height="27"/>
+				<textElement textAlignment="Center">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CERTIFICA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="85b9e11d-f381-4889-81b8-b63007690ff2" x="10" y="-631" width="499" height="28"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[La COOPERATIVA DE AHORRO Y CRÈDITO SAN JOSE S.J.., a petición de la parte interesada:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4b54a7f0-5fea-405a-a7ef-94cb57d04b71" x="10" y="-360" width="499" height="54"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[La información aquí descrita  es de carácter estrictamente confidencial  está dirigida únicamente a su destinatario principal y no implica forma de garantía ni responsabilidad alguna por parte de la Cooperativa de Ahorro y Crédito San José S.J.]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement uuid="48613b4e-d593-45cc-a2a0-020103391d36" mode="Opaque" x="10" y="-492" width="499" height="112"/>
+			</rectangle>
+			<line>
+				<reportElement uuid="66cd6413-e966-43f4-9277-ffb72fc1f8f4" x="127" y="-492" width="1" height="112"/>
+			</line>
+			<staticText>
+				<reportElement uuid="93cc86d6-b8bc-4d4b-8f9c-1feb2f19bf86" x="27" y="-484" width="100" height="34"/>
+				<textElement/>
+				<text><![CDATA[Nº CUENTA
+AHORROS
+]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="365997f7-1383-462d-b6ca-52a3cce0d3db" x="281" y="-430" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{soccMonto}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="dcface55-30f3-463f-9155-f9fc1814c87e" x="264" y="-492" width="1" height="112"/>
+			</line>
+			<line>
+				<reportElement uuid="3786ce49-520a-4e3e-918e-4641f294b1c8" x="10" y="-453" width="499" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="e3140a64-5b0b-42aa-a209-6ac7619a7c44" x="406" y="-485" width="100" height="25"/>
+				<textElement/>
+				<text><![CDATA[CUENTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f5745f7d-772b-4564-8fdd-52087de825cd" x="141" y="-484" width="100" height="34"/>
+				<textElement/>
+				<text><![CDATA[FECHA DE
+APERTURA
+]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="6e2b3d81-b8c3-49c4-8c81-438103becd1a" x="396" y="-492" width="1" height="112"/>
+			</line>
+			<textField>
+				<reportElement uuid="b9b99649-d282-4c1e-a4c0-cf5d0c2e7f59" x="141" y="-430" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{soccFechapertura}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="c09aeaaf-3775-4072-9580-15cedf23d85e" x="406" y="-430" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[( ($F{soccMonto}.compareTo( new BigDecimal("1") ) == 1) && ($F{soccMonto}.compareTo( new BigDecimal("4") ) == -1) ? "1 Cifra Baja" : ( ($F{soccMonto}.compareTo( new BigDecimal("4") ) >= 0) && ($F{soccMonto}.compareTo( new BigDecimal("7") ) == -1) ? "1 Cifra Media" : ( ($F{soccMonto}.compareTo( new BigDecimal("7") ) >= 0) && ($F{soccMonto}.compareTo( new BigDecimal("10") ) == -1) ? "1 Cifra Alta" : ( ($F{soccMonto}.compareTo( new BigDecimal("10") ) >= 0) && ($F{soccMonto}.compareTo( new BigDecimal("40") ) == -1) ? "2 Cifras Bajas" : ( ($F{soccMonto}.compareTo( new BigDecimal("40") ) >= 0) && ($F{soccMonto}.compareTo( new BigDecimal("70") ) == -1) ? "2 Cifras Medias" : ( ($F{soccMonto}.compareTo( new BigDecimal("90") ) >= 0) && ($F{soccMonto}.compareTo( new BigDecimal("100") ) == -1) ? "2 Cifras Altas" : ( ($F{soccMonto}.compareTo( new BigDecimal("100") ) >= 0) && ($F{soccMonto}.compareTo( new BigDecimal("400") ) == -1) ? "3 Cifra Bajas" : ( ($F{soccMonto}.compareTo( new BigDecimal("400") ) >= 0) && ($F{soccMonto}.compareTo( new BigDecimal("700") ) == -1) ? "3 Cifras Medias" : ( ($F{soccMonto}.compareTo( new BigDecimal("700") ) >= 0) && ($F{soccMonto}.compareTo( new BigDecimal("1000") ) == -1) ? "3 Cifras Altas" : ( ($F{soccMonto}.compareTo( new BigDecimal("1000") ) >= 0) && ($F{soccMonto}.compareTo( new BigDecimal("4000") ) == -1) ? "4 Cifras Bajas" : ( ($F{soccMonto}.compareTo( new BigDecimal("4000") ) >= 0) && ($F{soccMonto}.compareTo( new BigDecimal("7000") ) == -1) ? "4 Cifras Medias" : ( ($F{soccMonto}.compareTo( new BigDecimal("7000") ) >= 0) && ($F{soccMonto}.compareTo( new BigDecimal("10000") ) == -1) ? "4 Cifras Altas" : ( ($F{soccMonto}.compareTo( new BigDecimal("10000") ) >= 0) && ($F{soccMonto}.compareTo( new BigDecimal("40000") ) == -1) ? "5 Cifras Bajas" : ( ($F{soccMonto}.compareTo( new BigDecimal("40000") ) >= 0) && ($F{soccMonto}.compareTo( new BigDecimal("70000") ) == -1) ? "5 Cifras Medias" : "5 Cifras Altas" ) ) ) ) ) ) ) ) ) ) ) ) ) )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="219a50d0-8d59-4787-b1d7-0212bf0a4938" x="27" y="-430" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{soccCuenta}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="13ed794b-5b78-41fd-b64b-4ecf26fc2dbe" x="281" y="-484" width="100" height="34"/>
+				<textElement/>
+				<text><![CDATA[SALDO 
+PROMEDIO
+]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="f844367c-9b8b-4ccb-a378-a7fa312c042a" x="241" y="-299" width="268" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["Cuenca, "+$F{soccFecha}.getDate()+" de "+( $F{soccFecha}.getMonth() == 1 ? "febrero" : ( $F{soccFecha}.getMonth() == 2 ? "marzo" : ( $F{soccFecha}.getMonth() == 3 ? "abril" : ( $F{soccFecha}.getMonth() == 4 ? "mayo" : ( $F{soccFecha}.getMonth() == 5 ? "junio" : ( $F{soccFecha}.getMonth() == 6 ? "julio" : ( $F{soccFecha}.getMonth() == 7 ? "agosto" : ( $F{soccFecha}.getMonth() == 8 ? "septiembre" : ( $F{soccFecha}.getMonth() == 9 ? "octubre" : ( $F{soccFecha}.getMonth() == 10 ? "noviembre" : ( $F{soccFecha}.getMonth() == 11 ? "diciembre" : "enero" ) ) ) ) ) ) ) ) ) ) )+" del "+($F{soccFecha}.getYear()+1900)]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="3a7f6bbb-3084-40f5-889f-e02775258bf6" x="0" y="-215" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Atentamente,]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="baec837c-7379-4f37-88e8-84d2f527b3ba" x="0" y="-156" width="182" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{usuario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="7c1439af-1127-40ee-9591-7c670e07876c" x="0" y="-136" width="182" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{cargo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="a9dd8e30-c29f-472a-b10e-3a7d2612221d" x="0" y="-116" width="403" height="46"/>
+				<textElement/>
+				<text><![CDATA[COOPERATIVA DE AHORRO Y CRÉDITO SAN JOSÉ S.J.
+Web: www.coacsanjosesj.fin.ec
+Telfs: 4141481/4140852
+]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="0459c748-aa35-46d0-a0e8-e5f5dc1e5a18" x="1" y="-162" width="239" height="1"/>
+			</line>
+			<textField>
+				<reportElement uuid="d25d18ac-4f75-4132-97f9-8bcc1f363586" x="5" y="-48" width="365" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["Este certificado sera valido por 30 dias"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="379bcff9-eaf9-4be2-890a-8723630c3960" x="5" y="-26" width="365" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["NOTA: Este documento no se validó si hay indicio de alteración"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

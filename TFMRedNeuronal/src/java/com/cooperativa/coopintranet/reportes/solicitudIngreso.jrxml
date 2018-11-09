@@ -1,0 +1,617 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="solicitudIngreso" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a69a277f-8d71-40d4-a4ad-20cebf92108c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="codigosocio" class="java.lang.String"/>
+	<parameter name="SUBREPORTE1" class="java.io.InputStream" isForPrompting="false"/>
+	<parameter name="SUBREPORTE2" class="java.io.InputStream" isForPrompting="false"/>
+	<parameter name="SUBREPORTE3" class="java.io.InputStream" isForPrompting="false"/>
+	<parameter name="LOGO" class="java.io.InputStream"/>
+	<queryString>
+		<![CDATA[select s.codigo_socio,s.codigo_identificacion,s.mcli_numero_id, su.descripcion,
+case when s.sing_tipopersona = '2' then
+s.mcli_razon_social else s.mcli_apellido_pat||' '||s.mcli_apellido_mat||' '||s.mcli_nombres  end as nombre ,
+s.codigo_estado_civil estadocivil,s.mcli_sexo sexo,sp.prof_descripcion profesion,sl.DESCRIPCION lugar,s.mcli_fecnaci fechanacimiento,si.inst_descripcion instruccion,
+(Select max(sc.numero) from socios_numeros_cel sc where s.codigo_socio = sc.codigo_socio ) as celular,
+(select max(sd.mcli_telefonos) from socios_direcciones sd where sd.codigo_socio = s.codigo_socio) as telefonodomicilio,
+(select max(sd.mcli_calle_prin) from socios_direcciones sd where sd.codigo_socio = s.codigo_socio) as calleprincipal,
+(select max(sd.mcli_calle_secu) from socios_direcciones sd where sd.codigo_socio = s.codigo_socio) as callesecundaria,
+(select max(sd.mcli_numerocasa) from socios_direcciones sd where sd.codigo_socio = s.codigo_socio) as numerocasa,
+(select max(sd.mcli_sector) from socios_direcciones sd where sd.codigo_socio = s.codigo_socio) as sector,
+(select max(sl.DESCRIPCION) from socios_direcciones sd,socios_lugares sl where SUBSTR(sd.mcli_lugar_dir,1,2) = sl.codigo and sd.codigo_socio = s.codigo_socio) as pais,
+(select max(sl.DESCRIPCION) from socios_direcciones sd,socios_lugares sl where SUBSTR(sd.mcli_lugar_dir,1,4) = sl.codigo and sd.codigo_socio = s.codigo_socio) as provincia,
+(select max(sl.DESCRIPCION) from socios_direcciones sd,socios_lugares sl where SUBSTR(sd.mcli_lugar_dir,1,6) = sl.codigo and sd.codigo_socio = s.codigo_socio) as canton,
+(select max(sl.DESCRIPCION) from socios_direcciones sd,socios_lugares sl where SUBSTR(sd.mcli_lugar_dir,1,8) = sl.codigo and sd.codigo_socio = s.codigo_socio) as parroquia,
+(select max(st.telefono) from socios_trabajo_principal st where st.codigo_socio = s.codigo_socio) as telefonotrabajo,s.email,
+(select max(st.fecha_ingreso) from socios_trabajo_principal st  where st.codigo_socio = s.codigo_socio) as fechatrabajo,
+(select max(st.razon_social) from socios_trabajo_principal st  where st.codigo_socio = s.codigo_socio) as nombretrabajo,
+(select max(st.cargo) from socios_trabajo_principal st  where st.codigo_socio = s.codigo_socio) as cargo,
+(select max(st.tiempo_act_principal)||' '|| max(st.tipo_tiempo) from socios_trabajo_principal st  where st.codigo_socio = s.codigo_socio) as tiempotrabajo,
+(select max(st.direccion) from socios_trabajo_principal st  where st.codigo_socio = s.codigo_socio) as direcciontrabajo,
+(select max(ac.descripcion) from socios_trabajo_principal st,conf_activ_eco_socio ac  where st.codigo_industria_nivel1 = ac.codigo and st.codigo_socio = s.codigo_socio) as actividadeconomica,
+(select max(ac.descripcion) from socios_trabajo_secundario st,conf_activ_eco_socio ac  where st.codigo_industria_nivel1 = ac.codigo and st.codigo_socio = s.codigo_socio) as actividadeconomicasecundaria
+from socios s,socios_lugares sl,socios_profesion sp,socios_instruccion si,sifv_agencias su
+where s.mcli_lugnaci = sl.codigo
+and s.codigo_profesion = sp.prof_codigo
+and s.codigo_instruccion = si.inst_codigo
+and s.codigo_agencia = su.codigo_agencia
+and s.codigo_sucursal = su.codigo_sucursal
+and s.codigo_socio = $P{codigosocio}]]>
+	</queryString>
+	<field name="CODIGO_SOCIO" class="java.math.BigDecimal"/>
+	<field name="CODIGO_IDENTIFICACION" class="java.lang.String"/>
+	<field name="MCLI_NUMERO_ID" class="java.lang.String"/>
+	<field name="DESCRIPCION" class="java.lang.String"/>
+	<field name="NOMBRE" class="java.lang.String"/>
+	<field name="ESTADOCIVIL" class="java.math.BigDecimal"/>
+	<field name="SEXO" class="java.lang.String"/>
+	<field name="PROFESION" class="java.lang.String"/>
+	<field name="LUGAR" class="java.lang.String"/>
+	<field name="FECHANACIMIENTO" class="java.sql.Timestamp"/>
+	<field name="INSTRUCCION" class="java.lang.String"/>
+	<field name="CELULAR" class="java.lang.String"/>
+	<field name="TELEFONODOMICILIO" class="java.lang.String"/>
+	<field name="CALLEPRINCIPAL" class="java.lang.String"/>
+	<field name="CALLESECUNDARIA" class="java.lang.String"/>
+	<field name="NUMEROCASA" class="java.lang.String"/>
+	<field name="SECTOR" class="java.lang.String"/>
+	<field name="PAIS" class="java.lang.String"/>
+	<field name="PROVINCIA" class="java.lang.String"/>
+	<field name="CANTON" class="java.lang.String"/>
+	<field name="PARROQUIA" class="java.lang.String"/>
+	<field name="TELEFONOTRABAJO" class="java.lang.String"/>
+	<field name="EMAIL" class="java.lang.String"/>
+	<field name="FECHATRABAJO" class="java.sql.Timestamp"/>
+	<field name="NOMBRETRABAJO" class="java.lang.String"/>
+	<field name="CARGO" class="java.lang.String"/>
+	<field name="TIEMPOTRABAJO" class="java.lang.String"/>
+	<field name="DIRECCIONTRABAJO" class="java.lang.String"/>
+	<field name="ACTIVIDADECONOMICA" class="java.lang.String"/>
+	<field name="ACTIVIDADECONOMICASECUNDARIA" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="52" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="89532104-3ce9-4e0f-809d-5f369ebcf02b" x="68" y="30" width="484" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FORMULARIO DE APERTURA DE CUENTA (PERSONA NATURAL)]]></text>
+			</staticText>
+			<image isUsingCache="true">
+				<reportElement uuid="5e97224a-36ac-48c3-a916-561ec075a840" x="1" y="6" width="67" height="40"/>
+				<imageExpression><![CDATA[$P{LOGO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="f257451a-9848-4887-b20c-35a1c76a5a5e" x="68" y="4" width="484" height="22"/>
+				<textElement textAlignment="Center">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COOPERATIVA DE AHORRO Y CRÉDITO SAN JOSÉ S.J.]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="400" splitType="Stretch">
+			<textField>
+				<reportElement uuid="0e9d05a1-7dd9-44ce-8d97-7840912fb058" x="39" y="156" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{PAIS}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="257874ff-5cde-4dad-9325-a87805e94508" x="373" y="5" width="56" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Agencia:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="257874ff-5cde-4dad-9325-a87805e94508" x="202" y="5" width="90" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Codigo Socio:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="0e9d05a1-7dd9-44ce-8d97-7840912fb058" x="268" y="57" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{MCLI_NUMERO_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0e9d05a1-7dd9-44ce-8d97-7840912fb058" x="203" y="156" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{PROVINCIA}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="468db9de-388d-416c-a25d-48fca07a037f" x="1" y="246" width="555" height="1"/>
+			</line>
+			<textField>
+				<reportElement uuid="0e9d05a1-7dd9-44ce-8d97-7840912fb058" x="103" y="57" width="19" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CODIGO_IDENTIFICACION}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="c78c8df7-2217-4cfd-822e-a2289a1beb6b" x="6" y="373" width="202" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Actividad Economica Secundaria:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="468db9de-388d-416c-a25d-48fca07a037f" x="1" y="52" width="555" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="468db9de-388d-416c-a25d-48fca07a037f" x="1" y="269" width="555" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="257874ff-5cde-4dad-9325-a87805e94508" x="374" y="57" width="82" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Estado Civil:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="257874ff-5cde-4dad-9325-a87805e94508" x="6" y="272" width="90" height="40"/>
+				<textElement verticalAlignment="Top">
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Profesion u Ocupasion:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="257874ff-5cde-4dad-9325-a87805e94508" x="253" y="312" width="120" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Tiempo Trabajo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c78c8df7-2217-4cfd-822e-a2289a1beb6b" x="7" y="332" width="109" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Direccion Trabajo:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="468db9de-388d-416c-a25d-48fca07a037f" x="0" y="124" width="555" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="c78c8df7-2217-4cfd-822e-a2289a1beb6b" x="184" y="353" width="128" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Actividad Economica:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="468db9de-388d-416c-a25d-48fca07a037f" x="0" y="148" width="555" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="257874ff-5cde-4dad-9325-a87805e94508" x="3" y="57" width="100" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Tipo Documento:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="0e9d05a1-7dd9-44ce-8d97-7840912fb058" x="429" y="5" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{DESCRIPCION}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="257874ff-5cde-4dad-9325-a87805e94508" x="8" y="99" width="114" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Telefono Domicilio:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c78c8df7-2217-4cfd-822e-a2289a1beb6b" x="10" y="218" width="93" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Sector/Barrio:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="0e9d05a1-7dd9-44ce-8d97-7840912fb058" x="275" y="176" width="272" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CALLEPRINCIPAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0e9d05a1-7dd9-44ce-8d97-7840912fb058" x="275" y="198" width="273" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CALLESECUNDARIA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="89532104-3ce9-4e0f-809d-5f369ebcf02b" x="35" y="128" width="484" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INFORMACION DEL DOMICILIO DEL SOLICITANTE ]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="0e9d05a1-7dd9-44ce-8d97-7840912fb058" x="374" y="272" width="173" height="40"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{NOMBRETRABAJO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="257874ff-5cde-4dad-9325-a87805e94508" x="208" y="99" width="50" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Celular:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="257874ff-5cde-4dad-9325-a87805e94508" x="5" y="5" width="86" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isItalic="false" isUnderline="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Lugar y Fecha:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="0e9d05a1-7dd9-44ce-8d97-7840912fb058" x="96" y="5" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{FECHANACIMIENTO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="257874ff-5cde-4dad-9325-a87805e94508" x="253" y="272" width="120" height="40"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Empresa/ Nombre Negocio:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="0e9d05a1-7dd9-44ce-8d97-7840912fb058" x="373" y="312" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{TIEMPOTRABAJO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0e9d05a1-7dd9-44ce-8d97-7840912fb058" x="128" y="99" width="73" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{TELEFONODOMICILIO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="257874ff-5cde-4dad-9325-a87805e94508" x="368" y="99" width="41" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[E-mail:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="0e9d05a1-7dd9-44ce-8d97-7840912fb058" x="360" y="156" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CANTON}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="257874ff-5cde-4dad-9325-a87805e94508" x="10" y="198" width="93" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Numero Casa:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="0e9d05a1-7dd9-44ce-8d97-7840912fb058" x="294" y="5" width="75" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$F{CODIGO_SOCIO}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="468db9de-388d-416c-a25d-48fca07a037f" x="1" y="28" width="555" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="257874ff-5cde-4dad-9325-a87805e94508" x="6" y="312" width="90" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Cargo/Puesto:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="257874ff-5cde-4dad-9325-a87805e94508" x="139" y="156" width="64" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Provincia:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="257874ff-5cde-4dad-9325-a87805e94508" x="309" y="156" width="49" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Canton:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="257874ff-5cde-4dad-9325-a87805e94508" x="174" y="198" width="101" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Calle Secundaria:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="257874ff-5cde-4dad-9325-a87805e94508" x="391" y="78" width="36" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Sexo:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="0e9d05a1-7dd9-44ce-8d97-7840912fb058" x="98" y="272" width="155" height="40"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{PROFESION}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0e9d05a1-7dd9-44ce-8d97-7840912fb058" x="74" y="176" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{PARROQUIA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="257874ff-5cde-4dad-9325-a87805e94508" x="9" y="156" width="30" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Pais:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="89532104-3ce9-4e0f-809d-5f369ebcf02b" x="26" y="250" width="484" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INFORMACION DEL LUGAR DE TRABAJO DEL SOLICITANTE ]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="0c167a77-79fb-4d15-ac91-92559a52348f" x="312" y="353" width="224" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ACTIVIDADECONOMICA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0c167a77-79fb-4d15-ac91-92559a52348f" x="98" y="353" width="85" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{FECHATRABAJO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="257874ff-5cde-4dad-9325-a87805e94508" x="5" y="78" width="56" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c78c8df7-2217-4cfd-822e-a2289a1beb6b" x="6" y="353" width="90" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Trabajo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="89532104-3ce9-4e0f-809d-5f369ebcf02b" x="36" y="32" width="484" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INFORMACION DEL SOLICITANTE ]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="0e9d05a1-7dd9-44ce-8d97-7840912fb058" x="98" y="312" width="155" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CARGO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="931c4954-f711-46e2-9a62-02f9d176154d" x="212" y="373" width="261" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ACTIVIDADECONOMICASECUNDARIA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0c167a77-79fb-4d15-ac91-92559a52348f" x="116" y="332" width="357" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{DIRECCIONTRABAJO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="257874ff-5cde-4dad-9325-a87805e94508" x="9" y="176" width="63" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Parroquia:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="0e9d05a1-7dd9-44ce-8d97-7840912fb058" x="103" y="198" width="69" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{NUMEROCASA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0e9d05a1-7dd9-44ce-8d97-7840912fb058" x="62" y="78" width="327" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{NOMBRE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="257874ff-5cde-4dad-9325-a87805e94508" x="174" y="177" width="99" height="20"/>
+				<textElement verticalAlignment="Top">
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Calle Principal:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="257874ff-5cde-4dad-9325-a87805e94508" x="134" y="57" width="134" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Numero Identificacion:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="0e9d05a1-7dd9-44ce-8d97-7840912fb058" x="258" y="99" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CELULAR}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0e9d05a1-7dd9-44ce-8d97-7840912fb058" x="407" y="99" width="140" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{EMAIL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0c167a77-79fb-4d15-ac91-92559a52348f" x="105" y="218" width="134" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{SECTOR}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0e9d05a1-7dd9-44ce-8d97-7840912fb058" x="434" y="78" width="114" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{SEXO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0e9d05a1-7dd9-44ce-8d97-7840912fb058" x="459" y="57" width="94" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ESTADOCIVIL}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="95" splitType="Stretch">
+			<subreport isUsingCache="true">
+				<reportElement uuid="209a7771-1b72-42e0-91d2-ac8966af6ec9" x="1" y="2" width="555" height="26"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORTE1}]]></subreportExpression>
+			</subreport>
+			<subreport isUsingCache="true">
+				<reportElement uuid="f7c3bda7-5c72-4cfe-8cba-484aa725cf51" x="0" y="30" width="555" height="26"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORTE2}]]></subreportExpression>
+			</subreport>
+			<subreport isUsingCache="true">
+				<reportElement uuid="89dea205-d46e-4f91-8c1b-4780496ce136" x="0" y="58" width="555" height="26"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORTE3}]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="500" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="b7a59be8-739e-4a1e-9239-3d7540185ba3" x="295" y="322" width="200" height="36"/>
+				<textElement/>
+				<text><![CDATA[Firma y Sello del Responsable de la Verificacion de Datos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b7a59be8-739e-4a1e-9239-3d7540185ba3" x="32" y="434" width="200" height="36"/>
+				<textElement/>
+				<text><![CDATA[Firma y Sello de Revision]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fcba2f5f-1c48-4234-b435-24b6d8de692c" x="7" y="252" width="302" height="20"/>
+				<textElement>
+					<font size="14" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[PARA USO INTERNO DE LA COOPERATIVA]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="b96406dd-8500-4669-bdb7-dc33902fb3be" x="300" y="429" width="189" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="fbc52c26-e04c-4182-8e0f-1919d31cbef7" x="1" y="381" width="552" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="46769ae9-b77c-4488-a4ee-ab77f3bd113c" x="14" y="334" width="166" height="20"/>
+				<textElement/>
+				<text><![CDATA[Lista CONSEP/OFAC/ONU]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b7a59be8-739e-4a1e-9239-3d7540185ba3" x="289" y="204" width="200" height="36"/>
+				<textElement/>
+				<text><![CDATA[Firma y Sello del Responsable de la Apertuta de Cuenta]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="b96406dd-8500-4669-bdb7-dc33902fb3be" x="31" y="430" width="189" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="05686705-bd25-4e69-8841-5239795e899c" x="14" y="294" width="167" height="20"/>
+				<textElement/>
+				<text><![CDATA[Copia de Certificado de Votacion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9b91cecf-29da-4935-a59a-f2e59247a8c4" x="88" y="201" width="119" height="19"/>
+				<textElement/>
+				<text><![CDATA[Firma del Solicitante]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement uuid="5e4d4a53-5915-4baa-96c0-a3667a2f1d7c" x="193" y="334" width="16" height="20"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="70593a64-ea22-4a9f-b1a1-5fe8475919f8" x="14" y="314" width="166" height="20"/>
+				<textElement/>
+				<text><![CDATA[Planilla de Servicios Basico Vigente]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="fbc52c26-e04c-4182-8e0f-1919d31cbef7" x="1" y="246" width="552" height="1"/>
+			</line>
+			<rectangle>
+				<reportElement uuid="5e4d4a53-5915-4baa-96c0-a3667a2f1d7c" x="193" y="294" width="16" height="20"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="9a77a01d-0e32-4f36-91de-e7ec999d3927" x="0" y="3" width="556" height="70"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Conocedor(a) de las penas por perjurio y de las disposiciones contenidas en las de prevención de lavado de Activos Y Financiamiento de Delitos incluido el Terrorismo.
+En caso de ENTREGA DE FONDOS Declaro bajo juramento que el origen de los fondos entregados a la Cooperativa de Ahorro y Crédito Baños Ltda. proviene de actividades licitas.
+En caso de RECEPCION DE FONDOS Declaro bajo juramento que los fondos que recibo de la Cooperativa de Ahorro y Crédito Baños Ltda. No serán destinados a la realización o financiamiento de ninguna actividad ilícita.
+]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="b96406dd-8500-4669-bdb7-dc33902fb3be" x="288" y="200" width="189" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="b96406dd-8500-4669-bdb7-dc33902fb3be" x="294" y="318" width="189" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="69f3de53-0b29-4cfd-940d-0e38b7e40d47" x="14" y="274" width="166" height="20"/>
+				<textElement/>
+				<text><![CDATA[Copia de Cedula Vigenre]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="52758fbd-c8e8-48cb-a04e-10b4a64bf6dc" x="107" y="220" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{MCLI_NUMERO_ID}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement uuid="5e4d4a53-5915-4baa-96c0-a3667a2f1d7c" x="193" y="314" width="16" height="20"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="02ff87eb-7ab7-4870-aea1-9482c793de87" x="1" y="74" width="552" height="102"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Autorizo expresamente y voluntariamente a la Cooperativa de Ahorro y Crédito Baños Ltda. A realizar los análisis y verificaciones que considere necesarios; así también como obtener de cualquier fuente referencias relativas a mi comportamiento crediticio, el cumplimiento de mis obligaciones, manejo de mi(s) tarjeta(s) de crédito y, en general, mi capacidad de pago o para valorar el riesgo futuro de concederme cualquier operación, producto o servicio en la Cooperativa. Así como, confiero mi autorización para consultar, reportar y suministrar cualquier información de carácter financiero y comercial referentes a mis obligaciones a cualquier central de riego o fuente de información debidamente constituida, esta autorización está debidamente amparada en la normativa vigente esto es: Ley de Instituciones del Sistema Financiero, Ley de Buros e Información Crediticia Articulo 5, inciso tercero; Artículo 27 inciso segundo y demás normativas inherentes que se genere al respecto. Así también, confiero mi autorización para reportar a las autoridades competentes en caso de llegar a determinar la existencia de operaciones  y/o transacciones económicas inusuales e injustificadas conforme a la normativa Ecuatoriana vigente. En virtud de lo autorizado, renuncio a instaurar por este motivo cualquier tipo de acción civil, penal o administrativa en contra de la Cooperativa de Ahorro y Crédito Baños Ltda.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="edb66da2-b05b-4fb2-bddb-6534a1d7d963" x="15" y="354" width="161" height="20"/>
+				<textElement/>
+				<text><![CDATA[Buro de Credito]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="de3ecdcb-d360-474c-a75c-4501b407bac5" x="90" y="220" width="17" height="20"/>
+				<textElement/>
+				<text><![CDATA[C.I:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b7a59be8-739e-4a1e-9239-3d7540185ba3" x="301" y="433" width="200" height="37"/>
+				<textElement/>
+				<text><![CDATA[Firma de Aceptacion del Socio
+(CONSEJO DE ADMINISTRACION)                                                     ]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement uuid="5e4d4a53-5915-4baa-96c0-a3667a2f1d7c" x="193" y="354" width="16" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="5e4d4a53-5915-4baa-96c0-a3667a2f1d7c" x="193" y="274" width="16" height="20"/>
+			</rectangle>
+			<line>
+				<reportElement uuid="b96406dd-8500-4669-bdb7-dc33902fb3be" x="49" y="200" width="189" height="1"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

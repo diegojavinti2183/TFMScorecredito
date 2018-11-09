@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListCategoriasredTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListCategoriasredEmpty}" rendered="#{categoriasredController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{categoriasredController.items.rowCount > 0}">
+                    <h:outputText value="#{categoriasredController.pagination.pageFirstItem + 1}..#{categoriasredController.pagination.pageLastItem + 1}/#{categoriasredController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{categoriasredController.previous}" value="#{bundle.Previous} #{categoriasredController.pagination.pageSize}" rendered="#{categoriasredController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{categoriasredController.next}" value="#{bundle.Next} #{categoriasredController.pagination.pageSize}" rendered="#{categoriasredController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{categoriasredController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCategoriasredTitle_credCodigo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.credCodigo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCategoriasredTitle_credId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.credId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCategoriasredTitle_credNombre}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.credNombre}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCategoriasredTitle_credEstado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.credEstado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCategoriasredTitle_credAdmining}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.credAdmining}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCategoriasredTitle_credAdminfec1}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.credAdminfec1}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCategoriasredTitle_credAdminact}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.credAdminact}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCategoriasredTitle_credAdminfec2}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.credAdminfec2}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{categoriasredController.prepareView}" value="#{bundle.ListCategoriasredViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{categoriasredController.prepareEdit}" value="#{bundle.ListCategoriasredEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{categoriasredController.destroy}" value="#{bundle.ListCategoriasredDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{categoriasredController.prepareCreate}" value="#{bundle.ListCategoriasredCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListCategoriasredIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

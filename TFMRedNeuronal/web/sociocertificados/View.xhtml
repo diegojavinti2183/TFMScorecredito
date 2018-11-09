@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewSociocertificadosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewSociocertificadosLabel_soccNumero}"/>
+                    <h:outputText value="#{sociocertificadosController.selected.soccNumero}" title="#{bundle.ViewSociocertificadosTitle_soccNumero}"/>
+                    <h:outputText value="#{bundle.ViewSociocertificadosLabel_soccFecha}"/>
+                    <h:outputText value="#{sociocertificadosController.selected.soccFecha}" title="#{bundle.ViewSociocertificadosTitle_soccFecha}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewSociocertificadosLabel_soccDocumento}"/>
+                    <h:outputText value="#{sociocertificadosController.selected.soccDocumento}" title="#{bundle.ViewSociocertificadosTitle_soccDocumento}"/>
+                    <h:outputText value="#{bundle.ViewSociocertificadosLabel_soccSocio}"/>
+                    <h:outputText value="#{sociocertificadosController.selected.soccSocio}" title="#{bundle.ViewSociocertificadosTitle_soccSocio}"/>
+                    <h:outputText value="#{bundle.ViewSociocertificadosLabel_soccCuenta}"/>
+                    <h:outputText value="#{sociocertificadosController.selected.soccCuenta}" title="#{bundle.ViewSociocertificadosTitle_soccCuenta}"/>
+                    <h:outputText value="#{bundle.ViewSociocertificadosLabel_soccFechapertura}"/>
+                    <h:outputText value="#{sociocertificadosController.selected.soccFechapertura}" title="#{bundle.ViewSociocertificadosTitle_soccFechapertura}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewSociocertificadosLabel_soccNombre}"/>
+                    <h:outputText value="#{sociocertificadosController.selected.soccNombre}" title="#{bundle.ViewSociocertificadosTitle_soccNombre}"/>
+                    <h:outputText value="#{bundle.ViewSociocertificadosLabel_soccGarante}"/>
+                    <h:outputText value="#{sociocertificadosController.selected.soccGarante}" title="#{bundle.ViewSociocertificadosTitle_soccGarante}"/>
+                    <h:outputText value="#{bundle.ViewSociocertificadosLabel_soccMonto}"/>
+                    <h:outputText value="#{sociocertificadosController.selected.soccMonto}" title="#{bundle.ViewSociocertificadosTitle_soccMonto}"/>
+                    <h:outputText value="#{bundle.ViewSociocertificadosLabel_soccObservaciones}"/>
+                    <h:outputText value="#{sociocertificadosController.selected.soccObservaciones}" title="#{bundle.ViewSociocertificadosTitle_soccObservaciones}"/>
+                    <h:outputText value="#{bundle.ViewSociocertificadosLabel_soccAdmining}"/>
+                    <h:outputText value="#{sociocertificadosController.selected.soccAdmining}" title="#{bundle.ViewSociocertificadosTitle_soccAdmining}"/>
+                    <h:outputText value="#{bundle.ViewSociocertificadosLabel_soccAdminfec1}"/>
+                    <h:outputText value="#{sociocertificadosController.selected.soccAdminfec1}" title="#{bundle.ViewSociocertificadosTitle_soccAdminfec1}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewSociocertificadosLabel_soccTipodocumento}"/>
+                    <h:outputText value="#{sociocertificadosController.selected.soccTipodocumento}" title="#{bundle.ViewSociocertificadosTitle_soccTipodocumento}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{sociocertificadosController.destroyAndView}" value="#{bundle.ViewSociocertificadosDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewSociocertificadosEditLink}"/>
+                <br />
+                <h:commandLink action="#{sociocertificadosController.prepareCreate}" value="#{bundle.ViewSociocertificadosCreateLink}" />
+                <br />
+                <h:commandLink action="#{sociocertificadosController.prepareList}" value="#{bundle.ViewSociocertificadosShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewSociocertificadosIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListRedneuronalTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListRedneuronalEmpty}" rendered="#{redneuronalController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{redneuronalController.items.rowCount > 0}">
+                    <h:outputText value="#{redneuronalController.pagination.pageFirstItem + 1}..#{redneuronalController.pagination.pageLastItem + 1}/#{redneuronalController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{redneuronalController.previous}" value="#{bundle.Previous} #{redneuronalController.pagination.pageSize}" rendered="#{redneuronalController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{redneuronalController.next}" value="#{bundle.Next} #{redneuronalController.pagination.pageSize}" rendered="#{redneuronalController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{redneuronalController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRedneuronalTitle_redSecuencia}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.redSecuencia}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRedneuronalTitle_redNentrada}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.redNentrada}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRedneuronalTitle_redNoculta}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.redNoculta}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRedneuronalTitle_redNcapasocultas}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.redNcapasocultas}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRedneuronalTitle_redNsalida}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.redNsalida}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRedneuronalTitle_redIteraciones}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.redIteraciones}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRedneuronalTitle_redMaxerror}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.redMaxerror}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRedneuronalTitle_redEstado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.redEstado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRedneuronalTitle_redAdmining}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.redAdmining}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRedneuronalTitle_redAdminfec1}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.redAdminfec1}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRedneuronalTitle_redAdminact}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.redAdminact}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRedneuronalTitle_redAdminfec2}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.redAdminfec2}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{redneuronalController.prepareView}" value="#{bundle.ListRedneuronalViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{redneuronalController.prepareEdit}" value="#{bundle.ListRedneuronalEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{redneuronalController.destroy}" value="#{bundle.ListRedneuronalDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{redneuronalController.prepareCreate}" value="#{bundle.ListRedneuronalCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListRedneuronalIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

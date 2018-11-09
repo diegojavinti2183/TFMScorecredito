@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="../WEB-INF/plantilla.xhtml">
+        <ui:define name="top">
+            <h:outputText value="#{bundle.TitleProgram}"></h:outputText>
+        </ui:define>
+        <ui:define name="content" >            
+            <h:form id="form" styleClass="jsfcrud_list_form">
+                <p:panel header="#{bundle.ViewUsuariosTitle}">
+                    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" /> 
+                    <p:dataTable id="tablaUsuarios" value="#{usuariosController.items}" var="item" style="border:solid 1px" filteredValue="#{usuariosController.filterItems}" widgetVar="usuarioTabla" scrollHeight="300" scrollable="true">  
+                        <f:facet name="header">  
+                            <p:outputPanel>  
+                                <h:outputText value="#{bundle.GlobalFilter}" />  
+                                <p:inputText id="globalFilter" onkeyup="usuarioTabla.filter()" style="width:150px" />  
+                                <p:commandButton id="ButtonNew" image="ui-icon ui-icon-document" value="Nuevo" action="#{usuariosController.nuevo}" process="@this" update="@form"/>
+                            </p:outputPanel>  
+                        </f:facet>  
+
+                        <p:column id="usuUsuario" filterBy="#{item.usuUsuario}" filterMatchMode="contains" headerText="#{bundle.ListUsuariosTitle_usuUsuario}">  
+                            <h:outputText value="#{item.usuUsuario}" />  
+                        </p:column>
+
+                        <p:column id="usuNombre" filterBy="#{item.usuNombre}" filterMatchMode="contains"  headerText="#{bundle.ListUsuariosTitle_usuNombre}">  
+                            <h:outputText value="#{item.usuNombre}" />  
+                        </p:column>                     
+
+                        <p:column style="width:4%">  
+                            <p:commandButton id="selectButtonView" action="#{usuariosController.prepareView}" update="@form" image="ui-icon ui-icon-search" title="View">  
+                                <f:setPropertyActionListener value="#{item}" target="#{usuariosController.selectedUsuarios}" />  
+                            </p:commandButton>                            
+                        </p:column> 
+                        <p:column style="width:4%"> 
+                            <p:commandButton id="selectButtonEdit" action="#{usuariosController.prepareEdit}" update="@form" image="ui-icon ui-icon-pencil" title="Edit">
+                                <f:setPropertyActionListener value="#{item}" target="#{usuariosController.selectedUsuarios}" />  
+                            </p:commandButton>
+                        </p:column> 
+                        <p:column style="width:4%"> 
+                            <p:commandButton id="showDialogButton" image="ui-icon ui-icon-trash" onclick="PF('confirmation').show();" title="Destroy">                             
+                                <f:setPropertyActionListener value="#{item}" target="#{usuariosController.selectedUsuarios}" />  
+                            </p:commandButton>
+                        </p:column> 
+
+                    </p:dataTable>  
+                </p:panel>
+
+                <p:panel id="panelCampos" header="#{bundle.CreateUsuariosTitle}" rendered="#{usuariosController.renderedPanel}">
+                    <h:panelGrid columns="3">                     
+                        <h:outputLabel value="#{bundle.CreateUsuariosLabel_usuUsuario}" for="usuUsuario" />
+                        <p:inputText id="usuUsuario" value="#{usuariosController.current.usuUsuario}" title="#{bundle.CreateUsuariosTitle_usuUsuario}" required="true"/>
+                        <p:message for="usuUsuario" display="#{bundle.CreateUsuariosTitle_usuUsuario}"/>
+                        <h:outputLabel value="#{bundle.CreateUsuariosLabel_usuPassword}" for="usuPassword" />
+                        <p:inputText id="usuPassword" value="#{usuariosController.current.usuPassword}" title="#{bundle.CreateUsuariosTitle_usuPassword}" required="true" />
+                        <p:message for="usuPassword" display="#{bundle.CreateUsuariosTitle_usuPassword}"/>
+                        <h:outputLabel value="#{bundle.CreateUsuariosLabel_usuActivo}" for="usuActivo" />
+                        <p:selectBooleanCheckbox id="usuActivo" value="#{usuariosController.current.usuActivo}" />
+                        <p:message for="usuActivo" display="#{bundle.CreateUsuariosTitle_usuActivo}"/>
+                        <h:outputLabel value="#{bundle.CreateUsuariosLabel_usuNombre}" for="usuNombre" />
+                        <p:inputText id="usuNombre" value="#{usuariosController.current.usuNombre}" title="#{bundle.CreateUsuariosTitle_usuNombre}" required="true" onkeyup="this.value=this.value.toUpperCase();"/>
+                        <p:message for="usuNombre" display="#{bundle.CreateUsuariosTitle_usuNombre}"/>
+                        <h:outputLabel value="#{bundle.CreateUsuariosLabel_usuRol}" for="usuRol" />
+                        <p:selectOneMenu id="usuRol" value="#{usuariosController.current.usuRol}" required="true">
+                            <f:selectItems value="#{rolesController.itemsAvailableSelectOne}"/>
+                        </p:selectOneMenu>
+                        <p:message for="usuRol" display="#{bundle.CreateUsuariosTitle_usuRol}"/>
+                    </h:panelGrid> 
+                    <br />
+                    <p:commandButton action="#{usuariosController.create}" value="#{bundle.CreateUsuariosSaveLink}" rendered="#{usuariosController.renderedGuardar}" process="@all" update="@form"/>
+                    <p:commandButton action="#{usuariosController.update}" value="#{bundle.EditUsuariosSaveLink}" rendered="#{usuariosController.renderedEditar}" process="@all" update="@form"/>
+                    <p:commandButton action="#{usuariosController.cancel}" value="#{bundle.CancelUsuariosSaveLink}" process="@this" update="@form"/>                    
+                </p:panel>
+                <h:link outcome="/menus" value="#{bundle.CreateUsuariosIndexLink}"/>
+
+                <p:confirmDialog id="confirmDialog" message="#{bundle.ConfirmDialogMessage}" header="#{bundle.ConfirmDialogTitle}" severity="alert" widgetVar="confirmation">
+                    <p:commandButton id="confirm" value="#{bundle.ButtonYes}" update="messages,tablaUsuarios" oncomplete="PF('confirmation').hide();" actionListener="#{usuariosController.destroy}" />  
+                    <p:commandButton id="decline" value="#{bundle.ButtonNo}" onclick="PF('confirmation').hide();" type="button" /> 
+                </p:confirmDialog>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

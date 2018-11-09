@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditScoringdetalleTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditScoringdetalleLabel_scoringdetallePK_dscorNumero}" for="scoringdetallePK_dscorNumero" />
+                    <h:inputText id="scoringdetallePK_dscorNumero" value="#{scoringdetalleController.selected.scoringdetallePK.dscorNumero}" title="#{bundle.EditScoringdetalleTitle_scoringdetallePK_dscorNumero}" required="true" requiredMessage="#{bundle.EditScoringdetalleRequiredMessage_scoringdetallePK_dscorNumero}"/>
+                    <h:outputLabel value="#{bundle.EditScoringdetalleLabel_dscorValor}" for="dscorValor" />
+                    <h:inputText id="dscorValor" value="#{scoringdetalleController.selected.dscorValor}" title="#{bundle.EditScoringdetalleTitle_dscorValor}" required="true" requiredMessage="#{bundle.EditScoringdetalleRequiredMessage_dscorValor}"/>
+                    <h:outputLabel value="#{bundle.EditScoringdetalleLabel_dscorHomologacion}" for="dscorHomologacion" />
+                    <h:inputText id="dscorHomologacion" value="#{scoringdetalleController.selected.dscorHomologacion}" title="#{bundle.EditScoringdetalleTitle_dscorHomologacion}" required="true" requiredMessage="#{bundle.EditScoringdetalleRequiredMessage_dscorHomologacion}"/>
+                    <h:outputLabel value="#{bundle.EditScoringdetalleLabel_scoringpersonas}" for="scoringpersonas" />
+                    <h:selectOneMenu id="scoringpersonas" value="#{scoringdetalleController.selected.scoringpersonas}" title="#{bundle.EditScoringdetalleTitle_scoringpersonas}" required="true" requiredMessage="#{bundle.EditScoringdetalleRequiredMessage_scoringpersonas}">
+                        <f:selectItems value="#{scoringpersonasController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditScoringdetalleLabel_dscorVariable}" for="dscorVariable" />
+                    <h:selectOneMenu id="dscorVariable" value="#{scoringdetalleController.selected.dscorVariable}" title="#{bundle.EditScoringdetalleTitle_dscorVariable}" required="true" requiredMessage="#{bundle.EditScoringdetalleRequiredMessage_dscorVariable}">
+                        <f:selectItems value="#{variablesredController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{scoringdetalleController.update}" value="#{bundle.EditScoringdetalleSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditScoringdetalleViewLink}"/>
+                <br />
+                <h:commandLink action="#{scoringdetalleController.prepareList}" value="#{bundle.EditScoringdetalleShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditScoringdetalleIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

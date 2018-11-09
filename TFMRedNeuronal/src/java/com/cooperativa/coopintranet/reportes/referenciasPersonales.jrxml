@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="referenciasPersonales" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="96f4e7f2-a983-439b-be2a-2afe7c57c7aa">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[select sr.rper_nombre,sr.rper_direccion,sr.rper_telefono
+from socios_referencias_personales sr where sr.codigo_socio = 7444]]>
+	</queryString>
+	<field name="RPER_NOMBRE" class="java.lang.String"/>
+	<field name="RPER_DIRECCION" class="java.lang.String"/>
+	<field name="RPER_TELEFONO" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="160" height="20" uuid="e5e565ea-596b-42ec-b1cf-24ddcfea0c2c"/>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="0" width="328" height="20" uuid="e5e565ea-596b-42ec-b1cf-24ddcfea0c2c"/>
+				<text><![CDATA[Direccion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="488" y="0" width="107" height="20" uuid="e5e565ea-596b-42ec-b1cf-24ddcfea0c2c"/>
+				<text><![CDATA[Telefono]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="160" height="20" uuid="23f1946a-0eb1-4596-92e8-08304743252f"/>
+				<textFieldExpression><![CDATA[$F{RPER_NOMBRE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="0" width="328" height="20" uuid="9cffe37a-bf8d-4660-a0cf-fc001fe587a6"/>
+				<textFieldExpression><![CDATA[$F{RPER_DIRECCION}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="488" y="0" width="107" height="20" uuid="5c2c1e3a-7d38-4540-aeed-b47853d25fc9"/>
+				<textFieldExpression><![CDATA[$F{RPER_TELEFONO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

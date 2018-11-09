@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="autorizacion" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a38b4ddf-4143-4fbe-a019-9a3676fa659e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="404"/>
+	<parameter name="SUBREPORT_DIR" class="java.io.InputStream" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="LOGO" class="java.io.InputStream"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="factFecha" class="java.util.Date"/>
+	<field name="facturasPK.factAgencia" class="java.lang.Integer"/>
+	<field name="facturasPK.factPemision" class="java.lang.Integer"/>
+	<field name="factSocio" class="java.lang.Integer"/>
+	<field name="factNombre" class="java.lang.String"/>
+	<field name="factSubtotal" class="java.math.BigDecimal"/>
+	<field name="factImpuesto" class="java.math.BigDecimal"/>
+	<field name="factTotal" class="java.math.BigDecimal"/>
+	<field name="detallesCollection" class="java.util.List"/>
+	<field name="factIdentificacion" class="java.lang.String"/>
+	<field name="factDireccion" class="java.lang.String"/>
+	<field name="factTelefono" class="java.lang.String"/>
+	<field name="factCuentasocio" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="700" splitType="Stretch">
+			<textField>
+				<reportElement uuid="e24a24cf-7079-4a3f-bf21-168be505abfd" x="31" y="73" width="396" height="20"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Cuenca, "+$F{factFecha}.getDate()+" de "+( $F{factFecha}.getMonth() == 1 ? "febrero" : ( $F{factFecha}.getMonth() == 2 ? "marzo" : ( $F{factFecha}.getMonth() == 3 ? "abril" : ( $F{factFecha}.getMonth() == 4 ? "mayo" : ( $F{factFecha}.getMonth() == 5 ? "junio" : ( $F{factFecha}.getMonth() == 6 ? "julio" : ( $F{factFecha}.getMonth() == 7 ? "agosto" : ( $F{factFecha}.getMonth() == 8 ? "septiembre" : ( $F{factFecha}.getMonth() == 9 ? "octubre" : ( $F{factFecha}.getMonth() == 10 ? "noviembre" : ( $F{factFecha}.getMonth() == 11 ? "diciembre" : "enero" ) ) ) ) ) ) ) ) ) ) )+" del "+($F{factFecha}.getYear()+1900)]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="76441675-933b-4a0f-8f35-5a47c74e341c" x="31" y="105" width="309" height="72"/>
+				<textElement/>
+				<text><![CDATA[Señores
+COOPERATIVA DE AHORRO Y CREDITO SAN JOSÉ S.J.
+Presente
+
+De mi consideración:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="08741fab-c3e5-4118-a1f7-550bf41eea03" x="31" y="177" width="504" height="50"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["Yo,"+$F{factNombre}+" con cédula de identidad "+$F{factIdentificacion}+", solicito a COOPERATIVA DE AHORRO Y CREDITO SAN JOSÉ S.J., debitar el valor de "+$F{factTotal}+" de mi cuenta de ahorros  número "+$F{factCuentasocio}+", por concepto de Facturación de Servicios"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="8947eca6-d09a-477a-936b-e104c77f9dc3" x="31" y="227" width="281" height="58"/>
+				<textElement/>
+				<text><![CDATA[Atentamente,
+
+
+______________________________]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="19fb992e-2a76-4253-97da-48d863b87a41" x="31" y="285" width="281" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["C.I: "+$F{factIdentificacion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="8947eca6-d09a-477a-936b-e104c77f9dc3" x="32" y="614" width="281" height="58"/>
+				<textElement/>
+				<text><![CDATA[Atentamente,
+
+
+______________________________]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="e24a24cf-7079-4a3f-bf21-168be505abfd" x="32" y="460" width="396" height="20"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Cuenca, "+$F{factFecha}.getDate()+" de "+( $F{factFecha}.getMonth() == 1 ? "febrero" : ( $F{factFecha}.getMonth() == 2 ? "marzo" : ( $F{factFecha}.getMonth() == 3 ? "abril" : ( $F{factFecha}.getMonth() == 4 ? "mayo" : ( $F{factFecha}.getMonth() == 5 ? "junio" : ( $F{factFecha}.getMonth() == 6 ? "julio" : ( $F{factFecha}.getMonth() == 7 ? "agosto" : ( $F{factFecha}.getMonth() == 8 ? "septiembre" : ( $F{factFecha}.getMonth() == 9 ? "octubre" : ( $F{factFecha}.getMonth() == 10 ? "noviembre" : ( $F{factFecha}.getMonth() == 11 ? "diciembre" : "enero" ) ) ) ) ) ) ) ) ) ) )+" del "+($F{factFecha}.getYear()+1900)]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="08741fab-c3e5-4118-a1f7-550bf41eea03" x="32" y="564" width="504" height="50"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["Yo,"+$F{factNombre}+" con cédula de identidad "+$F{factIdentificacion}+", solicito a COOPERATIVA DE AHORRO Y CREDITO SAN JOSÉ S.J., debitar el valor de "+$F{factTotal}+" de mi cuenta de ahorros  número "+$F{factCuentasocio}+", por concepto de Facturación de Servicios"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="76441675-933b-4a0f-8f35-5a47c74e341c" x="32" y="492" width="309" height="72"/>
+				<textElement/>
+				<text><![CDATA[Señores
+COOPERATIVA DE AHORRO Y CREDITO SAN JOSÉ S.J. LTDA.
+Presente
+
+De mi consideración:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="19fb992e-2a76-4253-97da-48d863b87a41" x="32" y="672" width="281" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["C.I: "+$F{factIdentificacion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="f257451a-9848-4887-b20c-35a1c76a5a5e" x="65" y="10" width="484" height="22"/>
+				<textElement textAlignment="Center">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COOPERATIVA DE AHORRO Y CREDITO SAN JOSE S.J.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="99cf9acf-c870-42c0-b1da-15385b0e3bf8" x="145" y="32" width="319" height="16"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Autorización de débito]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="99cf9acf-c870-42c0-b1da-15385b0e3bf8" x="146" y="427" width="319" height="16"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Autorización de débito]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f257451a-9848-4887-b20c-35a1c76a5a5e" x="66" y="405" width="484" height="22"/>
+				<textElement textAlignment="Center">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COOPERATIVA DE AHORRO Y CREDITO SAN JOSE S.J.]]></text>
+			</staticText>
+			<image isUsingCache="true">
+				<reportElement uuid="5e97224a-36ac-48c3-a916-561ec075a840" x="0" y="8" width="67" height="40"/>
+				<imageExpression><![CDATA[$P{LOGO}]]></imageExpression>
+			</image>
+			<image isUsingCache="true">
+				<reportElement uuid="5e97224a-36ac-48c3-a916-561ec075a840" x="0" y="405" width="67" height="40"/>
+				<imageExpression><![CDATA[$P{LOGO}]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

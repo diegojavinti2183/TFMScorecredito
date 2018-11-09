@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified">
+  <xs:element name="SEGURIDAD">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="xs:string" name="CLAVE" minOccurs="1" maxOccurs="1" />
+        <xs:element name="CABECERA">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element minOccurs="1" maxOccurs="1" name="CDR">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:minLength value="4" />
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element minOccurs="1" maxOccurs="1" name="PDR">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:pattern value="[0-9]*" />
+                    <xs:minLength value="8" />
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element minOccurs="1" maxOccurs="1" name="FRE">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:pattern value="[0-9]*" />
+                    <xs:minLength value="8" />
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element minOccurs="1" maxOccurs="1" name="USR">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:minLength value="5" />
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element minOccurs="1" maxOccurs="1" name="CLI" type="xs:integer" />
+              <xs:element minOccurs="1" maxOccurs="1" name="PRO" type="xs:integer" />
+              <xs:element minOccurs="1" maxOccurs="1" name="TRA" type="xs:integer" />
+              <xs:element minOccurs="1" maxOccurs="1" name="TRB" type="xs:integer" />
+              <xs:element minOccurs="1" maxOccurs="1" name="TDE" type="xs:integer" />
+              <xs:element minOccurs="1" maxOccurs="1" name="TCR" type="xs:integer" />
+              <xs:element minOccurs="1" maxOccurs="1" name="TEF" type="xs:integer" />
+              <xs:element minOccurs="1" maxOccurs="1" name="TCH" type="xs:integer" />
+              <xs:element minOccurs="1" maxOccurs="1" name="TVT" type="xs:integer" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+

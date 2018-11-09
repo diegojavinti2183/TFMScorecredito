@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewRedneuronalTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewRedneuronalLabel_redSecuencia}"/>
+                    <h:outputText value="#{redneuronalController.selected.redSecuencia}" title="#{bundle.ViewRedneuronalTitle_redSecuencia}"/>
+                    <h:outputText value="#{bundle.ViewRedneuronalLabel_redNentrada}"/>
+                    <h:outputText value="#{redneuronalController.selected.redNentrada}" title="#{bundle.ViewRedneuronalTitle_redNentrada}"/>
+                    <h:outputText value="#{bundle.ViewRedneuronalLabel_redNoculta}"/>
+                    <h:outputText value="#{redneuronalController.selected.redNoculta}" title="#{bundle.ViewRedneuronalTitle_redNoculta}"/>
+                    <h:outputText value="#{bundle.ViewRedneuronalLabel_redNcapasocultas}"/>
+                    <h:outputText value="#{redneuronalController.selected.redNcapasocultas}" title="#{bundle.ViewRedneuronalTitle_redNcapasocultas}"/>
+                    <h:outputText value="#{bundle.ViewRedneuronalLabel_redNsalida}"/>
+                    <h:outputText value="#{redneuronalController.selected.redNsalida}" title="#{bundle.ViewRedneuronalTitle_redNsalida}"/>
+                    <h:outputText value="#{bundle.ViewRedneuronalLabel_redIteraciones}"/>
+                    <h:outputText value="#{redneuronalController.selected.redIteraciones}" title="#{bundle.ViewRedneuronalTitle_redIteraciones}"/>
+                    <h:outputText value="#{bundle.ViewRedneuronalLabel_redMaxerror}"/>
+                    <h:outputText value="#{redneuronalController.selected.redMaxerror}" title="#{bundle.ViewRedneuronalTitle_redMaxerror}"/>
+                    <h:outputText value="#{bundle.ViewRedneuronalLabel_redEstado}"/>
+                    <h:outputText value="#{redneuronalController.selected.redEstado}" title="#{bundle.ViewRedneuronalTitle_redEstado}"/>
+                    <h:outputText value="#{bundle.ViewRedneuronalLabel_redAdmining}"/>
+                    <h:outputText value="#{redneuronalController.selected.redAdmining}" title="#{bundle.ViewRedneuronalTitle_redAdmining}"/>
+                    <h:outputText value="#{bundle.ViewRedneuronalLabel_redAdminfec1}"/>
+                    <h:outputText value="#{redneuronalController.selected.redAdminfec1}" title="#{bundle.ViewRedneuronalTitle_redAdminfec1}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewRedneuronalLabel_redAdminact}"/>
+                    <h:outputText value="#{redneuronalController.selected.redAdminact}" title="#{bundle.ViewRedneuronalTitle_redAdminact}"/>
+                    <h:outputText value="#{bundle.ViewRedneuronalLabel_redAdminfec2}"/>
+                    <h:outputText value="#{redneuronalController.selected.redAdminfec2}" title="#{bundle.ViewRedneuronalTitle_redAdminfec2}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{redneuronalController.destroyAndView}" value="#{bundle.ViewRedneuronalDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewRedneuronalEditLink}"/>
+                <br />
+                <h:commandLink action="#{redneuronalController.prepareCreate}" value="#{bundle.ViewRedneuronalCreateLink}" />
+                <br />
+                <h:commandLink action="#{redneuronalController.prepareList}" value="#{bundle.ViewRedneuronalShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewRedneuronalIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListSimuladorcreditosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListSimuladorcreditosEmpty}" rendered="#{simuladorcreditosController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{simuladorcreditosController.items.rowCount > 0}">
+                    <h:outputText value="#{simuladorcreditosController.pagination.pageFirstItem + 1}..#{simuladorcreditosController.pagination.pageLastItem + 1}/#{simuladorcreditosController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{simuladorcreditosController.previous}" value="#{bundle.Previous} #{simuladorcreditosController.pagination.pageSize}" rendered="#{simuladorcreditosController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{simuladorcreditosController.next}" value="#{bundle.Next} #{simuladorcreditosController.pagination.pageSize}" rendered="#{simuladorcreditosController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{simuladorcreditosController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSimuladorcreditosTitle_screNumero}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.screNumero}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSimuladorcreditosTitle_screFecha}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.screFecha}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSimuladorcreditosTitle_screTipocredito}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.screTipocredito}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSimuladorcreditosTitle_screMonto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.screMonto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSimuladorcreditosTitle_screTasa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.screTasa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSimuladorcreditosTitle_screProductoSocio}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.screProductoSocio}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSimuladorcreditosTitle_screCapital}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.screCapital}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSimuladorcreditosTitle_screDesembolso}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.screDesembolso}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSimuladorcreditosTitle_screSaldo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.screSaldo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSimuladorcreditosTitle_screInteres}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.screInteres}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSimuladorcreditosTitle_screPlazo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.screPlazo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSimuladorcreditosTitle_screDiasAmortizacion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.screDiasAmortizacion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSimuladorcreditosTitle_screCuotas}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.screCuotas}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSimuladorcreditosTitle_screDestino}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.screDestino}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSimuladorcreditosTitle_screAdmining}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.screAdmining}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSimuladorcreditosTitle_screAdminfec1}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.screAdminfec1}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSimuladorcreditosTitle_screAdminact}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.screAdminact}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSimuladorcreditosTitle_screAdminfec2}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.screAdminfec2}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSimuladorcreditosTitle_screPersona}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.screPersona}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{simuladorcreditosController.prepareView}" value="#{bundle.ListSimuladorcreditosViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{simuladorcreditosController.prepareEdit}" value="#{bundle.ListSimuladorcreditosEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{simuladorcreditosController.destroy}" value="#{bundle.ListSimuladorcreditosDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{simuladorcreditosController.prepareCreate}" value="#{bundle.ListSimuladorcreditosCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListSimuladorcreditosIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

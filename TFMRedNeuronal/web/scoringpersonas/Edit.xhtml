@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditScoringpersonasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditScoringpersonasLabel_scorNumero}" for="scorNumero" />
+                    <h:inputText id="scorNumero" value="#{scoringpersonasController.selected.scorNumero}" title="#{bundle.EditScoringpersonasTitle_scorNumero}" required="true" requiredMessage="#{bundle.EditScoringpersonasRequiredMessage_scorNumero}"/>
+                    <h:outputLabel value="#{bundle.EditScoringpersonasLabel_scorFecha}" for="scorFecha" />
+                    <h:inputText id="scorFecha" value="#{scoringpersonasController.selected.scorFecha}" title="#{bundle.EditScoringpersonasTitle_scorFecha}" required="true" requiredMessage="#{bundle.EditScoringpersonasRequiredMessage_scorFecha}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditScoringpersonasLabel_scorUsuario}" for="scorUsuario" />
+                    <h:inputText id="scorUsuario" value="#{scoringpersonasController.selected.scorUsuario}" title="#{bundle.EditScoringpersonasTitle_scorUsuario}" required="true" requiredMessage="#{bundle.EditScoringpersonasRequiredMessage_scorUsuario}"/>
+                    <h:outputLabel value="#{bundle.EditScoringpersonasLabel_scorCalificacion}" for="scorCalificacion" />
+                    <h:inputText id="scorCalificacion" value="#{scoringpersonasController.selected.scorCalificacion}" title="#{bundle.EditScoringpersonasTitle_scorCalificacion}" required="true" requiredMessage="#{bundle.EditScoringpersonasRequiredMessage_scorCalificacion}"/>
+                    <h:outputLabel value="#{bundle.EditScoringpersonasLabel_scorAdmining}" for="scorAdmining" />
+                    <h:inputText id="scorAdmining" value="#{scoringpersonasController.selected.scorAdmining}" title="#{bundle.EditScoringpersonasTitle_scorAdmining}" required="true" requiredMessage="#{bundle.EditScoringpersonasRequiredMessage_scorAdmining}"/>
+                    <h:outputLabel value="#{bundle.EditScoringpersonasLabel_scorAdminfec1}" for="scorAdminfec1" />
+                    <h:inputText id="scorAdminfec1" value="#{scoringpersonasController.selected.scorAdminfec1}" title="#{bundle.EditScoringpersonasTitle_scorAdminfec1}" required="true" requiredMessage="#{bundle.EditScoringpersonasRequiredMessage_scorAdminfec1}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditScoringpersonasLabel_scorAdminact}" for="scorAdminact" />
+                    <h:inputText id="scorAdminact" value="#{scoringpersonasController.selected.scorAdminact}" title="#{bundle.EditScoringpersonasTitle_scorAdminact}" required="true" requiredMessage="#{bundle.EditScoringpersonasRequiredMessage_scorAdminact}"/>
+                    <h:outputLabel value="#{bundle.EditScoringpersonasLabel_scorAdminfec2}" for="scorAdminfec2" />
+                    <h:inputText id="scorAdminfec2" value="#{scoringpersonasController.selected.scorAdminfec2}" title="#{bundle.EditScoringpersonasTitle_scorAdminfec2}" required="true" requiredMessage="#{bundle.EditScoringpersonasRequiredMessage_scorAdminfec2}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditScoringpersonasLabel_scorPersona}" for="scorPersona" />
+                    <h:selectOneMenu id="scorPersona" value="#{scoringpersonasController.selected.scorPersona}" title="#{bundle.EditScoringpersonasTitle_scorPersona}" required="true" requiredMessage="#{bundle.EditScoringpersonasRequiredMessage_scorPersona}">
+                        <f:selectItems value="#{personasController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{scoringpersonasController.update}" value="#{bundle.EditScoringpersonasSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditScoringpersonasViewLink}"/>
+                <br />
+                <h:commandLink action="#{scoringpersonasController.prepareList}" value="#{bundle.EditScoringpersonasShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditScoringpersonasIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewUsuariosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewUsuariosLabel_usuCodigo}"/>
+                    <h:outputText value="#{usuariosController.selected.usuCodigo}" title="#{bundle.ViewUsuariosTitle_usuCodigo}"/>
+                    <h:outputText value="#{bundle.ViewUsuariosLabel_usuUsuario}"/>
+                    <h:outputText value="#{usuariosController.selected.usuUsuario}" title="#{bundle.ViewUsuariosTitle_usuUsuario}"/>
+                    <h:outputText value="#{bundle.ViewUsuariosLabel_usuPassword}"/>
+                    <h:outputText value="#{usuariosController.selected.usuPassword}" title="#{bundle.ViewUsuariosTitle_usuPassword}"/>
+                    <h:outputText value="#{bundle.ViewUsuariosLabel_usuActivo}"/>
+                    <h:outputText value="#{usuariosController.selected.usuActivo}" title="#{bundle.ViewUsuariosTitle_usuActivo}"/>
+                    <h:outputText value="#{bundle.ViewUsuariosLabel_usuNombre}"/>
+                    <h:outputText value="#{usuariosController.selected.usuNombre}" title="#{bundle.ViewUsuariosTitle_usuNombre}"/>
+                    <h:outputText value="#{bundle.ViewUsuariosLabel_usuAdmining}"/>
+                    <h:outputText value="#{usuariosController.selected.usuAdmining}" title="#{bundle.ViewUsuariosTitle_usuAdmining}"/>
+                    <h:outputText value="#{bundle.ViewUsuariosLabel_usuAdminfec1}"/>
+                    <h:outputText value="#{usuariosController.selected.usuAdminfec1}" title="#{bundle.ViewUsuariosTitle_usuAdminfec1}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewUsuariosLabel_usuAdminact}"/>
+                    <h:outputText value="#{usuariosController.selected.usuAdminact}" title="#{bundle.ViewUsuariosTitle_usuAdminact}"/>
+                    <h:outputText value="#{bundle.ViewUsuariosLabel_usuAdminfec2}"/>
+                    <h:outputText value="#{usuariosController.selected.usuAdminfec2}" title="#{bundle.ViewUsuariosTitle_usuAdminfec2}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{usuariosController.destroyAndView}" value="#{bundle.ViewUsuariosDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewUsuariosEditLink}"/>
+                <br />
+                <h:commandLink action="#{usuariosController.prepareCreate}" value="#{bundle.ViewUsuariosCreateLink}" />
+                <br />
+                <h:commandLink action="#{usuariosController.prepareList}" value="#{bundle.ViewUsuariosShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewUsuariosIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
